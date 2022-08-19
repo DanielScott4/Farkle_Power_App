@@ -1,0 +1,118 @@
+{
+  "ComponentAllowCustomization": true,
+  "ComponentChangedSinceFileImport": true,
+  "ComponentManifest": {
+    "AllowAccessToGlobals": false,
+    "AllowCustomization": true,
+    "Description": "",
+    "Name": "GridTile",
+    "TemplateGuid": "346ab8d173664f849d62fb9f8ca81e51"
+  },
+  "ComponentType": "CanvasComponent",
+  "CustomGroupControlTemplateName": "",
+  "CustomProperties": [
+    {
+      "Category": 0,
+      "DisplayName": "TileLetter",
+      "Hidden": false,
+      "Name": "TileLetter",
+      "PropertyDataTypeKey": "String",
+      "Tooltip": "Letter displayed in center of tile",
+      "Type": "{\"Version\":\"1.326\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}"
+    },
+    {
+      "Category": 0,
+      "DisplayName": "GridXPosition",
+      "Hidden": false,
+      "Name": "GridXPosition",
+      "PropertyDataTypeKey": "Number",
+      "Tooltip": "X position of tile in the grid",
+      "Type": "{\"Version\":\"1.326\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"Number\",\"EnumString\":\"\",\"Type\":[]}}"
+    },
+    {
+      "Category": 0,
+      "DisplayName": "GridYPosition",
+      "Hidden": false,
+      "Name": "GridYPosition",
+      "PropertyDataTypeKey": "Number",
+      "Tooltip": "Y position of tile in the grid",
+      "Type": "{\"Version\":\"1.326\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"Number\",\"EnumString\":\"\",\"Type\":[]}}"
+    },
+    {
+      "Category": 0,
+      "DisplayName": "TilePoints",
+      "Hidden": false,
+      "Name": "TilePoints",
+      "PropertyDataTypeKey": "Number",
+      "Tooltip": "Points displayed in bottom-right corner of the tile",
+      "Type": "{\"Version\":\"1.326\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"Number\",\"EnumString\":\"\",\"Type\":[]}}"
+    },
+    {
+      "Category": 0,
+      "DisplayName": "TileActive",
+      "Hidden": false,
+      "Name": "TileActive",
+      "PropertyDataTypeKey": "Boolean",
+      "Tooltip": "Indicates whether the tile has been selected",
+      "Type": "{\"Version\":\"1.326\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"_MinPrimitive\",\"EnumString\":\"\",\"Type\":[]}}"
+    },
+    {
+      "Category": 0,
+      "DisplayName": "BorderThickness",
+      "Hidden": true,
+      "Name": "BorderThickness",
+      "PropertyDataTypeKey": "Number",
+      "Tooltip": "A custom property",
+      "Type": "{\"Version\":\"1.326\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"Number\",\"EnumString\":\"\",\"Type\":[]}}"
+    },
+    {
+      "Category": 0,
+      "DisplayName": "GridXOffset",
+      "Hidden": true,
+      "Name": "GridXOffset",
+      "PropertyDataTypeKey": "Number",
+      "Tooltip": "A custom property",
+      "Type": "{\"Version\":\"1.326\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"Number\",\"EnumString\":\"\",\"Type\":[]}}"
+    },
+    {
+      "Category": 0,
+      "DisplayName": "GridYOffset",
+      "Hidden": true,
+      "Name": "GridYOffset",
+      "PropertyDataTypeKey": "Number",
+      "Tooltip": "A custom property",
+      "Type": "{\"Version\":\"1.326\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"Number\",\"EnumString\":\"\",\"Type\":[]}}"
+    },
+    {
+      "Category": 0,
+      "DisplayName": "TileWasClicked",
+      "Hidden": true,
+      "Name": "TileWasClicked",
+      "PropertyDataTypeKey": "Boolean",
+      "Tooltip": "A custom property",
+      "Type": "{\"Version\":\"1.326\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"_MinPrimitive\",\"EnumString\":\"\",\"Type\":[]}}"
+    },
+    {
+      "Category": 0,
+      "DisplayName": "TileBonus",
+      "Hidden": false,
+      "Name": "TileBonus",
+      "PropertyDataTypeKey": "String",
+      "Tooltip": "Tile Bonus",
+      "Type": "{\"Version\":\"1.326\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}"
+    }
+  ],
+  "FirstParty": true,
+  "Id": "http://microsoft.com/appmagic/Component",
+  "IsComponentLocked": false,
+  "IsComponentTemplate": true,
+  "IsCustomGroupControlTemplate": false,
+  "IsPcfControl": false,
+  "IsPremiumPcfControl": false,
+  "IsWidgetTemplate": false,
+  "LastModifiedTimestamp": "637965285784198137",
+  "Name": "346ab8d173664f849d62fb9f8ca81e51",
+  "OverridableProperties": {},
+  "TemplateOriginalName": "1eb7824cd9794f07be3462b0c8d968a6",
+  "Version": "637206089563368056"
+}

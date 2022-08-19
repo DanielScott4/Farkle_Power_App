@@ -1,0 +1,92 @@
+comMyRoll As CanvasComponent:
+    CheckCombo: |-
+        =With({_myRoll: Sort(Filter(Self.Items, RollNum = Self.RollNumber), Value).Value},
+            {
+                IsStraight:
+                    CountRows(_myRoll) = 6 &&       // there are 6 dice rolled
+                    Index(_myRoll, 1).Value = 1 &&  // 1st dice is one
+                    Index(_myRoll, 2).Value = 2 &&  // 2nd dice is two
+                    Index(_myRoll, 3).Value = 3 &&  // 3rd dice is three
+                    Index(_myRoll, 4).Value = 4 &&  // 4th dice is four
+                    Index(_myRoll, 5).Value = 5 &&  // 5th dice is five
+                    Index(_myRoll, 6).Value = 6,    // 6th dice is six
+                IsAllOnes:
+                    CountRows(_myRoll) = 6 && // there are 6 dice rolled
+                    Sum(_myRoll, Value) = 6, // sum of all 6 dice adds up to 6
+                IsAllFives:
+                    CountRows(_myRoll) = 6 &&   // there are 6 dice rolled
+                    CountRows(Filter(_myRoll, Value = 5)) = 6, // 6 fives
+                IsThreePairs:
+                    CountRows(_myRoll) = 6 &&   // there are 6 dice rolled
+                    Index(_myRoll, 1).Value <> Index(_myRoll, 3).Value && // 1st dice is not equal to 3rd dice
+                    Index(_myRoll, 1).Value <> Index(_myRoll, 6).Value && // 1st dice is not equal to 6th (last) dice
+                    Index(_myRoll, 4).Value <> Index(_myRoll, 6).Value && // 4th dice is not equal to 6th dice
+                    Index(_myRoll, 1).Value = Index(_myRoll, 2).Value &&
+                    Index(_myRoll, 3).Value = Index(_myRoll, 4).Value &&
+                    Index(_myRoll, 5).Value = Index(_myRoll, 6).Value,
+                IsTwoTriplets:
+                    CountRows(_myRoll) = 6 &&   // there are 6 dice rolled
+                    Index(_myRoll, 1).Value <> Index(_myRoll, 6).Value &&
+                    Index(_myRoll, 1).Value = Index(_myRoll, 2).Value &&
+                    Index(_myRoll, 1).Value = Index(_myRoll, 3).Value &&
+                    Index(_myRoll, 4).Value = Index(_myRoll, 5).Value &&
+                    Index(_myRoll, 4).Value = Index(_myRoll, 6).Value,        
+                IsSixOfAKind:
+                    CountRows(_myRoll) = 6 &&   // there are 6 dice rolled
+                    CountRows(Filter(_myRoll, Value = 2)) = 6 ||    // 6 twos
+                    CountRows(Filter(_myRoll, Value = 3)) = 6 ||    // 6 threes
+                    CountRows(Filter(_myRoll, Value = 4)) = 6 ||    // 6 fours   
+                    CountRows(Filter(_myRoll, Value = 5)) = 6 ||    // 6 fives
+                    CountRows(Filter(_myRoll, Value = 6)) = 6,      // 6 sixes
+                IsFiveOfAKind:
+                    CountRows(Filter(_myRoll, Value = 1)) = 5 ||    // 5 ones
+                    CountRows(Filter(_myRoll, Value = 2)) = 5 ||    // 5 twos
+                    CountRows(Filter(_myRoll, Value = 3)) = 5 ||    // 5 threes
+                    CountRows(Filter(_myRoll, Value = 4)) = 5 ||    // 5 fours
+                    CountRows(Filter(_myRoll, Value = 5)) = 5 ||    // 5 fives
+                    CountRows(Filter(_myRoll, Value = 6)) = 5,      // 5 sixes
+                IsFourOfAKind:
+                    CountRows(Filter(_myRoll, Value = 1)) = 4 ||    // 4 ones
+                    CountRows(Filter(_myRoll, Value = 2)) = 4 ||    // 4 twos
+                    CountRows(Filter(_myRoll, Value = 3)) = 4 ||    // 4 threes
+                    CountRows(Filter(_myRoll, Value = 4)) = 4 ||    // 4 fours
+                    CountRows(Filter(_myRoll, Value = 5)) = 4 ||    // 4 fives
+                    CountRows(Filter(_myRoll, Value = 6)) = 4,      // 4 sixes
+                IsThreeOfAKind:
+                    CountRows(Filter(_myRoll, Value = 1)) = 3 ||    // 3 ones
+                    CountRows(Filter(_myRoll, Value = 2)) = 3 ||    // 3 twos
+                    CountRows(Filter(_myRoll, Value = 3)) = 3 ||    // 3 threes
+                    CountRows(Filter(_myRoll, Value = 4)) = 3 ||    // 3 fours
+                    CountRows(Filter(_myRoll, Value = 5)) = 3 ||    // 3 fives
+                    CountRows(Filter(_myRoll, Value = 6)) = 3       // 3 sixes
+            }    
+        )
+    Fill: =RGBA(0, 0, 0, 0)
+    Height: =50
+    Items: =colMyRoll
+    RollNumber: =varRollCount
+    Width: =180
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    Label9 As label:
+        Align: =Center
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        BorderThickness: =2
+        Color: =RGBA(51, 51, 51, 1)
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        FocusedBorderThickness: =4
+        Font: =Font.'Segoe UI'
+        FontWeight: =Semibold
+        Height: =50.00
+        PaddingBottom: =5.00
+        PaddingLeft: =5.00
+        Size: =13.00
+        Text: ="MyRoll Component"
+        Width: =180
+        Y: =0.00
+        ZIndex: =1
+

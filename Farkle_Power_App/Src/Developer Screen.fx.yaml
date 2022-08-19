@@ -1,0 +1,259 @@
+"'Developer Screen' As screen":
+    LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
+
+    lbl_devScreenTitle As label:
+        Align: =Center
+        BorderColor: =RGBA(0, 18, 107, 1)
+        Color: =RGBA(255, 255, 255, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        Fill: =StyleSettings.ButtonFillOK
+        FocusedBorderColor: =lbl_devScreenTitle.BorderColor
+        FontWeight: =Semibold
+        Height: =106
+        HoverBorderColor: =lbl_devScreenTitle.BorderColor
+        HoverColor: =lbl_devScreenTitle.Color
+        HoverFill: =lbl_devScreenTitle.Fill
+        PressedBorderColor: =lbl_devScreenTitle.BorderColor
+        PressedColor: =lbl_devScreenTitle.Color
+        PressedFill: =lbl_devScreenTitle.Fill
+        Size: =36
+        Text: ="Developer Screen"
+        Width: =640
+        ZIndex: =10
+
+    grp_currentScreen As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =11
+
+        btn_devHighScores As button:
+            BorderColor: =StyleSettings.ButtonFillCancel
+            BorderThickness: =5
+            Color: =StyleSettings.ButtonColor
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            Fill: =StyleSettings.ButtonFillCancel
+            FocusedBorderColor: =btn_devHighScores.BorderColor
+            FontWeight: =Semibold
+            Height: =82
+            HoverBorderColor: =ColorFade(btn_devHighScores.BorderColor, 20%)
+            HoverColor: =btn_devHighScores.Color
+            HoverFill: =StyleSettings.ButtonFillCancel
+            OnSelect: |-
+                =ClearCollect(highScores,
+                    {Rank: 1, Name: "Matthew Devaney", Points: 202},
+                    {Rank: 2, Name: "Matthew Devaney", Points: 165},
+                    {Rank: 3, Name: "Matthew Devaney", Points: 143},
+                    {Rank: 4, Name: "Matthew Devaney", Points: 137},
+                    {Rank: 5, Name: "Matthew Devaney", Points: 132}
+                );
+                Set(currentScreen, "HighScores");
+            PressedBorderColor: =btn_devHighScores.Fill
+            PressedColor: =btn_devHighScores.Color
+            PressedFill: =StyleSettings.ButtonFillCancel
+            Size: =20
+            Text: ="HighScores"
+            Width: =211
+            X: =254
+            Y: =744
+            ZIndex: =1
+
+        btn_devGameOver As button:
+            BorderColor: =RGBA(102, 200, 265, 0.75)
+            BorderThickness: =5
+            Color: =StyleSettings.ButtonColor
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            Fill: =StyleSettings.ButtonFillOK
+            FocusedBorderColor: =btn_devGameOver.BorderColor
+            FontWeight: =Semibold
+            Height: =82
+            HoverBorderColor: =ColorFade(btn_devGameOver.BorderColor, 20%)
+            HoverColor: =btn_devGameOver.Color
+            HoverFill: =RGBA(102, 200, 265, 0.9)
+            OnSelect: =Set(currentScreen, "GameOver");
+            PressedBorderColor: =btn_devGameOver.Fill
+            PressedColor: =btn_devGameOver.Color
+            PressedFill: =RGBA(102, 200, 265, 0.9)
+            Size: =20
+            Text: ="GameOver"
+            Width: =211
+            X: =254
+            Y: =639
+            ZIndex: =2
+
+        btn_devSettings As button:
+            BorderColor: =StyleSettings.ButtonFillCancel
+            BorderThickness: =5
+            Color: =StyleSettings.ButtonColor
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            Fill: =StyleSettings.ButtonFillCancel
+            FocusedBorderColor: =btn_devSettings.BorderColor
+            FontWeight: =Semibold
+            Height: =82
+            HoverBorderColor: =ColorFade(btn_devSettings.BorderColor, 20%)
+            HoverColor: =btn_devSettings.Color
+            HoverFill: =StyleSettings.ButtonFillCancel
+            OnSelect: =Set(currentScreen, "Settings");
+            PressedBorderColor: =btn_devSettings.Fill
+            PressedColor: =btn_devSettings.Color
+            PressedFill: =StyleSettings.ButtonFillCancel
+            Size: =20
+            Text: ="Settings"
+            Width: =211
+            X: =254
+            Y: =531
+            ZIndex: =3
+
+        btn_devHowToPlay As button:
+            BorderColor: =RGBA(102, 200, 265, 0.75)
+            BorderThickness: =5
+            Color: =StyleSettings.ButtonColor
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            Fill: =StyleSettings.ButtonFillOK
+            FocusedBorderColor: =btn_devHowToPlay.BorderColor
+            FontWeight: =Semibold
+            Height: =82
+            HoverBorderColor: =ColorFade(btn_devHowToPlay.BorderColor, 20%)
+            HoverColor: =btn_devHowToPlay.Color
+            HoverFill: =RGBA(102, 200, 265, 0.9)
+            OnSelect: =Set(currentScreen, "HowToPlay");
+            PressedBorderColor: =btn_devHowToPlay.Fill
+            PressedColor: =btn_devHowToPlay.Color
+            PressedFill: =RGBA(102, 200, 265, 0.9)
+            Size: =20
+            Text: ="HowToPlay"
+            Width: =211
+            X: =254
+            Y: =424
+            ZIndex: =4
+
+        btn_devPlay As button:
+            BorderColor: =StyleSettings.ButtonFillCancel
+            BorderThickness: =5
+            Color: =StyleSettings.ButtonColor
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            Fill: =StyleSettings.ButtonFillCancel
+            FocusedBorderColor: =btn_devPlay.BorderColor
+            FontWeight: =Semibold
+            Height: =82
+            HoverBorderColor: =ColorFade(btn_devPlay.BorderColor, 20%)
+            HoverColor: =btn_devPlay.Color
+            HoverFill: =StyleSettings.ButtonFillCancel
+            OnSelect: =Set(currentScreen, "Play");
+            PressedBorderColor: =btn_devPlay.Fill
+            PressedColor: =btn_devPlay.Color
+            PressedFill: =StyleSettings.ButtonFillCancel
+            Size: =20
+            Text: ="Play"
+            Width: =211
+            X: =254
+            Y: =316
+            ZIndex: =5
+
+        btn_devTitle As button:
+            BorderColor: =RGBA(102, 200, 265, 0.75)
+            BorderThickness: =5
+            Color: =StyleSettings.ButtonColor
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            Fill: =StyleSettings.ButtonFillOK
+            FocusedBorderColor: =btn_devTitle.BorderColor
+            FontWeight: =Semibold
+            Height: =82
+            HoverBorderColor: =ColorFade(btn_devTitle.BorderColor, 20%)
+            HoverColor: =btn_devTitle.Color
+            HoverFill: =RGBA(102, 200, 265, 0.9)
+            OnSelect: =Set(currentScreen, "Title");
+            PressedBorderColor: =btn_devTitle.Fill
+            PressedColor: =btn_devTitle.Color
+            PressedFill: =RGBA(102, 200, 265, 0.9)
+            Size: =20
+            Text: ="Title"
+            Width: =211
+            X: =254
+            Y: =208
+            ZIndex: =6
+
+        lbl_currentScreen As label:
+            Align: =Center
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =RGBA(0, 0, 0, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            FocusedBorderColor: =lbl_currentScreen.BorderColor
+            FontWeight: =Semibold
+            Height: =69
+            HoverBorderColor: =lbl_currentScreen.BorderColor
+            HoverColor: =lbl_currentScreen.Color
+            HoverFill: =lbl_currentScreen.Fill
+            PressedBorderColor: =lbl_currentScreen.BorderColor
+            PressedColor: =lbl_currentScreen.Color
+            PressedFill: =lbl_currentScreen.Fill
+            Size: =20
+            Text: ="currentScreen"
+            Width: =211
+            X: =254
+            Y: =138
+            ZIndex: =7
+
+        btn_devNewHighScore As button:
+            BorderColor: =RGBA(102, 200, 265, 0.75)
+            BorderThickness: =5
+            Color: =StyleSettings.ButtonColor
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            Fill: =StyleSettings.ButtonFillOK
+            FocusedBorderColor: =btn_devNewHighScore.BorderColor
+            FontWeight: =Semibold
+            Height: =82
+            HoverBorderColor: =ColorFade(btn_devNewHighScore.BorderColor, 20%)
+            HoverColor: =btn_devNewHighScore.Color
+            HoverFill: =RGBA(102, 200, 265, 0.9)
+            OnSelect: =Set(currentScreen, "NewHighScore");
+            PressedBorderColor: =btn_devNewHighScore.Fill
+            PressedColor: =btn_devNewHighScore.Color
+            PressedFill: =RGBA(102, 200, 265, 0.9)
+            Size: =20
+            Text: ="NewHighScore"
+            Width: =211
+            X: =254
+            Y: =851
+            ZIndex: =8
+
+        btn_dev_Achievements As button:
+            BorderColor: =StyleSettings.ButtonFillCancel
+            BorderThickness: =5
+            Color: =StyleSettings.ButtonColor
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            Fill: =StyleSettings.ButtonFillCancel
+            FocusedBorderColor: =btn_dev_Achievements.BorderColor
+            FontWeight: =Semibold
+            Height: =82
+            HoverBorderColor: =ColorFade(btn_dev_Achievements.BorderColor, 20%)
+            HoverColor: =btn_dev_Achievements.Color
+            HoverFill: =StyleSettings.ButtonFillCancel
+            OnSelect: =Set(currentScreen, "Achievements");
+            PressedBorderColor: =btn_dev_Achievements.Fill
+            PressedColor: =btn_dev_Achievements.Color
+            PressedFill: =StyleSettings.ButtonFillCancel
+            Size: =20
+            Text: ="Achievements"
+            Width: =211
+            X: =254
+            Y: =960
+            ZIndex: =9
+

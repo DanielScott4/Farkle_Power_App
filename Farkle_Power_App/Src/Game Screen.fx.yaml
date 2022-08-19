@@ -1,0 +1,2594 @@
+"'Game Screen' As screen":
+    LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
+    OnVisible: =currentScreen="Title"
+
+    img_bkgd_City As image:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        BorderThickness: =2
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        DisabledFill: =RGBA(0, 0, 0, 0)
+        FocusedBorderThickness: =4
+        Height: =1136
+        HoverBorderColor: =RGBA(0, 0, 0, 0)
+        HoverFill: =RGBA(0, 0, 0, 0)
+        Image: =bkgd_City
+        PressedBorderColor: =RGBA(0, 0, 0, 0)
+        PressedFill: =RGBA(0, 0, 0, 0)
+        Transparency: =9%
+        Width: =640
+        ZIndex: =1
+
+    comMyRoll_2 As comMyRoll:
+        Fill: =RGBA(232, 244, 217, 1)
+        Height: =52
+        Width: =181
+        X: =21
+        Y: =271
+        ZIndex: =33
+
+    btnNextPlayer As button:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        Fill: =RGBA(0, 120, 212, 1)
+        FocusedBorderColor: =ColorFade(Self.Fill, -75%)
+        Font: =Font.'Segoe UI'
+        FontWeight: =FontWeight.Semibold
+        Height: =42.00
+        HoverBorderColor: =RGBA(0, 0, 0, 0)
+        HoverColor: =RGBA(255, 255, 255, 1)
+        HoverFill: =ColorFade(RGBA(0, 120, 212, 1), -10%)
+        OnSelect: |-
+            =// If current player is the last, then increment the round number
+            If(Last(colPlayers).ID = varCurrentPlayer.ID,
+                Set(varRound, varRound + 1)
+            );
+            
+            // Set next player
+            Set(varCurrentPlayer, 
+                Index(colPlayers, If(Mod(varCurrentPlayer.ID, CountRows(colPlayers)) = 0, 1, varCurrentPlayer.ID + 1))
+            );
+            
+            Concurrent(
+                Set(varCurrentPlayerScore, varCurrentPlayer.Score),
+                Set(varCurrentTurnPoints, 0),
+                Set(varDiceAvailable, 6),
+                Clear(colMyRoll),
+                Clear(colMyRoll_Kept)
+            );
+            
+            If(varCurrentPlayer.Score >= LookUp(colScoringTable, ID = 18, Pts),
+                UpdateContext({locGameOver: true})
+            );
+        PaddingBottom: =5.00
+        PaddingLeft: =5.00
+        PressedBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -50%)
+        PressedColor: =RGBA(255, 255, 255, 1)
+        PressedFill: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Size: =15.00
+        Text: ="Next Player"
+        Visible: =false
+        Width: =180
+        X: =19
+        Y: =258
+        ZIndex: =34
+
+    lblNumberPlayers As label:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        BorderThickness: =2
+        Color: =StyleSettings.ButtonColor
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        FocusedBorderThickness: =4
+        Font: =Font.'Segoe UI'
+        FontWeight: =Semibold
+        Height: =26.00
+        PaddingBottom: =5.00
+        PaddingLeft: =5.00
+        Size: =12.00
+        Text: |-
+            ="Number of Players:"
+        Width: =159
+        X: =407
+        Y: =200
+        ZIndex: =35
+
+    numberControl_1 As numberControl:
+        Height: =72.00
+        Max: =6
+        Min: =2
+        Width: =197
+        X: =411
+        Y: =226
+        ZIndex: =36
+
+    btnNewGame As button:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        Fill: =RGBA(0, 120, 212, 1)
+        FocusedBorderColor: =ColorFade(Self.Fill, -75%)
+        Font: =Font.'Segoe UI'
+        FontWeight: =FontWeight.Semibold
+        Height: =50.00
+        HoverBorderColor: =RGBA(0, 0, 0, 0)
+        HoverColor: =RGBA(255, 255, 255, 1)
+        HoverFill: =ColorFade(RGBA(0, 120, 212, 1), -10%)
+        OnSelect: |+
+            =ClearCollect(colPlayers,
+                FirstN(
+                Table(
+                    {ID: 1, PlayerName: "[P1 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
+                    {ID: 2, PlayerName: "[P2 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
+                    {ID: 3, PlayerName: "[P3 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
+                    {ID: 4, PlayerName: "[P4 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
+                    {ID: 5, PlayerName: "[P5 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
+                    {ID: 6, PlayerName: "[P6 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
+                    {ID: 7, PlayerName: "[P7 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
+                    {ID: 8, PlayerName: "[P8 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false}
+                ), numberControl_1.NumberOutput)
+            );
+            Set(varCurrentPlayer, First(colPlayers));
+            Set(varRound, 1);
+            Set(varRollCount, 0);
+            Set(varDiceAvailable, 6);
+            Set(varCurrentTurnPoints, 0);
+            Set(varCurrentPlayerScore, 0);
+            Clear(colMyRoll);
+            Clear(colMyRoll_Kept);
+            // setup scoring history
+            Clear(colScoringHistory);
+            
+            UpdateContext(
+                {
+                    locGameOver: false,
+                    showMessageForLastRound: false,
+                    locLastRound: false, 
+                    locScoreToBeat: 0,
+                    locPlayerWithHighScore: ""
+                }
+            )
+            
+            
+            
+                
+            
+            
+            
+        PaddingBottom: =5.00
+        PaddingLeft: =5.00
+        PressedBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -50%)
+        PressedColor: =RGBA(255, 255, 255, 1)
+        PressedFill: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+        Size: =15.00
+        Text: ="New Game"
+        Width: =180
+        X: =19
+        Y: =200
+        ZIndex: =37
+
+    grpDebug As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =37
+
+        "'lbl_ModCountRows(colMyRoll_Kept)' As label":
+            Align: =Align.Right
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(51, 51, 51, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            FontWeight: =Semibold
+            Height: =30.00
+            PaddingBottom: =5.00
+            PaddingLeft: =5.00
+            Size: =12.00
+            Text: |-
+                ="Mod(CountRows(colMyRoll_Kept), 6):  " & Mod(CountRows(colMyRoll_Kept), 6)
+            Visible: =false
+            Width: =303
+            X: =337
+            Y: =111
+            ZIndex: =5
+
+        lbl_varDiceAvailable As label:
+            Align: =Align.Right
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(51, 51, 51, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            FontWeight: =Semibold
+            Height: =30.00
+            PaddingBottom: =5.00
+            PaddingLeft: =5.00
+            Size: =12.00
+            Text: |-
+                ="varDiceAvailable:  " & varDiceAvailable
+            Visible: =false
+            Width: =167
+            X: =337
+            Y: =111
+            ZIndex: =6
+
+        lbl_varRollCount As label:
+            Align: =Align.Right
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(51, 51, 51, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            FontWeight: =Semibold
+            Height: =30.00
+            PaddingBottom: =5.00
+            PaddingLeft: =5.00
+            Size: =12.00
+            Text: |-
+                ="varRollCount:  " & varRollCount
+            Visible: =false
+            Width: =167
+            X: =337
+            Y: =111
+            ZIndex: =7
+
+        lbl_colMyRollCount As label:
+            Align: =Align.Right
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(51, 51, 51, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            FontWeight: =Semibold
+            Height: =30.00
+            PaddingBottom: =5.00
+            PaddingLeft: =5.00
+            Size: =12.00
+            Text: |-
+                ="colMyRoll:  " & CountRows(colMyRoll)
+            Visible: =false
+            Width: =167
+            X: =337
+            Y: =111
+            ZIndex: =8
+
+        lbl_colMyRoll_KeptCount As label:
+            Align: =Align.Right
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(51, 51, 51, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            FontWeight: =Semibold
+            Height: =30.00
+            PaddingBottom: =5.00
+            PaddingLeft: =5.00
+            Size: =12.00
+            Text: |-
+                ="colMyRoll_Kept:  " & CountRows(colMyRoll_Kept)
+            Visible: =false
+            Width: =203
+            X: =337
+            Y: =111
+            ZIndex: =9
+
+        lbl_varComboPts As label:
+            Align: =Align.Right
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(51, 51, 51, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            FontWeight: =Semibold
+            Height: =30.00
+            PaddingBottom: =5.00
+            PaddingLeft: =5.00
+            Size: =12.00
+            Text: |-
+                ="varComboPts:  " & varComboPts
+            Visible: =false
+            Width: =203
+            X: =337
+            Y: =111
+            ZIndex: =10
+
+        lbl_varRound As label:
+            Align: =Align.Right
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(51, 51, 51, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            FontWeight: =Semibold
+            Height: =30.00
+            PaddingBottom: =5.00
+            PaddingLeft: =5.00
+            Size: =12.00
+            Text: |-
+                ="varRound:  " & varRound
+            Visible: =false
+            Width: =167
+            X: =337
+            Y: =111
+            ZIndex: =11
+
+        lbl_CurrPlayer As label:
+            Align: =Right
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(51, 51, 51, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            FontWeight: =Semibold
+            Height: =30.00
+            PaddingBottom: =5.00
+            PaddingLeft: =5.00
+            Size: =12.00
+            Text: |-
+                ="varCurrentPlayer: " & varCurrentPlayer.ID
+            Visible: =false
+            Width: =203
+            X: =337
+            Y: =111
+            ZIndex: =12
+
+        galBonusScoring As gallery.galleryVertical:
+            BorderColor: =RGBA(166, 166, 166, 1)
+            Height: =237.00
+            Items: |
+                =Table(
+                    {
+                        Type: "Three of a kind", 
+                        Check: comMyRoll_2.CheckCombo.IsThreeOfAKind, 
+                        Pts: With({_myRoll: colMyRoll},
+                                    Switch(true,
+                                    CountRows(Filter(_myRoll, Value = 1)) = 3, 300,
+                                    CountRows(Filter(_myRoll, Value = 2)) = 3, 200,
+                                    CountRows(Filter(_myRoll, Value = 3)) = 3, 300,
+                                    CountRows(Filter(_myRoll, Value = 4)) = 3, 400,
+                                    CountRows(Filter(_myRoll, Value = 5)) = 3, 500,
+                                    CountRows(Filter(_myRoll, Value = 6)) = 3, 600, 000)
+                                    )},
+                    {
+                        Type: "1-2-3-4-5-6", 
+                        Check: comMyRoll_2.CheckCombo.IsStraight, 
+                        Pts: 3000
+                    },
+                    {
+                        Type: "3 Pairs", 
+                        Check: comMyRoll_2.CheckCombo.IsThreePairs, 
+                        Pts: 1500},
+                    {
+                        Type: "4 of a kind", 
+                        Check: comMyRoll_2.CheckCombo.IsFourOfAKind, 
+                        Pts: 1000
+                    },
+                    {
+                        Type: "5 of a kind", 
+                        Check: comMyRoll_2.CheckCombo.IsFiveOfAKind, 
+                        Pts: 2000
+                    },
+                    {
+                        Type: "6 of a kind", 
+                        Check: comMyRoll_2.CheckCombo.IsSixOfAKind, 
+                        Pts: 3000
+                    },
+                    {
+                        Type: "1-1-1-1-1-1", 
+                        Check: comMyRoll_2.CheckCombo.IsAllOnes, 
+                        Pts: 5000
+                    },
+                    {
+                        Type: "Two Triplets", 
+                        Check: comMyRoll_2.CheckCombo.IsTwoTriplets, 
+                        Pts: 2500
+                    }
+                )
+            Layout: =Layout.Vertical
+            TemplatePadding: =5.00
+            TemplateSize: =24.00
+            Visible: =false
+            Width: =238
+            X: =337
+            Y: =111
+            ZIndex: =13
+
+            Label40_1 As label:
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =2
+                Color: =If(ThisItem.Check, Green, Red)
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                FocusedBorderThickness: =4
+                Font: =Font.'Segoe UI'
+                Height: =22.00
+                OnSelect: =Select(Parent)
+                PaddingBottom: =5.00
+                PaddingLeft: =5.00
+                Size: =13.00
+                Text: =ThisItem.Check
+                Width: =45
+                X: =127
+                Y: =0.00
+                ZIndex: =1
+
+            Label41_1 As label:
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =2
+                Color: =RGBA(51, 51, 51, 1)
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                FocusedBorderThickness: =4
+                Font: =Font.'Segoe UI'
+                FontWeight: =Semibold
+                Height: =22.00
+                OnSelect: =Select(Parent)
+                PaddingBottom: =5.00
+                PaddingLeft: =5.00
+                Size: =13.00
+                Text: =ThisItem.Type
+                Width: =139
+                Y: =0.00
+                ZIndex: =2
+
+            Label40_2 As label:
+                Align: =Right
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =2
+                Color: =If(ThisItem.Check, Green, Red)
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                FocusedBorderThickness: =4
+                Font: =Font.'Segoe UI'
+                Height: =22.00
+                OnSelect: =Select(Parent)
+                PaddingBottom: =5.00
+                PaddingLeft: =5.00
+                Size: =13.00
+                Text: =ThisItem.Pts
+                Width: =58
+                X: =172
+                Y: =0.00
+                ZIndex: =3
+
+        "'Bonus Scores' As label":
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(51, 51, 51, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            FontWeight: =Semibold
+            Height: =34.00
+            PaddingBottom: =5.00
+            PaddingLeft: =5.00
+            Size: =13.00
+            Text: |-
+                ="Combo Scores:"
+            Visible: =false
+            Width: =161
+            X: =337
+            Y: =111
+            ZIndex: =14
+
+    grpRollTesting As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =40
+
+        tglTestRoll_1 As toggleSwitch:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(51, 51, 51, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FalseFill: =RGBA(102, 102, 102, 1)
+            FalseHoverFill: =RGBA(33, 33, 33, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            HandleFill: =RGBA(255, 255, 255, 1)
+            Height: =28.00
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            PressedBorderColor: =RGBA(0, 0, 0, 0)
+            Size: =13.00
+            TrueFill: =RGBA(0, 120, 212, 1)
+            TrueHoverFill: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+            Visible: =false
+            X: =140
+            Y: =181
+            ZIndex: =15
+
+        txtTestRoll_1 As text:
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =2
+            Color: =RGBA(51, 51, 51, 1)
+            Default: ="2-2-2-3-3-3"
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            Height: =35.00
+            HintText: ="Test Roll Numbers"
+            HoverBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(255, 255, 255, 1)
+            PaddingBottom: =5.00
+            PaddingLeft: =12.00
+            PressedBorderColor: =RGBA(0, 120, 212, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(255, 255, 255, 1)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =13.00
+            Visible: =false
+            Width: =123
+            X: =13
+            Y: =174
+            ZIndex: =16
+
+        lblTestRoll As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(51, 51, 51, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            Height: =22.00
+            PaddingBottom: =5.00
+            PaddingLeft: =5.00
+            Size: =10.00
+            Text: |-
+                ="Test Roll:"
+            Visible: =false
+            X: =13
+            Y: =187
+            ZIndex: =17
+
+    grpSettings As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =44
+
+        icoPlayerSettings As icon.Settings:
+            BorderColor: =RGBA(166, 166, 166, 1)
+            Color: =RGBA(0, 120, 212, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(220, 220, 220, 1)
+            DisabledFill: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            Height: =60
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+            HoverFill: =RGBA(0, 0, 0, 0)
+            Icon: =Icon.People
+            OnSelect: =Navigate('Player Settings Screen')
+            PaddingBottom: =0.00
+            PaddingLeft: =0.00
+            PressedBorderColor: =RGBA(0, 0, 0, 0)
+            PressedColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            Tooltip: ="Player Settings"
+            Width: =60
+            X: =(Parent.Width - Self.Width)/2
+            Y: =1048
+            ZIndex: =2
+
+        icoScoringHistory As icon.Journal:
+            BorderColor: =RGBA(166, 166, 166, 1)
+            Color: =RGBA(0, 120, 212, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(220, 220, 220, 1)
+            DisabledFill: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            Height: =60
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+            HoverFill: =RGBA(0, 0, 0, 0)
+            Icon: =Icon.Journal
+            OnSelect: =Navigate('Score History Screen')
+            PressedBorderColor: =RGBA(0, 0, 0, 0)
+            PressedColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            Tooltip: ="Scoring History"
+            Width: =60
+            X: =526
+            Y: =1048
+            ZIndex: =3
+
+        ico_ScoringSettings As icon.Settings:
+            BorderColor: =RGBA(166, 166, 166, 1)
+            Color: =RGBA(0, 120, 212, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(220, 220, 220, 1)
+            DisabledFill: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            Height: =60
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+            HoverFill: =RGBA(0, 0, 0, 0)
+            Icon: =Icon.Settings
+            OnSelect: =Navigate('Scoring Settings Screen')
+            PaddingBottom: =0.00
+            PaddingLeft: =0.00
+            PressedBorderColor: =RGBA(0, 0, 0, 0)
+            PressedColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            Tooltip: ="Game Settings"
+            Width: =60
+            X: =52
+            Y: =1048
+            ZIndex: =4
+
+    grp_LastRoundMessage As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =44
+
+        shpLastRoundMessageBackground As rectangle:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            DisabledFill: =RGBA(0,0,0,.3)
+            DisplayMode: =DisplayMode.Disabled
+            Fill: =RGBA(0, 120, 212, 1)
+            FocusedBorderThickness: =4
+            Height: =768.00
+            HoverFill: =RGBA(0, 120, 212, 1)
+            PressedFill: =RGBA(0, 120, 212, 1)
+            Visible: =showMessageForLastRound
+            Width: =640
+            ZIndex: =40
+
+        btnLastRoundMessage As button:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =Black
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            DisplayMode: =DisplayMode.Disabled
+            Fill: =RGBA(0, 120, 212, 1)
+            FocusedBorderColor: =ColorFade(Self.Fill, -75%)
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Semibold
+            Height: =308.00
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =ColorFade(RGBA(0, 120, 212, 1), -10%)
+            PaddingBottom: =5.00
+            PaddingLeft: =5.00
+            PaddingTop: =40
+            PressedBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -50%)
+            PressedColor: =RGBA(255, 255, 255, 1)
+            PressedFill: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+            RadiusBottomLeft: =30
+            RadiusBottomRight: =30
+            RadiusTopLeft: =30
+            RadiusTopRight: =30
+            Size: =18.00
+            Text: |-
+                ="Goal Reached" & Char(13) & locPlayerWithHighScore& " has scored over " & LookUp(colScoringTable, ID = 18).Pts & "!" & Char(13) & Char(13) &
+                "Everyone else will get one more turn to score more than " & Char(13) & 
+                Text(locScoreToBeat,"##,###") & " pts"
+            VerticalAlign: =VerticalAlign.Top
+            Visible: =showMessageForLastRound
+            Width: =640
+            X: =(Parent.Width - Self.Width)/2
+            Y: =221
+            ZIndex: =41
+
+        btnOK As button:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            Fill: =RGBA(0, 120, 212, 1)
+            FocusedBorderColor: =ColorFade(Self.Fill, -75%)
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Semibold
+            Height: =40.00
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =ColorFade(RGBA(0, 120, 212, 1), -10%)
+            OnSelect: |-
+                =UpdateContext({showMessageForLastRound: false})
+            PaddingBottom: =5.00
+            PaddingLeft: =5.00
+            PressedBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -50%)
+            PressedColor: =RGBA(255, 255, 255, 1)
+            PressedFill: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =15.00
+            Text: ="OK"
+            Visible: =showMessageForLastRound
+            Width: =640
+            X: =(Parent.Width - Self.Width)/2
+            Y: =449
+            ZIndex: =42
+
+    Group1 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =45
+
+        lbl_GameOver As label:
+            Align: =Center
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(51, 51, 51, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            Fill: =LightGray
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            FontWeight: =Semibold
+            Height: =529.00
+            PaddingBottom: =5.00
+            PaddingLeft: =5.00
+            Size: =48.00
+            Text: |-
+                ="Game Over" & Char(13) & Char(13) & 
+                "Winner: " & Char(13) & locPlayerWithHighScore & Char(13) & " with " &
+                Text(locScoreToBeat,"##,###") & " pts!"
+            VerticalAlign: =VerticalAlign.Top
+            Visible: |-
+                =// Visible when locGameOver is true
+                locGameOver ||
+                //Farkle is visible and next player already reached winning points
+                FARKLE.Visible && 
+                    Index(colPlayers, If(Mod(varCurrentPlayer.ID, CountRows(colPlayers)) = 0, 1, varCurrentPlayer.ID + 1)).Score >= 
+                    LookUp(colScoringTable, ID = 18, Pts)
+            Width: =Parent.Width
+            Y: =547
+            ZIndex: =43
+
+        btnNewGame_1 As button:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            Fill: =RGBA(0, 120, 212, 1)
+            FocusedBorderColor: =ColorFade(Self.Fill, -75%)
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Semibold
+            Height: =50.00
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =ColorFade(RGBA(0, 120, 212, 1), -10%)
+            OnSelect: =Select(btnNewGame)
+            PaddingBottom: =5.00
+            PaddingLeft: =5.00
+            PressedBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -50%)
+            PressedColor: =RGBA(255, 255, 255, 1)
+            PressedFill: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+            Size: =15.00
+            Text: ="New Game"
+            Visible: |-
+                =// Visible when locGameOver is true
+                locGameOver ||
+                //Farkle is visible and next player already reached winning points
+                FARKLE.Visible && 
+                    Index(colPlayers, If(Mod(varCurrentPlayer.ID, CountRows(colPlayers)) = 0, 1, varCurrentPlayer.ID + 1)).Score >= 
+                    LookUp(colScoringTable, ID = 18, Pts)
+            Width: =180
+            X: =227
+            Y: =967
+            ZIndex: =44
+
+    icon_shared_achievements_1 As star:
+        BorderColor: =If(CountIf(gameAchievements, New)>0, StyleSettings.ButtonFillOK, White)
+        BorderThickness: =2
+        DisabledFill: =icon_shared_achievements_1.Fill
+        Fill: =If(CountIf(gameAchievements, New)>0, StyleSettings.ButtonFillOK, Transparent)
+        FocusedBorderColor: =icon_shared_achievements_1.BorderColor
+        Height: =40
+        HoverFill: =icon_shared_achievements_1.Fill
+        OnSelect: =Set(backToScreen, currentScreen); Set(currentScreen, "Achievements");
+        PressedFill: =icon_shared_achievements_1.Fill
+        Visible: =currentScreen in ["Title", "GameOver"]
+        Width: =icon_shared_achievements_1.Height
+        X: =50
+        Y: =28
+        ZIndex: =50
+
+    grp_Shared As group:
+        Height: =5
+        Width: =5
+        X: =-30
+        Y: =-20
+        ZIndex: =50
+
+        btn_Shared_HowToPlay As button:
+            BorderColor: =ColorFade(btn_Shared_HowToPlay.Fill, -15%)
+            BorderThickness: =5
+            Color: =StyleSettings.ButtonColor
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            Fill: =StyleSettings.ButtonFillCancel
+            FocusedBorderColor: =btn_Shared_HowToPlay.BorderColor
+            Font: =StyleSettings.PrimaryFont
+            FontWeight: =StyleSettings.ButtonFontWeight
+            Height: =111
+            HoverBorderColor: =ColorFade(btn_Shared_HowToPlay.BorderColor, 20%)
+            HoverColor: =btn_Shared_HowToPlay.Color
+            HoverFill: =RGBA(240, 102, 102, 0.9)
+            OnSelect: |
+                =Set(backToScreen, currentScreen); Set(currentScreen, "HowToPlay");
+            PressedBorderColor: =btn_Shared_HowToPlay.Fill
+            PressedColor: =btn_Shared_HowToPlay.Color
+            PressedFill: =RGBA(240, 102, 102, 0.9)
+            Size: =StyleSettings.ButtonSize
+            Text: ="How To Play"
+            Visible: =currentScreen in ["Title", "GameOver"]
+            Width: =343
+            X: =129
+            Y: =859
+            ZIndex: =45
+
+        btn_Shared_StartGame As button:
+            BorderColor: =RGBA(102, 200, 265, 0.75)
+            BorderThickness: =5
+            Color: =StyleSettings.ButtonColor
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            Fill: =StyleSettings.ButtonFillOK
+            FocusedBorderColor: =btn_Shared_StartGame.BorderColor
+            Font: =StyleSettings.PrimaryFont
+            FontWeight: =StyleSettings.ButtonFontWeight
+            Height: =111
+            HoverBorderColor: =ColorFade(btn_Shared_StartGame.BorderColor, 20%)
+            HoverColor: =btn_Shared_StartGame.Color
+            HoverFill: =RGBA(102, 200, 265, 0.9)
+            OnSelect: |-
+                = Set(varNewGame,true);
+                 If(varNewGame,
+                 ClearCollect(colPlayers,
+                    FirstN(
+                    Table(
+                        {ID: 1, PlayerName: "[P1 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
+                        {ID: 2, PlayerName: "[P2 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
+                        {ID: 3, PlayerName: "[P3 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
+                        {ID: 4, PlayerName: "[P4 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
+                        {ID: 5, PlayerName: "[P5 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
+                        {ID: 6, PlayerName: "[P6 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
+                        {ID: 7, PlayerName: "[P7 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
+                        {ID: 8, PlayerName: "[P8 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false}
+                    ), numberControl_1.NumberOutput)
+                );
+                Set(varCurrentPlayer, First(colPlayers));
+                Set(varRound, 1);
+                Set(varRollCount, 0);
+                Set(varDiceAvailable, 6);
+                Set(varCurrentTurnPoints, 0);
+                Set(varCurrentPlayerScore, 0);
+                Clear(colMyRoll);
+                Clear(colMyRoll_Kept);
+                // setup scoring history
+                Clear(colScoringHistory);
+                
+                UpdateContext(
+                    {
+                        locGameOver: false,
+                        showMessageForLastRound: false,
+                        locLastRound: false, 
+                        locScoreToBeat: 0,
+                        locPlayerWithHighScore: ""
+                    }
+                  ),
+                    // Reset the players' scores
+                    UpdateIf(colPlayers, true,
+                            {Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false}
+                    )
+                )
+            PressedBorderColor: =btn_Shared_StartGame.Fill
+            PressedColor: =btn_Shared_StartGame.Color
+            PressedFill: =RGBA(102, 200, 265, 0.9)
+            Size: =StyleSettings.ButtonSize
+            Text: =Switch(currentScreen, "Title", "Start Game", "GameOver", "Play Again")
+            Visible: =currentScreen in ["Title", "GameOver"]
+            Width: =343
+            X: =129
+            Y: =716
+            ZIndex: =46
+
+        icon_Shared_Settings As icon.Settings:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(244, 244, 244, 1)
+            DisabledFill: =icon_Shared_Settings.Fill
+            FocusedBorderColor: =icon_Shared_Settings.BorderColor
+            Height: =43
+            HoverBorderColor: =ColorFade(icon_Shared_Settings.BorderColor, 20%)
+            HoverColor: =ColorFade(icon_Shared_Settings.Color, 20%)
+            HoverFill: =icon_Shared_Settings.Fill
+            Icon: =Icon.Settings
+            OnSelect: =Set(backToScreen, currentScreen); Set(currentScreen, "Settings");
+            PressedBorderColor: =ColorFade(icon_Shared_Settings.BorderColor, -20%)
+            PressedColor: =ColorFade(icon_Shared_Settings.Color, -20%)
+            PressedFill: =icon_Shared_Settings.Fill
+            Visible: =currentScreen in ["Title", "GameOver"]
+            Width: =39
+            X: =539
+            Y: =9
+            ZIndex: =47
+
+        icon_Shared_HighScores As icon.Settings:
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledBorderColor: =RGBA(166, 166, 166, 1)
+            DisabledColor: =RGBA(244, 244, 244, 1)
+            DisabledFill: =icon_Shared_HighScores.Fill
+            FocusedBorderColor: =icon_Shared_HighScores.BorderColor
+            Height: =43
+            HoverBorderColor: =ColorFade(icon_Shared_HighScores.BorderColor, 20%)
+            HoverColor: =ColorFade(icon_Shared_HighScores.Color, 20%)
+            HoverFill: =icon_Shared_HighScores.Fill
+            Icon: =Icon.TrendingUpwards
+            OnSelect: =Set(backToScreen, currentScreen); Set(currentScreen, "HighScores");
+            PressedBorderColor: =ColorFade(icon_Shared_HighScores.BorderColor, -20%)
+            PressedColor: =ColorFade(icon_Shared_HighScores.Color, -20%)
+            PressedFill: =icon_Shared_HighScores.Fill
+            Visible: =currentScreen in ["Title", "GameOver"]
+            Width: =39
+            X: =67
+            Y: =8
+            ZIndex: =48
+
+        icon_shared_achievements As star:
+            BorderColor: =If(CountIf(gameAchievements, New)>0, StyleSettings.ButtonFillOK, White)
+            BorderThickness: =2
+            DisabledFill: =icon_shared_achievements.Fill
+            Fill: =If(CountIf(gameAchievements, New)>0, StyleSettings.ButtonFillOK, Transparent)
+            FocusedBorderColor: =icon_shared_achievements.BorderColor
+            Height: =40
+            HoverFill: =icon_shared_achievements.Fill
+            OnSelect: =Set(backToScreen, currentScreen); Set(currentScreen, "Achievements");
+            PressedFill: =icon_shared_achievements.Fill
+            Visible: =currentScreen in ["Title", "GameOver"]
+            Width: =icon_shared_achievements.Height
+            X: =30
+            Y: =8
+            ZIndex: =49
+
+    grp_GameOver As group:
+        Height: =5
+        Width: =5
+        X: =60
+        Y: =60
+        ZIndex: =58
+
+        lbl_GameOver_Points As label:
+            Align: =Center
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =StyleSettings.InfoLabelColor
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            FocusedBorderColor: =lbl_GameOver_Points.BorderColor
+            Font: =StyleSettings.PrimaryFont
+            FontWeight: =Bold
+            Height: =89
+            HoverBorderColor: =lbl_GameOver_Points.BorderColor
+            HoverColor: =lbl_GameOver_Points.Color
+            HoverFill: =lbl_GameOver_Points.Fill
+            PressedBorderColor: =lbl_GameOver_Points.BorderColor
+            PressedColor: =lbl_GameOver_Points.Color
+            PressedFill: =lbl_GameOver_Points.Fill
+            Size: =60
+            Text: |-
+                ="Game Over" & Char(13) & Char(13) & 
+                "Winner: " & Char(13) & locPlayerWithHighScore & Char(13) & " with " &
+                Text(locScoreToBeat,"##,###") & " pts!"
+            Visible: =currentScreen="GameOver"
+            Width: =640
+            Y: =103
+            ZIndex: =53
+
+        lbl_GameOver_Title As label:
+            Align: =Center
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =StyleSettings.InfoLabelColor
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            FocusedBorderColor: =lbl_GameOver_Title.BorderColor
+            Font: =StyleSettings.PrimaryFont
+            FontWeight: =Bold
+            Height: =63
+            HoverBorderColor: =lbl_GameOver_Title.BorderColor
+            HoverColor: =lbl_GameOver_Title.Color
+            HoverFill: =lbl_GameOver_Title.Fill
+            PressedBorderColor: =lbl_GameOver_Title.BorderColor
+            PressedColor: =lbl_GameOver_Title.Color
+            PressedFill: =lbl_GameOver_Title.Fill
+            Size: =24
+            Text: ="Total Points"
+            Visible: =currentScreen="GameOver"
+            Width: =640
+            Y: =40
+            ZIndex: =54
+
+        galScoreHistory As gallery.galleryVertical:
+            BorderColor: =RGBA(166, 166, 166, 1)
+            Height: =654
+            Items: =GroupBy(colScoringHistory, "Round", "data")
+            Layout: =Layout.Vertical
+            TemplatePadding: =0.00
+            TemplateSize: =32.00
+            Visible: =currentScreen="GameOver"
+            Y: =152
+            ZIndex: =55
+
+            Label10_1 As label:
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =2
+                Color: =RGBA(51, 51, 51, 1)
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                FocusedBorderThickness: =4
+                Font: =Font.'Segoe UI'
+                FontWeight: =Bold
+                Height: =32.00
+                OnSelect: =Select(Parent)
+                PaddingBottom: =5.00
+                PaddingLeft: =5.00
+                Size: =13.00
+                Text: ="Round " & ThisItem.Round
+                Width: =111
+                Y: =0.00
+                ZIndex: =1
+
+            Gallery8_1 As gallery.galleryVertical:
+                BorderColor: =RGBA(166, 166, 166, 1)
+                Height: =32.00
+                Items: =ThisItem.data
+                Layout: =Layout.Vertical
+                ShowScrollbar: =false
+                TemplatePadding: =0.00
+                TemplateSize: =32.00
+                Width: =529
+                WrapCount: =8
+                X: =111
+                Y: =0.00
+                ZIndex: =3
+
+                Label22_1 As label:
+                    Align: =Right
+                    BorderColor: =RGBA(0, 0, 0, 0)
+                    BorderStyle: =BorderStyle.None
+                    BorderThickness: =2
+                    Color: =If("F" in Self.Text, Red, RGBA(51, 51, 51, 1))
+                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                    DisabledColor: =RGBA(166, 166, 166, 1)
+                    FocusedBorderThickness: =4
+                    Font: =Font.'Segoe UI'
+                    Height: =32.00
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =5.00
+                    PaddingLeft: =5.00
+                    Size: =13.00
+                    Text: =ThisItem.Pts
+                    Width: =60
+                    Y: =0.00
+                    ZIndex: =2
+
+            Rectangle2_1 As rectangle:
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =2
+                DisabledFill: =RGBA(166, 166, 166, 1)
+                DisplayMode: =DisplayMode.Disabled
+                Fill: =RGBA(0, 120, 212, 1)
+                FocusedBorderThickness: =4
+                Height: =3.00
+                HoverFill: =RGBA(0, 120, 212, 1)
+                OnSelect: =Select(Parent)
+                PressedFill: =RGBA(0, 120, 212, 1)
+                Width: =Parent.TemplateWidth
+                Y: =29.00
+                ZIndex: =4
+
+        icoBack_3 As icon.BackArrow:
+            BorderColor: =RGBA(166, 166, 166, 1)
+            Color: =RGBA(0, 120, 212, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(220, 220, 220, 1)
+            DisabledFill: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            Height: =52.00
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+            HoverFill: =RGBA(0, 0, 0, 0)
+            Icon: =Icon.BackArrow
+            OnSelect: =Back()
+            PaddingBottom: =0.00
+            PaddingLeft: =0.00
+            PressedBorderColor: =RGBA(0, 0, 0, 0)
+            PressedColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            Visible: =currentScreen="GameOver"
+            Width: =40
+            X: =8
+            Y: =48
+            ZIndex: =56
+
+        galScoreHistPlyName As gallery.galleryVertical:
+            BorderColor: =RGBA(166, 166, 166, 1)
+            Height: =52.00
+            Items: =colPlayers
+            Layout: =Layout.Vertical
+            TemplatePadding: =5.00
+            TemplateSize: =32
+            Visible: =currentScreen="GameOver"
+            Width: =529
+            WrapCount: =8
+            X: =Gallery8_1.X
+            Y: =100
+            ZIndex: =57
+
+            Label20_1 As label:
+                Align: =Right
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =2
+                Color: =RGBA(51, 51, 51, 1)
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                FocusedBorderThickness: =4
+                Font: =Font.'Segoe UI'
+                FontWeight: =Bold
+                Height: =32
+                OnSelect: =Select(Parent)
+                PaddingBottom: =5.00
+                PaddingLeft: =5.00
+                Size: =13.00
+                Text: =ThisItem.PlayerName
+                Width: =Parent.TemplateWidth
+                Wrap: =false
+                Y: =0.00
+                ZIndex: =1
+
+    grp_Play As group:
+        Height: =5
+        Width: =5
+        X: =80
+        Y: =80
+        ZIndex: =71
+
+        btnScoringBackground As button:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            DisplayMode: =DisplayMode.Disabled
+            Fill: =RGBA(0, 120, 212, 1)
+            FocusedBorderColor: =ColorFade(Self.Fill, -75%)
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Semibold
+            Height: =80.00
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =ColorFade(RGBA(0, 120, 212, 1), -10%)
+            PaddingBottom: =5.00
+            PaddingLeft: =5.00
+            PressedBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -50%)
+            PressedColor: =RGBA(255, 255, 255, 1)
+            PressedFill: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+            RadiusBottomLeft: =20
+            RadiusBottomRight: =20
+            RadiusTopLeft: =20
+            RadiusTopRight: =20
+            Size: =15.00
+            Text: =""
+            Visible: =currentScreen="Play"
+            Width: =165
+            X: =238
+            Y: =664
+            ZIndex: =18
+
+        Label5_3 As label:
+            Align: =Right
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(51, 51, 51, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Patrick Hand'
+            FontWeight: =Semibold
+            Height: =25.00
+            PaddingBottom: =5.00
+            PaddingLeft: =5.00
+            Size: =18.00
+            Text: =varCurrentPlayerScore
+            Visible: =currentScreen="Play"
+            Width: =72
+            X: =315
+            Y: =665
+            ZIndex: =19
+
+        Label5_4 As label:
+            Align: =Right
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(51, 51, 51, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Patrick Hand'
+            FontWeight: =Semibold
+            Height: =25.00
+            PaddingBottom: =5.00
+            PaddingLeft: =5.00
+            Size: =18.00
+            Text: =If(FARKLE.Visible, 0, varCurrentTurnPoints)
+            Visible: =currentScreen="Play"
+            Width: =72
+            X: =315
+            Y: =690
+            ZIndex: =20
+
+        Label5_5 As label:
+            Align: =Right
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(51, 51, 51, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Patrick Hand'
+            FontWeight: =Semibold
+            Height: =25.00
+            PaddingBottom: =5.00
+            PaddingLeft: =5.00
+            Size: =18.00
+            Text: =varCurrentPlayerScore + If(FARKLE.Visible, 0, varCurrentTurnPoints)
+            Visible: =currentScreen="Play"
+            Width: =72
+            X: =315
+            Y: =720
+            ZIndex: =21
+
+        gal_PlayersScores As gallery.galleryVertical:
+            BorderColor: =RGBA(166, 166, 166, 1)
+            Fill: =Transparent
+            Height: =246
+            Items: =colPlayers
+            Layout: =Layout.Vertical
+            TemplateFill: =If(ThisItem.ID = varCurrentPlayer.ID, StyleSettings.MenuColor , Transparent)
+            TemplatePadding: =5.00
+            TemplateSize: =35.00
+            Visible: =currentScreen="Play"
+            Width: =604
+            X: =(Parent.Width - Self.Width)/2
+            Y: =771
+            ZIndex: =22
+
+            Label11 As label:
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =2
+                Color: =StyleSettings.ButtonColor
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                FocusedBorderThickness: =4
+                Font: =Font.'Segoe UI'
+                Height: =35.00
+                OnSelect: =Select(Parent)
+                PaddingBottom: =5.00
+                PaddingLeft: =5.00
+                Size: =16.00
+                Text: =ThisItem.ID
+                Width: =52
+                Y: =0.00
+                ZIndex: =1
+
+            Label12 As label:
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =2
+                Color: =StyleSettings.ButtonColor
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                FocusedBorderThickness: =4
+                Font: =Font.'Segoe UI'
+                Height: =35.00
+                OnSelect: =If(StartsWith(Self.Text, "["), Navigate('Player Settings Screen'))
+                PaddingBottom: =5.00
+                PaddingLeft: =5.00
+                Size: =16.00
+                Text: |-
+                    =//ThisItem.PlayerName & If(ThisItem.OpeningScore, "  ✔") & If(ThisItem.Score <> 0 && ThisItem.Score = Max(colPlayers, Score), " 🥇")
+                    ThisItem.PlayerName & If(ThisItem.PlayerName = locPlayerWithHighScore, " 🥇")
+                Width: =231
+                Wrap: =false
+                X: =52
+                Y: =0.00
+                ZIndex: =2
+
+            Label13 As label:
+                Align: =Right
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =2
+                Color: =StyleSettings.ButtonColor
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                FocusedBorderThickness: =4
+                Font: =Font.'Segoe UI'
+                Height: =35.00
+                OnSelect: =Select(Parent)
+                PaddingBottom: =5.00
+                PaddingLeft: =5.00
+                Size: =16.00
+                Text: =ThisItem.Score
+                Width: =93
+                X: =283
+                Y: =0.00
+                ZIndex: =3
+
+            "Gallery3 As gallery.'BrowseLayout_Horizontal_TwoTextOneImageVariant_ver4.0'":
+                BorderColor: =RGBA(166, 166, 166, 1)
+                Height: =35.00
+                Items: |-
+                    =If(ThisItem.FarkleCount = 0, [],
+                        Sequence(ThisItem.FarkleCount)
+                    )
+                ShowScrollbar: =false
+                TemplatePadding: =4
+                TemplateSize: =44
+                Width: =146
+                X: =386
+                Y: =0.00
+                ZIndex: =4
+
+                Button5 As button:
+                    BorderColor: =RGBA(0, 0, 0, 0)
+                    BorderStyle: =BorderStyle.None
+                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                    DisabledColor: =Self.Color
+                    DisabledFill: =Self.Fill
+                    DisplayMode: =DisplayMode.Disabled
+                    Fill: =RGBA(203, 102, 102, 1)
+                    FocusedBorderColor: =ColorFade(Self.Fill, -75%)
+                    Font: =Font.'Segoe UI'
+                    FontWeight: =FontWeight.Semibold
+                    Height: =27.00
+                    HoverBorderColor: =RGBA(0, 0, 0, 0)
+                    HoverColor: =RGBA(255, 255, 255, 1)
+                    HoverFill: =ColorFade(RGBA(0, 120, 212, 1), -10%)
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =5.00
+                    PaddingLeft: =5.00
+                    PressedBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -50%)
+                    PressedColor: =RGBA(255, 255, 255, 1)
+                    PressedFill: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                    RadiusBottomLeft: =6
+                    RadiusBottomRight: =6
+                    RadiusTopLeft: =6
+                    RadiusTopRight: =6
+                    Size: =15.00
+                    Text: ="F"
+                    Width: =Parent.TemplateWidth
+                    Y: =0.00
+                    ZIndex: =4
+
+            Circle1 As circle:
+                BorderColor: =RGBA(166, 166, 166, 1)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =2
+                DisplayMode: =DisplayMode.Disabled
+                Fill: =RGBA(54, 176, 75, 1)
+                Height: =20.00
+                HoverFill: =RGBA(0, 120, 212, 1)
+                OnSelect: =Select(Parent)
+                PressedFill: =RGBA(0, 120, 212, 1)
+                Visible: =ThisItem.ID = varCurrentPlayer.ID
+                Width: =20.00
+                X: =25
+                Y: =9.00
+                ZIndex: =5
+
+            Icon4 As icon.Trash:
+                BorderColor: =RGBA(166, 166, 166, 1)
+                Color: =StyleSettings.ButtonColor
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                DisabledColor: =RGBA(220, 220, 220, 1)
+                DisabledFill: =RGBA(0, 0, 0, 0)
+                FocusedBorderThickness: =4
+                Height: =35.00
+                HoverBorderColor: =RGBA(0, 0, 0, 0)
+                HoverColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                HoverFill: =RGBA(0, 0, 0, 0)
+                Icon: =Icon.Trash
+                OnSelect: =Remove(colPlayers, ThisItem)
+                PaddingBottom: =5.00
+                PaddingLeft: =0.00
+                PaddingTop: =5
+                PressedBorderColor: =RGBA(0, 0, 0, 0)
+                PressedColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                PressedFill: =RGBA(0, 0, 0, 0)
+                Tooltip: ="Delete Player"
+                Width: =54
+                X: =530
+                Y: =0.00
+                ZIndex: =6
+
+        Label6_2 As label:
+            Align: =Right
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(51, 51, 51, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Patrick Hand'
+            FontWeight: =Semibold
+            Height: =25.00
+            PaddingBottom: =5.00
+            PaddingLeft: =5.00
+            Size: =20.00
+            Text: ="+"
+            Visible: =currentScreen="Play"
+            Width: =39
+            X: =240
+            Y: =691
+            ZIndex: =23
+
+        Label6_3 As label:
+            Align: =Right
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(51, 51, 51, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Patrick Hand'
+            FontWeight: =Semibold
+            Height: =25.00
+            PaddingBottom: =5.00
+            PaddingLeft: =5.00
+            Size: =20.00
+            Text: ="="
+            Visible: =currentScreen="Play"
+            Width: =39
+            X: =240
+            Y: =720
+            ZIndex: =24
+
+        Rectangle1_1 As rectangle:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            DisabledFill: =RGBA(166, 166, 166, 1)
+            DisplayMode: =DisplayMode.Disabled
+            Fill: =RGBA(128, 128, 128, 1)
+            FocusedBorderThickness: =4
+            Height: =4.00
+            HoverFill: =RGBA(0, 120, 212, 1)
+            PressedFill: =RGBA(0, 120, 212, 1)
+            Visible: =currentScreen="Play"
+            X: =242
+            Y: =716
+            ZIndex: =25
+
+        btnScoreIt As button:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            DisplayMode: |-
+                =If(
+                    FARKLE.Visible, DisplayMode.Disabled,
+                    If(!varCurrentPlayer.OpeningScore, // check for Opening Score
+                        If(varCurrentTurnPoints >= LookUp(colScoringTable, ID = 16, Pts),
+                            DisplayMode.Edit, DisplayMode.Disabled
+                        ),
+                        // if Not New Game
+                            If(
+                                FARKLE.Visible || IsEmpty(Filter(colMyRoll_Kept, !IsDiceScored)),
+                                DisplayMode.Disabled,
+                                DisplayMode.Edit
+                            )
+                    )
+                )
+            Fill: =RGBA(151, 0, 0, 1)
+            FocusedBorderColor: =ColorFade(Self.Fill, -75%)
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Semibold
+            Height: =77.00
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =ColorFade(Self.Fill, -10%)
+            OnSelect: |-
+                =If(!FARKLE.Visible,
+                    // IF NO FARKLE, calculate the score then RESET for next roll
+                    // ... Calculate Game Score
+                    //Set(varCurrentGamePoints, varCurrentGamePoints + varCurrentTurnPoints);
+                    // Current  Player
+                    Set(varCurrentPlayerScore, varCurrentPlayerScore + varCurrentTurnPoints);
+                    Patch(colPlayers, varCurrentPlayer, {Score: varCurrentPlayerScore, OpeningScore: true, FarkleCount: 0});
+                
+                    // If current player reached winning score, then set variable
+                    If(!locLastRound && varCurrentPlayerScore >= LookUp(colScoringTable, ID = 18).Pts,
+                        UpdateContext(
+                            {
+                                showMessageForLastRound: true,
+                                locLastRound: true, // set to last round
+                                locScoreToBeat: varCurrentPlayerScore,
+                                locPlayerWithHighScore: varCurrentPlayer.PlayerName
+                            }
+                        )
+                    );
+                    // if other player beats current high score
+                    If(locLastRound && varCurrentPlayerScore > locScoreToBeat,
+                        UpdateContext(
+                            {
+                                locScoreToBeat: varCurrentPlayerScore,
+                                locPlayerWithHighScore: varCurrentPlayer.PlayerName
+                            }
+                        )
+                    );
+                
+                    Collect(colScoringHistory,
+                        {
+                            Round: varRound,
+                            Player: varCurrentPlayer.PlayerName,
+                            Pts: Text(varCurrentTurnPoints)
+                        }
+                    );
+                    
+                    // RESET FOR NEXT ROLL / PLAYER
+                    Select(btnNextPlayer);
+                    Set(varRollCount, 0);
+                    Clear(colMyRoll);
+                    Clear(colMyRoll_Kept)
+                 
+                )
+                    
+            PaddingBottom: =5.00
+            PaddingLeft: =5.00
+            PressedBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -50%)
+            PressedColor: =RGBA(255, 255, 255, 1)
+            PressedFill: =Self.Fill
+            Size: =20.00
+            Text: |
+                ="Score" & Char(10) & If(varCurrentTurnPoints = 0 || IsBlank(varCurrentTurnPoints), "", varCurrentTurnPoints)
+            Visible: =currentScreen="Play"
+            Width: =191
+            X: =434
+            Y: =664
+            ZIndex: =26
+
+        RollTimer As timer:
+            AutoPause: =false
+            BorderColor: =RGBA(0, 120, 212, 1)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(0,0,0,.8)
+            DisabledBorderColor: =RGBA(244, 244, 244, 1)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            DisplayMode: =btnRollDice.DisplayMode
+            Duration: =300
+            Fill: =Self.DisabledFill
+            Font: =Font.'Segoe UI'
+            FontWeight: =Semibold
+            Height: =25.00
+            HoverBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -10%)
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =ColorFade(Self.Fill, -10%)
+            OnTimerEnd: |-
+                =ClearCollect(colMyRoll, galMyRoll.AllItems);
+                UpdateContext({locRolling: false});
+            PaddingBottom: =5.00
+            PaddingLeft: =5.00
+            PressedBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+            PressedColor: =RGBA(255, 255, 255, 1)
+            PressedFill: =Self.Fill
+            RadiusBottomLeft: =5
+            RadiusBottomRight: =5
+            RadiusTopLeft: =5
+            RadiusTopRight: =5
+            Size: =10.00
+            Start: =resetRollTimer
+            Text: |-
+                =//Text(Time(0, 0, Self.Value/1000), "hh:mm:ss")
+                "Roll Timer"
+            Visible: =false
+            Width: =124
+            X: =52
+            Y: =705
+            ZIndex: =27
+
+        btnRollDice As button:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            DisplayMode: |-
+                =If(
+                    !IsEmpty(colPlayers) && (varRollCount = 0 || FARKLE.Visible),
+                    DisplayMode.Edit,
+                    If(
+                        // there are dice kept and not scored yet
+                        CountRows(
+                            Filter(
+                                colMyRoll_Kept,
+                                !IsDiceScored
+                            )
+                        ) > 0,
+                        DisplayMode.Edit,
+                        DisplayMode.Disabled
+                    )
+                )
+            Fill: =RGBA(54, 176, 75, 1)
+            FocusedBorderColor: =ColorFade(Self.Fill, -75%)
+            Font: =Font.'Segoe UI'
+            FontWeight: =Semibold
+            Height: =80.00
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =ColorFade(Self.Fill, -10%)
+            OnSelect: |-
+                =If(!FARKLE.Visible, // if no farkle
+                    Clear(colMyRoll);
+                    UpdateContext({locRolling: true});
+                    
+                    // keep track of how many dice are available to roll
+                    // if mod = 0 then kept dice is a multiple of 6
+                    Set(varDiceAvailable, 6 - Mod(CountRows(colMyRoll_Kept), 6));
+                
+                    // Update all the items in colMyRoll_Kept to lock scores before next roll
+                    UpdateIf(colMyRoll_Kept, !IsDiceScored, 
+                        {
+                            IsDiceScored: true
+                        }
+                    );
+                
+                    //Clear Kept dice if there are 6 showing as kept
+                    If(Mod(CountRows(colMyRoll_Kept), 6) = 0, Clear(colMyRoll_Kept));
+                
+                    // keep track of roll count
+                    Set(varRollCount, varRollCount + 1);// Increment before each roll (but after calculating bonus pts, etc)
+                    
+                    // ROLL
+                    If(tglTestRoll_1.Value, // IF TESTING ROLLS
+                        Set(varTestNumbers, Split(txtTestRoll_1.Text, "-"));
+                        UpdateContext({resetRollTimer: false});UpdateContext({resetRollTimer: true}), 
+                        // FOR RANDOM ROLLS
+                        UpdateContext({resetRollTimer: false});UpdateContext({resetRollTimer: true});     
+                    ),
+                
+                // IF FARKLE IS VISIBLE ...
+                    // Record the score to history
+                    Collect(colScoringHistory,
+                        {
+                            Round: varRound,
+                            Player: varCurrentPlayer.PlayerName,
+                            Pts: If(varCurrentPlayer.FarkleCount = 2, "F (-1000)", "F")
+                        }
+                    );
+                    // If current player farkle count is two, subtract 1000 and then reset count to 0
+                    If(varCurrentPlayer.FarkleCount = 2,
+                        // if they already have two, then this is their third, subtract 1000 and reset count
+                        Patch(colPlayers, varCurrentPlayer, {Score: varCurrentPlayerScore - 1000, FarkleCount: 0}),
+                        // if not two, then it's either 0 or 1
+                        Patch(colPlayers, varCurrentPlayer, {FarkleCount: varCurrentPlayer.FarkleCount + 1})
+                    );
+                 
+                    // go to next player
+                    Select(btnNextPlayer);
+                    Set(varRollCount, 1); // start roll count over for next player
+                
+                    UpdateContext({locRolling: true});
+                    // ROLL AGAIN
+                    UpdateContext({resetRollTimer: false});UpdateContext({resetRollTimer: true}); 
+                    
+                )
+            PaddingBottom: =5.00
+            PaddingLeft: =5.00
+            PressedBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -50%)
+            PressedColor: =RGBA(255, 255, 255, 1)
+            PressedFill: =Self.Fill
+            Size: =20.00
+            Text: ="Roll"
+            Visible: =currentScreen="Play"
+            Width: =191
+            X: =15
+            Y: =664
+            ZIndex: =28
+
+        lblProbability As label:
+            Align: =Right
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =StyleSettings.ButtonColor
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Patrick Hand'
+            FontWeight: =Semibold
+            Height: =39
+            PaddingBottom: =5.00
+            PaddingLeft: =5.00
+            Size: =16.00
+            Text: |+
+                =/* --------------------------------------------------
+                        Dice Left   Odds        Probability
+                        6           1 in 43.2	2.31%
+                        5	        1 in 13	    7.72%
+                        4	        1 in 6.4	15.74%
+                        3	        1 in 3.6	27.78%
+                        2	        1 in 2.3	44.44%
+                        1	        2 in 3	    66.67% 
+                -----------------------------------------------------*/
+                If(!FARKLE.Visible,
+                    With(
+                        {
+                            _diceLeft: If(CountRows(colMyRoll_Kept) = 6, 6, 6 - CountRows(colMyRoll_Kept))
+                        },
+                        With({
+                            _prob: 
+                                Switch(_diceLeft,
+                                    6, "2.31%",
+                                    5, "7.72%",
+                                    4, "15.74%",
+                                    3, "27.78%",
+                                    2, "44.44%",
+                                    1, "66.67%"
+                                ),
+                            _odds: 
+                                Switch(_diceLeft,
+                                    6, "1 in 43.2",
+                                    5, "1 in 13",
+                                    4, "1 in 6.4",
+                                    3, "1 in 3.6",
+                                    2, "1 in 2.3",
+                                    1, "2 in 3"
+                                )
+                            },
+                    $"{_prob} chance of FARKLING with {_diceLeft} dice (Odds are {_odds})"
+                        )
+                    )
+                )
+                
+            Visible: =currentScreen="Play" && varRollCount > 0
+            Width: =472
+            Wrap: =false
+            X: =157
+            Y: =625
+            ZIndex: =29
+
+        "galMyRoll As gallery.'BrowseLayout_Horizontal_TwoTextOneImageVariant_ver4.0'":
+            BorderColor: =SaddleBrown
+            BorderThickness: =8
+            Fill: |-
+                =//RGBA(0, 0, 0, 0)
+                RGBA(54, 176, 75, 1)
+            Height: =237.00
+            Items: |
+                =//colMyRoll
+                If(!tglTestRoll_1.Value,
+                FirstN(
+                    Table(
+                        {
+                            ID: Value(varRollCount & "." & 1),
+                            Position: 1,
+                            Value: RandBetween(1,6),
+                            RollNum: varRollCount,
+                            IsDiceScored: false,
+                            ComboType: "",
+                            ComboPts: 0,
+                            Timer: RollTimer.Value // only first dice needs reference to timer and the whole table recalculates
+                        },
+                        {
+                            ID: Value(varRollCount & "." & 2),
+                            Position: 2,
+                            Value: RandBetween(1,6),
+                            RollNum: varRollCount,
+                            IsDiceScored: false,
+                            ComboType: "",
+                            ComboPts: 0
+                        },
+                        {
+                            ID: Value(varRollCount & "." & 3),
+                            Position: 3,
+                            Value: RandBetween(1,6),
+                            RollNum: varRollCount,
+                            IsDiceScored: false,
+                            ComboType: "",
+                            ComboPts: 0
+                        },
+                        {
+                            ID: Value(varRollCount & "." & 4),
+                            Position: 4,
+                            Value: RandBetween(1,6),
+                            RollNum: varRollCount,
+                            IsDiceScored: false,
+                            ComboType: "",
+                            ComboPts: 0
+                        },
+                        {
+                            ID: Value(varRollCount & "." & 5),
+                            Position: 5,
+                            Value: RandBetween(1,6),
+                            RollNum: varRollCount,
+                            IsDiceScored: false,
+                            ComboType: "",
+                            ComboPts: 0
+                        },
+                        {
+                            ID: Value(varRollCount & "." & 6),
+                            Position: 6,
+                            Value: RandBetween(1,6),
+                            RollNum: varRollCount,
+                            IsDiceScored: false,
+                            ComboType: "",
+                            ComboPts: 0
+                        }
+                    ), varDiceAvailable
+                ),
+                // TEST ROLL
+                Table(
+                        {
+                            ID: Value(varRollCount & "." & 1),
+                            Position: 1,
+                            Value: Value(Index(varTestNumbers, 1).Result),
+                            RollNum: varRollCount,
+                            IsDiceScored: false,
+                            ComboType: "",
+                            ComboPts: 0
+                        },
+                        {
+                            ID: Value(varRollCount & "." & 2),
+                            Position: 2,
+                            Value: Value(Index(varTestNumbers, 2).Result),
+                            RollNum: varRollCount,
+                            IsDiceScored: false,
+                            ComboType: "",
+                            ComboPts: 0
+                        },
+                        {
+                            ID: Value(varRollCount & "." & 3),
+                            Position: 3,
+                            Value: Value(Index(varTestNumbers, 3).Result),
+                            RollNum: varRollCount,
+                            IsDiceScored: false,
+                            ComboType: "",
+                            ComboPts: 0
+                        },
+                        {
+                            ID: Value(varRollCount & "." & 4),
+                            Position: 4,
+                            Value: Value(Index(varTestNumbers, 4).Result),
+                            RollNum: varRollCount,
+                            IsDiceScored: false,
+                            ComboType: "",
+                            ComboPts: 0
+                        },
+                        {
+                            ID: Value(varRollCount & "." & 5),
+                            Position: 5,
+                            Value: Value(Index(varTestNumbers, 5).Result),
+                            RollNum: varRollCount,
+                            IsDiceScored: false,
+                            ComboType: "",
+                            ComboPts: 0
+                        },
+                        {
+                            ID: Value(varRollCount & "." & 6),
+                            Position: 6,
+                            Value: Value(Index(varTestNumbers, 6).Result),
+                            RollNum: varRollCount,
+                            IsDiceScored: false,
+                            ComboType: "",
+                            ComboPts: 0
+                        }
+                    )
+                )
+            ShowScrollbar: =false
+            TemplatePadding: =0
+            TemplateSize: =99
+            Visible: =currentScreen="Play"
+            Width: =610
+            X: =(Parent.Width - Self.Width)/2
+            Y: =384
+            ZIndex: =30
+
+            html_BoxShadow As htmlViewer:
+                Height: =92.00
+                HtmlText: |-
+                    ="<div style='background-color: transparent; box-shadow: 8px 8px 9px rgba(0,0,0,.5); margin: 0px; width: " & imgDice.Width-2 & "px; height: " & imgDice.Height -2 & "px; border-radius: 10px'></div>"
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0.00
+                PaddingLeft: =0.00
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =11.00
+                Visible: =imgDice.Visible
+                Width: =imgDice.X + Parent.TemplateWidth - (Parent.TemplateWidth - imgDice.Width)
+                X: =imgDice.X
+                Y: =40.00
+                ZIndex: =1
+
+            imgDice As image:
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =2
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                DisabledFill: =RGBA(0, 0, 0, 0)
+                DisplayMode: =DisplayMode.View
+                FocusedBorderThickness: =4
+                Height: =70.00
+                HoverBorderColor: =RGBA(0, 0, 0, 0)
+                HoverFill: =RGBA(0, 0, 0, 0)
+                Image: =LookUp(tblDice, val = ThisItem.Value).path
+                PaddingBottom: =0.00
+                PaddingLeft: =0.00
+                PressedBorderColor: =RGBA(0, 0, 0, 0)
+                PressedFill: =RGBA(0, 0, 0, 0)
+                Tooltip: =ThisItem.Value
+                Visible: |-
+                    =// visible if it hasn't been scored
+                    varRollCount <> 0 &&
+                    IsBlank(LookUp(colMyRoll_Kept, ID = ThisItem.ID))
+                Width: =70
+                X: =14.5
+                Y: =40.00
+                ZIndex: =2
+
+            icoScoreable As icon.ChevronDown:
+                BorderColor: =RGBA(166, 166, 166, 1)
+                BorderStyle: =BorderStyle.None
+                Color: =If(LookUp(colScoringTable, ID=17,enabled),RGBA(255, 191, 0, 1),Transparent)
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                DisabledColor: =Self.Color
+                DisabledFill: =Transparent
+                DisplayMode: =DisplayMode.Disabled
+                Fill: =Self.Color
+                FocusedBorderThickness: =4
+                Height: =29.00
+                HoverBorderColor: =RGBA(0, 0, 0, 0)
+                HoverColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                HoverFill: =RGBA(0, 0, 0, 0)
+                Icon: =Icon.ChevronDown
+                PaddingBottom: =3.00
+                PaddingLeft: =2.00
+                PaddingRight: =2
+                PaddingTop: =3
+                PressedBorderColor: =RGBA(0, 0, 0, 0)
+                PressedColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                PressedFill: =RGBA(0, 0, 0, 0)
+                Visible: |
+                    =!locRolling && 
+                    
+                    And(
+                        varRollCount <> 0, // New Turn, no roll yet
+                        // Not already scored
+                        IsBlank(
+                            LookUp(colMyRoll_Kept,
+                                ID = ThisItem.ID
+                            )
+                        ) ,
+                        Or(
+                            ThisItem.Value = 1,
+                            ThisItem.Value = 5,    
+                            // all six dice
+                            comMyRoll_2.CheckCombo.IsStraight,
+                            comMyRoll_2.CheckCombo.IsThreePairs,
+                            comMyRoll_2.CheckCombo.IsSixOfAKind,
+                            comMyRoll_2.CheckCombo.IsAllOnes,
+                            comMyRoll_2.CheckCombo.IsAllFives,
+                            comMyRoll_2.CheckCombo.IsTwoTriplets,
+                            // 3 or more of same dice value
+                            CountRows(Filter(colMyRoll, Value = ThisItem.Value)) >= 3  
+                        )
+                    )
+                X: =(Parent.TemplateWidth - Self.Width)/2
+                Y: =1.00
+                ZIndex: =4
+
+            btnKeepDice As button:
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =0
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =Self.Fill
+                DisplayMode: |-
+                    =//If(ThisItem.Enabled, DisplayMode.Edit, DisplayMode.Disabled)
+                    DisplayMode.Edit
+                Fill: =Transparent
+                FocusedBorderColor: =ColorFade(Self.Fill, -75%)
+                FocusedBorderThickness: =0
+                Font: =Font.'Segoe UI'
+                FontWeight: =FontWeight.Semibold
+                Height: =70.00
+                HoverBorderColor: =RGBA(0, 0, 0, 0)
+                HoverColor: =RGBA(255, 255, 255, 1)
+                HoverFill: =RGBA(255,255,255,.3)
+                OnSelect: |-
+                    =If(!FARKLE.Visible, // IF NOT A FARKLE
+                    // clear bonus variables
+                    Set(varOneOrFivePts, 0);
+                    Set(varComboPts, 0);
+                    
+                    // USE SWITCH STATEMENT TO TEST COMBOS
+                        Switch(true,
+                            // 1-2-3-4-5-6
+                            comMyRoll_2.CheckCombo.IsStraight,
+                                Set(varComboPts, 3000); // Change to a lookup to Scoring Table
+                                Collect(colMyRoll_Kept, colMyRoll);
+                                UpdateIf(colMyRoll_Kept, !IsDiceScored, {ComboType: "Straight", ComboPts: varComboPts}),
+                            
+                            // 1-1-1-1-1-1
+                            comMyRoll_2.CheckCombo.IsAllOnes,
+                                Set(varComboPts, 5000); // Change to a lookup to Scoring Table
+                                Collect(colMyRoll_Kept, colMyRoll);
+                                UpdateIf(colMyRoll_Kept, !IsDiceScored, {ComboType: "AllOnes", ComboPts: varComboPts}),
+                    
+                            // Two Triplets
+                            comMyRoll_2.CheckCombo.IsTwoTriplets,
+                                Set(varComboPts, 2500); // Change to a lookup to Scoring Table
+                                Collect(colMyRoll_Kept, colMyRoll);
+                                UpdateIf(colMyRoll_Kept, !IsDiceScored, {ComboType: "TwoTriplets", ComboPts: varComboPts}),
+                    
+                            // 3 Pairs
+                            comMyRoll_2.CheckCombo.IsThreePairs,
+                                Set(varComboPts, 1500); // Change to a lookup to Scoring Table 
+                                Collect(colMyRoll_Kept, colMyRoll);
+                                UpdateIf(colMyRoll_Kept, !IsDiceScored, {ComboType: "ThreePairs", ComboPts: varComboPts}),
+                            
+                            // Six-of-a-kind
+                            comMyRoll_2.CheckCombo.IsSixOfAKind,
+                            //CountRows(Filter(colMyRoll, Value = ThisItem.Value)) = 6,
+                                // IF TRUE
+                                Set(varComboPts, 3000); // Change to a lookup to Scoring Table 
+                                ForAll(colMyRoll As _items, 
+                                    Patch(_items, {ComboType: "SixOfAKind", ComboPts: varComboPts}));
+                                Collect(colMyRoll_Kept, Filter(colMyRoll, Value = ThisItem.Value));
+                                UpdateIf(colMyRoll_Kept, !IsDiceScored, {ComboType: "SixOfAKind", ComboPts: varComboPts}),
+                    
+                            // Five-of-a-kind ... do not use component to check
+                            CountRows(Filter(colMyRoll, Value = ThisItem.Value)) = 5,
+                                // IF TRUE
+                                Set(varComboPts, 2000); // Change to a lookup to Scoring Table 
+                                Collect(colMyRoll_Kept, 
+                                    ForAll(Filter(colMyRoll, Value = ThisItem.Value) As _items, 
+                                    Patch(_items, {ComboType: "FiveOfAKind", ComboPts: varComboPts}))),
+                                                         
+                            // Four-of-a-kind ... do not use component to check as it may have effect on the two dice that aren't the combo
+                            // for example, rolling 1-1-6-6-6-6 will think the ones are a part of combo
+                            CountRows(Filter(colMyRoll, Value = ThisItem.Value)) = 4,
+                                // IF TRUE
+                                Set(varComboPts, 1000); // Change to a lookup to Scoring Table
+                                Collect(colMyRoll_Kept, 
+                                    ForAll(Filter(colMyRoll, Value = ThisItem.Value) As _items, 
+                                    Patch(_items, {ComboType: "FourOfAKind", ComboPts: varComboPts}))),
+                            
+                            // Three of a kind
+                            CountRows(Filter(colMyRoll, Value = ThisItem.Value)) = 3,
+                                // IF TRUE
+                                If(ThisItem.Value = 1,
+                                    Set(varComboPts, LookUp(colScoringTable, ID = 3, Pts)),
+                                    Set(varComboPts, ThisItem.Value * 100));
+                                Collect(colMyRoll_Kept, 
+                                    ForAll(Filter(colMyRoll, Value = ThisItem.Value) As _items, 
+                                    Patch(_items, {ComboType: "ThreeOfAKind", ComboPts: varComboPts}))),     
+                            
+                            // Ones or Fives
+                            Collect(colMyRoll_Kept, Filter(colMyRoll, ID = ThisItem.ID));
+                            Set(varOneOrFivePts, If(ThisItem.Value = 1, 100, 50));
+                        );
+                    // calculate the current roll points
+                        Set(varCurrentTurnPoints, 
+                            varCurrentTurnPoints + varOneOrFivePts + varComboPts
+                        );
+                    )
+                PaddingBottom: =5.00
+                PaddingLeft: =5.00
+                PressedBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -50%)
+                PressedColor: =RGBA(255, 255, 255, 1)
+                PressedFill: =Self.Fill
+                RadiusBottomLeft: =12
+                RadiusBottomRight: =12
+                RadiusTopLeft: =12
+                RadiusTopRight: =12
+                Size: =15.00
+                Text: =""
+                Tooltip: =imgDice.Tooltip
+                Visible: =icoScoreable.Visible //&& imgDice_1.Visible
+                Width: =imgDice.Width
+                X: =imgDice.X
+                Y: =40.00
+                ZIndex: =5
+
+        galMyKeptDice As gallery.galleryHorizontal:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =8
+            Height: =101.00
+            Items: =colMyRoll_Kept
+            TemplatePadding: =0
+            TemplateSize: =99
+            Visible: =currentScreen="Play" && !IsEmpty(Self.AllItems)
+            Width: =galMyRoll.Width
+            X: =(Parent.Width - Self.Width)/2
+            Y: =518
+            ZIndex: =31
+
+            html_BoxShadow_1 As htmlViewer:
+                Height: =91
+                HtmlText: |-
+                    ="<div style='background-color: transparent; box-shadow: 8px 8px 9px rgba(0,0,0,.5); margin: 0px; width: " & imgDice.Width-2 & "px; height: " & imgDice.Height -2 & "px; border-radius: 10px'></div>"
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0.00
+                PaddingLeft: =0.00
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =11.00
+                Visible: =imgDice_Kept.Visible
+                Width: =imgDice_Kept.X + Parent.TemplateWidth - (Parent.TemplateWidth - imgDice_Kept.Width)
+                X: =imgDice_Kept.X
+                Y: =0.00
+                ZIndex: =1
+
+            imgDice_Kept As image:
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =2
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                DisabledFill: =RGBA(0, 0, 0, 0)
+                DisplayMode: =DisplayMode.View
+                FocusedBorderThickness: =4
+                Height: =70.00
+                HoverBorderColor: =RGBA(0, 0, 0, 0)
+                HoverFill: =RGBA(0, 0, 0, 0)
+                Image: =LookUp(tblDice, val = ThisItem.Value).path
+                PaddingBottom: =0.00
+                PaddingLeft: =0.00
+                PressedBorderColor: =RGBA(0, 0, 0, 0)
+                PressedFill: =RGBA(0, 0, 0, 0)
+                Width: =70
+                X: =14.5
+                Y: =0.00
+                ZIndex: =2
+
+            shpRollEndMarker As rectangle:
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                BorderThickness: =2
+                DisplayMode: =DisplayMode.Disabled
+                Fill: =RGBA(202, 202, 202, 1)
+                FocusedBorderThickness: =4
+                Height: =imgDice_Kept.Height
+                HoverFill: =RGBA(0, 120, 212, 1)
+                OnSelect: =
+                PressedFill: =RGBA(0, 120, 212, 1)
+                Visible: |-
+                    =ThisItem.IsDiceScored 
+                    && 
+                    ThisItem.ID = Last(Filter(colMyRoll_Kept, RollNum = ThisItem.RollNum)).ID
+                Width: =4
+                X: =Parent.TemplateWidth - Self.Width
+                ZIndex: =3
+
+            btnRemoveDice As button:
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderStyle: =BorderStyle.None
+                Color: =RGBA(219, 219, 219, 1)
+                DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =Self.Fill
+                DisplayMode: =If(ThisItem.IsDiceScored, DisplayMode.Disabled, DisplayMode.Edit)
+                Fill: =Transparent
+                FocusedBorderColor: =ColorFade(Self.Fill, -75%)
+                Font: =Font.'Segoe UI'
+                FontWeight: =FontWeight.Semibold
+                Height: =70.00
+                HoverBorderColor: =RGBA(0, 0, 0, 0)
+                HoverColor: =RGBA(255, 255, 255, 1)
+                HoverFill: =RGBA(255,255,255,.3)
+                OnSelect: |+
+                    =// USE SWITCH STATEMENT TO TEST COMBO VARIABLE
+                    Set(varComboPts, 0);
+                    Switch(true,
+                            // check 6 dice combos
+                            ThisItem.ComboType in [
+                                "Straight", 
+                                "AllOnes", 
+                                "TwoTriplets",
+                                "ThreePairs",
+                                "SixOfAKind"],
+                            Set(varComboPts, ThisItem.ComboPts);
+                            // Remove all dice
+                            RemoveIf(colMyRoll_Kept, !IsDiceScored),
+                            
+                            // check other combos
+                            ThisItem.ComboType in [
+                                "FiveOfAKind",
+                                "FourOfAKind",
+                                "ThreeOfAKind"],
+                                // IF TRUE
+                                Set(varComboPts, ThisItem.ComboPts);
+                                RemoveIf(colMyRoll_Kept, ThisItem.Value = Value && !IsDiceScored),
+                            
+                            // Default of Switch
+                            Remove(colMyRoll_Kept, ThisItem);
+                            Set(varCurrentTurnPoints, varCurrentTurnPoints - If(ThisItem.Value = 1, 100, 50));
+                    );
+                    Set(varCurrentTurnPoints, varCurrentTurnPoints - varComboPts);
+                    
+                    
+                    
+                PaddingBottom: =5.00
+                PaddingLeft: =5.00
+                PressedBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -50%)
+                PressedColor: =RGBA(255, 255, 255, 1)
+                PressedFill: =Self.Fill
+                RadiusBottomLeft: =12
+                RadiusBottomRight: =12
+                RadiusTopLeft: =12
+                RadiusTopRight: =12
+                Size: =15.00
+                Text: =""
+                Tooltip: ="Put Dice Back"
+                Visible: =!ThisItem.IsDiceScored
+                Width: =imgDice_Kept.Width
+                X: =imgDice_Kept.X
+                Y: =0.00
+                ZIndex: =4
+
+        "FARKLE As gallery.'BrowseLayout_Horizontal_TwoTextOneImageVariant_ver4.0'":
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =4
+            DisplayMode: =DisplayMode.Disabled
+            Fill: =Transparent
+            Height: =237.00
+            Items: =tblFarkleLetters
+            TemplatePadding: =0
+            TemplateSize: =99
+            Visible: |+
+                =currentScreen="Play" &&
+                //VISIBLE WHEN
+                !locRolling && // not currently rolling
+                And(
+                    !IsEmpty(colMyRoll),
+                    // It's not the first Roll ...
+                    //varRollCount <> 0,
+                    // AND none of the following are true ... there's not a 1 or 5 and not bonus combo available
+                    !(CountRows(Filter(colMyRoll, Value = 1)) > 0), // no ones
+                    !(CountRows(Filter(colMyRoll, Value = 5)) > 0), // no fives
+                    !comMyRoll_2.CheckCombo.IsStraight,
+                    !comMyRoll_2.CheckCombo.IsThreePairs,
+                    !comMyRoll_2.CheckCombo.IsAllOnes,
+                    !comMyRoll_2.CheckCombo.IsTwoTriplets,
+                    // Roll contains 3 of a kind
+                    !comMyRoll_2.CheckCombo.IsThreeOfAKind,
+                    // Roll contains 4 of a kind
+                    !comMyRoll_2.CheckCombo.IsFourOfAKind,
+                    // Roll contains 5 of a kind
+                    !comMyRoll_2.CheckCombo.IsFiveOfAKind,
+                    // Roll contains 6 of a kind
+                    !comMyRoll_2.CheckCombo.IsSixOfAKind
+                )
+                
+            Width: =galMyRoll.Width
+            X: =(Parent.Width - Self.Width)/2
+            Y: =384
+            ZIndex: =32
+
+            btnFarkle_Letters As button:
+                BorderColor: =RGBA(0, 0, 0, 0)
+                BorderThickness: =4
+                Color: =ColorFade(RGBA(255, 0, 0, 1), -10%)
+                DisabledBorderColor: =Self.Color
+                DisabledColor: =Self.Color
+                DisabledFill: =Self.Fill
+                DisplayMode: =DisplayMode.Disabled
+                Fill: |-
+                    =//If there is a dice in position of where letter is, then show some transparency to see what number was rolled
+                    If(!IsBlank(LookUp(colMyRoll, Position = ThisItem.index).ID), RGBA(255,255,255,.8), White)
+                FocusedBorderColor: =ColorFade(Self.Fill, -75%)
+                Font: =Font.'Patrick Hand'
+                FontWeight: =Bold
+                Height: =70.00
+                HoverBorderColor: =RGBA(0, 0, 0, 0)
+                HoverColor: =RGBA(255, 255, 255, 1)
+                HoverFill: =ColorFade(RGBA(0, 120, 212, 1), -10%)
+                OnSelect: =
+                PaddingBottom: =5.00
+                PaddingLeft: =5.00
+                PressedBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -50%)
+                PressedColor: =RGBA(255, 255, 255, 1)
+                PressedFill: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+                RadiusBottomLeft: =14
+                RadiusBottomRight: =14
+                RadiusTopLeft: =14
+                RadiusTopRight: =14
+                Size: =48.00
+                Text: =ThisItem.letter
+                Width: =70
+                X: =(Parent.TemplateWidth / 2) - (Self.Width / 2)
+                Y: =40.00
+                ZIndex: =4
+
+        lblPlayersTurn As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =StyleSettings.ButtonColor
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Patrick Hand'
+            FontWeight: =Semibold
+            Height: =44.00
+            PaddingBottom: =5.00
+            PaddingLeft: =5.00
+            Size: =16.00
+            Text: |-
+                =With(
+                    {
+                        _pName: LookUp(colPlayers, ID = varCurrentPlayer.ID, PlayerName),
+                        _rollNum: If(varRollCount = 0, 1, varRollCount)
+                    },
+                    $"{_pName}'s Turn (Roll #{_rollNum})"
+                )
+                
+                //LookUp(colPlayers, ID = varCurrentPlayer.ID, PlayerName) & "'s Turn (Roll #" & varRollCount & ")"
+            Visible: =currentScreen="Play" && !IsEmpty(colPlayers)
+            Width: =galMyRoll.Width
+            Wrap: =false
+            X: =galMyRoll.X
+            Y: =336
+            ZIndex: =38
+
+        lblOpeningPtsNeeded As label:
+            Align: =Center
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =StyleSettings.ButtonColor
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Patrick Hand'
+            FontWeight: =Semibold
+            Height: =27.00
+            PaddingBottom: =5.00
+            PaddingLeft: =5.00
+            Size: =16.00
+            Text: |-
+                =If(!varCurrentPlayer.OpeningScore, // check for Opening Score
+                        LookUp(colScoringTable, ID = 16, Pts) & " pts needed to open")
+            Visible: =currentScreen="Play"
+            Width: =200
+            X: =429
+            Y: =744
+            ZIndex: =39
+
+    grp_HowToPlay As group:
+        Height: =5
+        Width: =5
+        X: =-75
+        Y: =-653
+        ZIndex: =71
+
+        html_HowToPlay_Bkgd As htmlViewer:
+            BorderColor: =StyleSettings.MenuBorderColor
+            BorderThickness: =StyleSettings.MenuBorderThickness
+            Color: =StyleSettings.MenuColor
+            Fill: =StyleSettings.MenuFill
+            Font: =StyleSettings.PrimaryFont
+            Height: =993
+            HoverBorderColor: =html_HowToPlay_Bkgd.BorderColor
+            HtmlText: |
+                ="<b>Objective</b>
+                <p>Be the player with the highest score over 10,000.</p>
+                <b>How To Play</b>
+                <p>When it’s your turn, place the six Dice in the Shaker Cup and roll ’em. Any Dice that roll off the playing area are rolled again.<br><br>
+                After each roll, select Dice that are worth points and roll the rest of them. You must remove at least one Die after each roll and keep a running total of your points for that turn.
+                <br><br>
+                If you’re lucky enough to set aside all six Dice, you can roll them all again to build your running total.
+                <br><br>
+                If you cannot set aside any Dice after a roll, that’s a Farkle. You lose your running total of points for that turn and play passes to the left. A Farkle could happen on your first roll or when you roll the remaining Dice.<br><br>
+                To get on the Score Pad for the first time, you must have a running total of 500 points before you stop rolling.<br><br>
+                After your first score of 500 points or more is recorded, you may stop rolling at any time and have the scorekeeper add your running total for that turn to your accumulated score. Once your points are entered on the Score Pad, they are safe, and you cannot lose them.</p>
+                <b>Winning</b>
+                <p>When a player’s accumulated score is 10,000 or more, each of the other players has one last turn to beat that total. The player with the highest score wins.</p>
+                <b>Scoring</b><br>
+                <!DOCTYPE html>
+                <html>
+                <head>
+                <style>
+                table {
+                  font-family: arial, sans-serif;
+                  border-collapse: collapse;
+                  width: 100%;
+                }
+                td, th, tr {
+                  border: 1px solid #dddddd;
+                  text-align: Right;
+                  padding: 8px;
+                }
+                tr:nth-child(even) {
+                  background-color: #dddddd;
+                }
+                </style>
+                </head>
+                <body>
+                
+                <table>
+                  <tr>
+                    <th>Dice Rolled</th>
+                    <th>Point Value</th>
+                  </tr>
+                  <tr>
+                    <td>Single 5</td>
+                    <td><b>50</b></td>
+                  </tr>
+                  <tr>
+                   <td>Single 1</td>
+                   <td><b>100</b></td>
+                  </tr>
+                    <tr>
+                   <td>Three 1s</td>
+                   <td><b>300</b></td>
+                  </tr>
+                   <tr>
+                   <td>Three 2s</td>
+                   <td><b>200</b></td>
+                  </tr>
+                   <tr>
+                   <td>Three 3s</td>
+                   <td><b>300</b></td>
+                  </tr>
+                   <tr>
+                   <td>Three 4s</td>
+                   <td><b>400</b></td>
+                  </tr>
+                   <tr>
+                   <td>Three 5s</td>
+                   <td><b>500</b></td>
+                  </tr>
+                   <tr>
+                   <td>Three 6s</td>
+                   <td><b>600</b></td>
+                  </tr>
+                   <tr>
+                   <td>Four of any number</td>
+                   <td><b>1,000</b></td>
+                  </tr>
+                   <tr>
+                   <td>Five of any number</td>
+                   <td><b>2,000</b></td>
+                  </tr>
+                   <tr>
+                   <td>Six of any number</td>
+                   <td><b>3,000</b></td>
+                  </tr>
+                   <tr>
+                   <td>1 through 6 straight</td>
+                   <td><b>1,500</b></td>
+                  </tr>
+                   <tr>
+                   <td>Three Pairs</td>
+                   <td><b>1,500</b></td>
+                  </tr>
+                    <tr>
+                   <td>Four of any number with pair</td>
+                   <td><b>1,500</b></td>
+                  </tr>
+                   <tr>
+                   <td>Two Sets of Triplets</td>
+                   <td><b>2,500</b></td>
+                  </tr>
+                   <tr>
+                   <td>Six 1s</td>
+                   <td><b>5,000</b></td>
+                  </tr>  
+                </table>
+                </body>
+                </html>"
+            PaddingBottom: =StyleSettings.MenuPaddingBottom
+            PaddingLeft: =StyleSettings.MenuPaddingLeft
+            PaddingRight: =StyleSettings.MenuPaddingRight
+            PaddingTop: =StyleSettings.MenuPaddingTop
+            PressedBorderColor: =html_HowToPlay_Bkgd.BorderColor
+            Size: =StyleSettings.MenuSize
+            Visible: =currentScreen="HowToPlay"
+            Width: =580
+            X: =StyleSettings.MenuX
+            Y: =StyleSettings.MenuY
+            ZIndex: =58
+
+        lbl_HowToPlay_Close As label:
+            Align: =Center
+            BorderColor: =RGBA(0, 18, 107, 1)
+            Color: =White
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            Fill: =StyleSettings.ButtonFillCancel
+            FocusedBorderColor: =lbl_HowToPlay_Close.BorderColor
+            FontWeight: =FontWeight.Semibold
+            Height: =60
+            HoverBorderColor: =lbl_HowToPlay_Close.BorderColor
+            HoverColor: =lbl_HowToPlay_Close.Color
+            HoverFill: =lbl_HowToPlay_Close.Fill
+            OnSelect: =Set(currentScreen, backToScreen)
+            PressedBorderColor: =lbl_HowToPlay_Close.BorderColor
+            PressedColor: =lbl_HowToPlay_Close.Color
+            PressedFill: =lbl_HowToPlay_Close.Fill
+            Size: =24
+            Text: ="X"
+            Visible: =currentScreen="HowToPlay"
+            Width: =lbl_HowToPlay_Close.Height
+            X: =html_HowToPlay_Bkgd.X+html_HowToPlay_Bkgd.Width-lbl_HowToPlay_Close.Height
+            Y: =html_HowToPlay_Bkgd.Y
+            ZIndex: =70
+

@@ -1,0 +1,151 @@
+App As appinfo:
+    BackEnabled: =false
+    OnStart: |
+        =// Styles
+        Set(StyleSettings,{
+        
+            // General Styles
+            PrimaryFont: Font.'Open Sans',
+            SecondaryFont: 'Dancing Script',
+        
+            // Button Styles
+            ButtonBorderThickness: 2,
+            ButtonColor: White,
+            ButtonFillOK: RGBA(102, 200, 265, 0.90),
+            ButtonFillCancel: RGBA(265, 102, 102, 0.85),
+            ButtonFontWeight: Semibold,
+            ButtonSize: 24,
+        
+            // Info Label Styles
+            InfoLabelColor: White,
+            InfoLabelFontWeight: Semibold,
+            InfoLabelSize: 21,
+        
+            // Points Styles
+            PointsFontWeight: Bold,
+            PointsHeight: 60,
+            PointsSize: 24,
+            
+            // Menu Styles
+            MenuBorderColor: White,
+            MenuBorderThickness: 10,
+            MenuColor: Black,
+            MenuFill: RGBA(255, 255, 255, 0.75),
+            MenuPaddingBottom: 5,
+            MenuPaddingLeft: 25,
+            MenuPaddingRight: 5,
+            MenuPaddingTop: 25,
+            MenuSize: 20,
+            MenuX: 30,
+            MenuY: 20
+        
+        });
+        
+        Set(varRollCount, 0);
+        Set(varDiceAvailable, 6);
+        Clear(colMyRoll_Kept);
+        Set(tblFarkleLetters,
+            Table(
+                {index: 1, letter: "F"},
+                {index: 2, letter: "A"},
+                {index: 3, letter: "R"},
+                {index: 4, letter: "K"},
+                {index: 5, letter: "L"},
+                {index: 6, letter: "E"}
+            )
+        );
+        
+        ClearCollect(colScoringTable,
+            Table(
+                {ID: 1, DisplayName: "1", Pts: 100, editable: false},
+                {ID: 2, DisplayName: "5", Pts: 50, editable: false},
+                {ID: 3, DisplayName: "Three 1's", Pts: 300, editable: false},
+                {ID: 4, DisplayName: "Three 2's", Pts: 200, editable: false},
+                {ID: 5, DisplayName: "Three 3's", Pts: 300, editable: false},
+                {ID: 6, DisplayName: "Three 4's", Pts: 400, editable: false},
+                {ID: 7, DisplayName: "Three 5's", Pts: 500, editable: false},
+                {ID: 8, DisplayName: "Three 6's", Pts: 600, editable: false},
+                {ID: 9, DisplayName: "1-2-3-4-5-6", Pts: 300, editable: false},
+                {ID: 10, DisplayName: "3 Pairs", Pts: 1500, editable: false},
+                {ID: 11, DisplayName: "4 of a Kind", Pts: 1000, editable: false},
+                {ID: 12, DisplayName: "5 of a Kind", Pts: 2000, editable: false},
+                {ID: 13, DisplayName: "6 of a Kind", Pts: 3000, editable: false},
+                {ID: 14, DisplayName: "1-1-1-1-1-1", Pts: 5000, editable: false},
+                {ID: 15, DisplayName: "Two Triplets", Pts: 2500, editable: false},
+                {ID: 16, DisplayName: "Opening Score", Pts: 300, editable: true, controlType: "dropdown"},
+                {ID: 17, DisplayName: "Show Scoring Hint", editable: true, controlType: "toggle", enabled: true},
+                {ID: 18, DisplayName: "Winning Score", Pts: 10000, editable: true, controlType: "text"}
+            )
+        );
+        
+        ClearCollect(myScoring,{htmlString:"<table>
+          <tr>
+            <th>DisplayName</th>
+            <th>Pts</th>
+          </tr>"});
+        ForAll(
+            colScoringTable,
+            Patch(
+                myScoring,
+                First(myScoring),
+                {htmlString: First(myScoring).htmlString&"
+          <tr>
+            <td>"&DisplayName&"</td>
+            <td>"&Pts&"</td>
+          </tr>"})
+        );
+        Patch(myScoring,First(myScoring),{htmlString: First(myScoring).htmlString&"
+        </table>"});
+        Set(gameScoring,First(myScoring).htmlString);
+        ClearCollect(mygameScoring,myScoring);
+        
+        Set(
+            tblDice,
+            Table(
+                {
+                    val: 1,
+                    path: "data:image/svg+xml," & EncodeUrl(
+                        "<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='530' height='530' overflow='hidden'><defs></defs><g transform='translate(-237 -335)'><path d='M244 428.002C244 380.504 282.504 342 330.002 342L673.998 342C721.496 342 760 380.504 760 428.002L760 771.998C760 819.496 721.496 858 673.998 858L330.002 858C282.504 858 244 819.496 244 771.998Z' stroke='Black' stroke-width='13.75' stroke-miterlimit='8' fill='White' fill-rule='evenodd'/><path d='M453 599.5C453 573.819 473.819 553 499.5 553 525.181 553 546 573.819 546 599.5 546 625.181 525.181 646 499.5 646 473.819 646 453 625.181 453 599.5Z' fill='Black' fill-rule='evenodd'/></g></svg>"
+                    )
+                },
+                {
+                val: 2,
+                path: "data:image/svg+xml," & EncodeUrl(
+                "<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='529' height='530' overflow='hidden'><defs></defs><g transform='translate(-881 -335)'><path d='M888 427.835C888 380.43 926.43 342 973.835 342L1317.16 342C1364.57 342 1403 380.43 1403 427.835L1403 772.165C1403 819.57 1364.57 858 1317.16 858L973.835 858C926.43 858 888 819.57 888 772.165Z' stroke='Black' stroke-width='13.75' stroke-miterlimit='8' fill='White' fill-rule='evenodd'/><path d='M962 458C962 432.043 982.819 411 1008.5 411 1034.18 411 1055 432.043 1055 458 1055 483.957 1034.18 505 1008.5 505 982.819 505 962 483.957 962 458Z' fill='Black' fill-rule='evenodd'/><path d='M1233 731.5C1233 705.819 1254.04 685 1280 685 1305.96 685 1327 705.819 1327 731.5 1327 757.181 1305.96 778 1280 778 1254.04 778 1233 757.181 1233 731.5Z' fill='Black' fill-rule='evenodd'/></g></svg>"
+                )
+                },
+                        {
+                val: 3,
+                path: "data:image/svg+xml," & EncodeUrl(
+                "<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='529' height='530' overflow='hidden'><g transform='translate(-1525 -329)'><path d='M1532 421.835C1532 374.43 1570.43 336 1617.84 336L1961.16 336C2008.57 336 2047 374.43 2047 421.835L2047 766.165C2047 813.57 2008.57 852 1961.16 852L1617.84 852C1570.43 852 1532 813.57 1532 766.165Z' stroke='Black' stroke-width='13.75' stroke-miterlimit='8' fill='White' fill-rule='evenodd'/><path d='M1608 458C1608 432.043 1629.04 411 1655 411 1680.96 411 1702 432.043 1702 458 1702 483.957 1680.96 505 1655 505 1629.04 505 1608 483.957 1608 458Z' fill='Black' fill-rule='evenodd'/><path d='M1743 593.5C1743 567.819 1763.82 547 1789.5 547 1815.18 547 1836 567.819 1836 593.5 1836 619.181 1815.18 640 1789.5 640 1763.82 640 1743 619.181 1743 593.5Z' fill='Black' fill-rule='evenodd'/><path d='M1882 733.5C1882 707.819 1902.82 687 1928.5 687 1954.18 687 1975 707.819 1975 733.5 1975 759.181 1954.18 780 1928.5 780 1902.82 780 1882 759.181 1882 733.5Z' fill='Black' fill-rule='evenodd'/></g></svg>"
+                )
+                },
+                        {
+                val: 4,
+                path: "data:image/svg+xml," & EncodeUrl(
+                "<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='529' height='529' overflow='hidden'><g transform='translate(-236 -1011)'><path d='M243 1103.83C243 1056.43 281.43 1018 328.835 1018L672.165 1018C719.57 1018 758 1056.43 758 1103.83L758 1447.17C758 1494.57 719.57 1533 672.165 1533L328.835 1533C281.43 1533 243 1494.57 243 1447.17Z' stroke='Black' stroke-width='13.75' stroke-miterlimit='8' fill='White' fill-rule='evenodd'/><path d='M317 1135C317 1109.04 337.819 1088 363.5 1088 389.181 1088 410 1109.04 410 1135 410 1160.96 389.181 1182 363.5 1182 337.819 1182 317 1160.96 317 1135Z' fill='Black' fill-rule='evenodd'/><path d='M588 1410C588 1384.04 609.043 1363 635 1363 660.957 1363 682 1384.04 682 1410 682 1435.96 660.957 1457 635 1457 609.043 1457 588 1435.96 588 1410Z' fill='Black' fill-rule='evenodd'/><path d='M588 1135C588 1109.04 609.043 1088 635 1088 660.957 1088 682 1109.04 682 1135 682 1160.96 660.957 1182 635 1182 609.043 1182 588 1160.96 588 1135Z' fill='Black' fill-rule='evenodd'/><path d='M317 1410C317 1384.04 337.819 1363 363.5 1363 389.181 1363 410 1384.04 410 1410 410 1435.96 389.181 1457 363.5 1457 337.819 1457 317 1435.96 317 1410Z' fill='Black' fill-rule='evenodd'/></g></svg>"
+                )
+                },
+                        {
+                val: 5,
+                path: "data:image/svg+xml," & EncodeUrl(
+                "<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='529' height='529' overflow='hidden'><g transform='translate(-881 -1011)'><path d='M888 1103.83C888 1056.43 926.43 1018 973.835 1018L1317.16 1018C1364.57 1018 1403 1056.43 1403 1103.83L1403 1447.17C1403 1494.57 1364.57 1533 1317.16 1533L973.835 1533C926.43 1533 888 1494.57 888 1447.17Z' stroke='Black' stroke-width='13.75' stroke-miterlimit='8' fill='White' fill-rule='evenodd'/><path d='M962 1135C962 1109.04 982.819 1088 1008.5 1088 1034.18 1088 1055 1109.04 1055 1135 1055 1160.96 1034.18 1182 1008.5 1182 982.819 1182 962 1160.96 962 1135Z' fill='Black' fill-rule='evenodd'/><path d='M1233 1410C1233 1384.04 1254.04 1363 1280 1363 1305.96 1363 1327 1384.04 1327 1410 1327 1435.96 1305.96 1457 1280 1457 1254.04 1457 1233 1435.96 1233 1410Z' fill='Black' fill-rule='evenodd'/><path d='M1233 1135C1233 1109.04 1254.04 1088 1280 1088 1305.96 1088 1327 1109.04 1327 1135 1327 1160.96 1305.96 1182 1280 1182 1254.04 1182 1233 1160.96 1233 1135Z' fill='Black' fill-rule='evenodd'/><path d='M962 1410C962 1384.04 982.819 1363 1008.5 1363 1034.18 1363 1055 1384.04 1055 1410 1055 1435.96 1034.18 1457 1008.5 1457 982.819 1457 962 1435.96 962 1410Z' fill='Black' fill-rule='evenodd'/><path d='M1099 1275.5C1099 1249.82 1119.82 1229 1145.5 1229 1171.18 1229 1192 1249.82 1192 1275.5 1192 1301.18 1171.18 1322 1145.5 1322 1119.82 1322 1099 1301.18 1099 1275.5Z' fill='Black' fill-rule='evenodd'/></g></svg>"
+                )
+                },
+                        {
+                val: 6,
+                path: "data:image/svg+xml," & EncodeUrl(
+                "<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='529' height='529' overflow='hidden'><g transform='translate(-1525 -1011)'><path d='M1532 1103.83C1532 1056.43 1570.43 1018 1617.84 1018L1961.16 1018C2008.57 1018 2047 1056.43 2047 1103.83L2047 1447.17C2047 1494.57 2008.57 1533 1961.16 1533L1617.84 1533C1570.43 1533 1532 1494.57 1532 1447.17Z' stroke='Black' stroke-width='13.75' stroke-miterlimit='8' fill='White' fill-rule='evenodd'/><path d='M1606 1135C1606 1109.04 1626.82 1088 1652.5 1088 1678.18 1088 1699 1109.04 1699 1135 1699 1160.96 1678.18 1182 1652.5 1182 1626.82 1182 1606 1160.96 1606 1135Z' fill='Black' fill-rule='evenodd'/><path d='M1877 1410C1877 1384.04 1897.82 1363 1923.5 1363 1949.18 1363 1970 1384.04 1970 1410 1970 1435.96 1949.18 1457 1923.5 1457 1897.82 1457 1877 1435.96 1877 1410Z' fill='Black' fill-rule='evenodd'/><path d='M1877 1135C1877 1109.04 1897.82 1088 1923.5 1088 1949.18 1088 1970 1109.04 1970 1135 1970 1160.96 1949.18 1182 1923.5 1182 1897.82 1182 1877 1160.96 1877 1135Z' fill='Black' fill-rule='evenodd'/><path d='M1606 1410C1606 1384.04 1626.82 1363 1652.5 1363 1678.18 1363 1699 1384.04 1699 1410 1699 1435.96 1678.18 1457 1652.5 1457 1626.82 1457 1606 1435.96 1606 1410Z' fill='Black' fill-rule='evenodd'/><path d='M1606 1272.5C1606 1246.82 1626.82 1226 1652.5 1226 1678.18 1226 1699 1246.82 1699 1272.5 1699 1298.18 1678.18 1319 1652.5 1319 1626.82 1319 1606 1298.18 1606 1272.5Z' fill='Black' fill-rule='evenodd'/><path d='M1882 1272.5C1882 1246.82 1902.82 1226 1928.5 1226 1954.18 1226 1975 1246.82 1975 1272.5 1975 1298.18 1954.18 1319 1928.5 1319 1902.82 1319 1882 1298.18 1882 1272.5Z' fill='Black' fill-rule='evenodd'/></g></svg>"
+                )
+                }
+            )
+        );
+        
+        // Achievements Collection
+        If(CountRows(gameAchievements)=0,
+        ClearCollect(gameAchievements,
+           {Name: "100 Club", Description: "Score 100 points or more in a game", New: false, Earned: false}
+        )
+        );
+    SizeBreakpoints: =[1200, 1800, 2400]
+

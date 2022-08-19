@@ -1,0 +1,134 @@
+numberControl As CanvasComponent:
+    BorderColor: =RGBA(204, 204, 204, 1)
+    ButtonColor: =Transparent
+    ButtonTextColor: =RGBA(0, 0, 0, 1)
+    Fill: =RGBA(0, 0, 0, 0)
+    Height: =72
+    Increments: =1
+    Max: =8
+    Min: =1
+    NumberOutput: =Coalesce(varNumber, Self.StartNumber)
+    StartNumber: =2
+    Width: =195
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    btnUp As button:
+        BorderColor: =tbNumber.BorderColor
+        BorderThickness: =1
+        Color: =numberControl.ButtonTextColor
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        Fill: =numberControl.ButtonColor
+        FocusedBorderThickness: =1
+        Font: =Font.'Segoe UI'
+        FontWeight: =FontWeight.Semibold
+        Height: =60.00
+        HoverBorderColor: =Self.BorderColor
+        HoverFill: =btnDown.HoverFill
+        OnSelect: |-
+            =If(
+                (numberControl.NumberOutput + Value(numberControl.Increments)) > Value(numberControl.Max),
+                Set(
+                    varNumber,
+                    Value(tbNumber.Text)
+                ),
+                Set(
+                    varNumber,
+                    Value(tbNumber.Text) + Value(numberControl.Increments)
+                )
+            )
+        PaddingBottom: =14.00
+        PaddingLeft: =5.00
+        PressedBorderColor: =Self.BorderColor
+        PressedColor: =Self.Color
+        PressedFill: =btnDown.PressedFill
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =20
+        RadiusTopLeft: =0
+        RadiusTopRight: =20
+        Size: =30.00
+        Text: ="+"
+        Width: =60
+        X: =127
+        Y: =6.00
+        ZIndex: =1
+
+    btnDown As button:
+        BorderColor: =tbNumber.BorderColor
+        BorderThickness: =1
+        Color: =numberControl.ButtonTextColor
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        Fill: =numberControl.ButtonColor
+        FocusedBorderThickness: =1
+        Font: =Font.'Segoe UI'
+        FontWeight: =FontWeight.Semibold
+        Height: =60.00
+        HoverBorderColor: =Self.BorderColor
+        HoverFill: =RGBA(0,0,0,.1)
+        OnSelect: |-
+            =If(
+                (numberControl.NumberOutput - Value(numberControl.Increments)) < Value(numberControl.Min),
+                Set(
+                    varNumber,
+                    Value(tbNumber.Text)
+                ),
+                Set(
+                    varNumber,
+                    Value(tbNumber.Text) - Value(numberControl.Increments)
+                )
+            )
+        PaddingBottom: =14.00
+        PaddingLeft: =5.00
+        PressedBorderColor: =Self.BorderColor
+        PressedColor: =Self.Color
+        PressedFill: =RGBA(0,0,0,.15)
+        RadiusBottomLeft: =20
+        RadiusBottomRight: =0
+        RadiusTopLeft: =20
+        RadiusTopRight: =0
+        Size: =30.00
+        Text: ="-"
+        Width: =60
+        X: =6
+        Y: =6.00
+        ZIndex: =2
+
+    tbNumber As text:
+        Align: =Align.Center
+        BorderColor: =Parent.BorderColor
+        Color: =RGBA(0, 0, 0, 1)
+        Default: |-
+            =If(
+                IsBlank(numberControl.NumberOutput),
+                Value(numberControl.StartNumber),
+                numberControl.NumberOutput
+            )
+        DisabledBorderColor: =Self.BorderColor
+        DisabledColor: =Self.Color
+        DisplayMode: =DisplayMode.Disabled
+        FocusedBorderThickness: =4
+        Font: =Font.'Segoe UI'
+        Height: =60.00
+        HoverBorderColor: =Self.BorderColor
+        OnChange: |-
+            = Set(
+                    varNumber,
+                    Value(tbNumber.Text)
+                )
+        PaddingBottom: =5.00
+        PaddingLeft: =5.00
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Size: =24.00
+        Width: =61
+        X: =66
+        Y: =6.00
+        ZIndex: =3
+

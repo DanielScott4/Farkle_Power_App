@@ -1,0 +1,173 @@
+"'Scoring Settings Screen' As screen":
+    LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
+
+    Gallery1 As gallery.galleryVertical:
+        BorderColor: =RGBA(166, 166, 166, 1)
+        Height: =1051
+        Items: =Filter(colScoringTable, editable)
+        Layout: =Layout.Vertical
+        TemplatePadding: =5.00
+        TemplateSize: =70
+        Y: =85.00
+        ZIndex: =1
+
+        Label12_1 As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(51, 51, 51, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            Height: =50
+            OnSelect: =Select(Parent)
+            PaddingBottom: =5.00
+            PaddingLeft: =5.00
+            Size: =16
+            Text: =ThisItem.DisplayName
+            Width: =186
+            X: =36
+            Y: =5
+            ZIndex: =2
+
+        TextInput1 As text:
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =2
+            Color: =RGBA(51, 51, 51, 1)
+            Default: =ThisItem.Pts
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            Format: =TextFormat.Number
+            Height: =40.00
+            HoverBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(255, 255, 255, 1)
+            OnChange: |-
+                =Patch(colScoringTable, ThisItem, {Pts: Value(TextInput1.Text)})
+            OnSelect: =Select(Parent)
+            PaddingBottom: =5.00
+            PaddingLeft: =12.00
+            PressedBorderColor: =RGBA(0, 120, 212, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(255, 255, 255, 1)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =16
+            Visible: =ThisItem.controlType = "text"
+            Width: =250
+            X: =270
+            Y: =10
+            ZIndex: =3
+
+        tglEnabled As toggleSwitch:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(51, 51, 51, 1)
+            Default: =ThisItem.enabled
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FalseFill: =RGBA(102, 102, 102, 1)
+            FalseHoverFill: =RGBA(33, 33, 33, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            HandleFill: =RGBA(255, 255, 255, 1)
+            Height: =40
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            OnCheck: |-
+                =Patch(colScoringTable, ThisItem, {enabled: true})
+            OnSelect: =Select(Parent)
+            OnUncheck: |-
+                =Patch(colScoringTable, ThisItem, {enabled: false})
+            PressedBorderColor: =RGBA(0, 0, 0, 0)
+            Size: =16
+            TrueFill: =RGBA(0, 120, 212, 1)
+            TrueHoverFill: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+            Visible: =ThisItem.controlType = "toggle"
+            Width: =152
+            X: =270 
+            Y: =10.00
+            ZIndex: =6
+
+        Dropdown1 As dropdown:
+            BorderColor: =RGBA(166, 166, 166, 1)
+            ChevronBackground: =RGBA(255, 255, 255, 1)
+            ChevronDisabledBackground: =RGBA(244, 244, 244, 1)
+            ChevronDisabledFill: =RGBA(166, 166, 166, 1)
+            ChevronFill: =RGBA(33, 33, 33, 1)
+            ChevronHoverBackground: =RGBA(212, 212, 212, 1)
+            ChevronHoverFill: =RGBA(33, 33, 33, 1)
+            Color: =RGBA(51, 51, 51, 1)
+            Default: =ThisItem.Pts
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            Font: =Font.'Segoe UI'
+            HoverBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(212, 212, 212, 1)
+            Items: =[0,300,500,750,1000]
+            OnChange: |-
+                =Patch(colScoringTable, ThisItem, {Pts: Self.Selected.Value})
+            OnSelect: =Select(Parent)
+            PaddingBottom: =5
+            PaddingLeft: =12
+            PaddingRight: =5
+            PaddingTop: =5
+            PressedBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+            PressedColor: =RGBA(255, 255, 255, 1)
+            PressedFill: =RGBA(0, 120, 212, 1)
+            SelectionFill: =RGBA(0, 120, 212, 1)
+            Size: =16
+            Visible: =ThisItem.controlType = "dropdown"
+            Width: =250
+            X: =270
+            Y: =10
+            ZIndex: =7
+
+    icoBack_2 As icon.BackArrow:
+        BorderColor: =RGBA(166, 166, 166, 1)
+        Color: =RGBA(0, 120, 212, 1)
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        DisabledColor: =RGBA(220, 220, 220, 1)
+        DisabledFill: =RGBA(0, 0, 0, 0)
+        FocusedBorderThickness: =4
+        Height: =60.00
+        HoverBorderColor: =RGBA(0, 0, 0, 0)
+        HoverColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+        HoverFill: =RGBA(0, 0, 0, 0)
+        Icon: =Icon.BackArrow
+        OnSelect: =Back()
+        PaddingBottom: =0.00
+        PaddingLeft: =0.00
+        PressedBorderColor: =RGBA(0, 0, 0, 0)
+        PressedColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+        PressedFill: =RGBA(0, 0, 0, 0)
+        Width: =60
+        X: =8
+        Y: =8.00
+        ZIndex: =2
+
+    Label14 As label:
+        Align: =Center
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        BorderThickness: =2
+        Color: =RGBA(51, 51, 51, 1)
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        FocusedBorderThickness: =4
+        Font: =Font.'Segoe UI'
+        FontWeight: =Semibold
+        Height: =50
+        Size: =20
+        Text: ="Settings"
+        Width: =456
+        X: =(Parent.Width - Self.Width)/2
+        Y: =18
+        ZIndex: =3
+

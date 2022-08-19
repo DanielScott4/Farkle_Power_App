@@ -1,0 +1,135 @@
+"'Player Settings Screen' As screen":
+    LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
+
+    Gallery1_1 As gallery.galleryVertical:
+        BorderColor: =RGBA(166, 166, 166, 1)
+        Height: =683.00
+        Items: =colPlayers
+        Layout: =Layout.Vertical
+        TemplatePadding: =5.00
+        TemplateSize: =48.00
+        Y: =85.00
+        ZIndex: =1
+
+        Label12_4 As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(51, 51, 51, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            Height: =40.00
+            OnSelect: =Select(Parent)
+            PaddingBottom: =5.00
+            PaddingLeft: =5.00
+            Size: =13.00
+            Text: =ThisItem.PlayerName
+            Width: =196
+            Wrap: =false
+            X: =34
+            Y: =0.00
+            ZIndex: =2
+
+        icoSavePlayerChange As icon.Check:
+            BorderColor: =RGBA(166, 166, 166, 1)
+            Color: =RGBA(0, 120, 212, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(220, 220, 220, 1)
+            DisabledFill: =RGBA(0, 0, 0, 0)
+            FocusedBorderThickness: =4
+            Height: =48.00
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+            HoverFill: =RGBA(0, 0, 0, 0)
+            Icon: =Icon.Check
+            OnSelect: |-
+                =Patch(colPlayers, ThisItem, {PlayerName: txtPlayerName.Text})
+            PaddingBottom: =10.00
+            PaddingLeft: =0.00
+            PaddingTop: =10
+            PressedBorderColor: =RGBA(0, 0, 0, 0)
+            PressedColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+            PressedFill: =RGBA(0, 0, 0, 0)
+            Visible: |-
+                =//txtPlayerName.Text <> ThisItem.PlayerName
+                false
+            X: =470
+            Y: =0.00
+            ZIndex: =4
+
+        Label12_3 As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(51, 51, 51, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            Height: =40.00
+            OnSelect: =Select(Parent)
+            PaddingBottom: =5.00
+            PaddingLeft: =5.00
+            Size: =13.00
+            Text: =ThisItem.ID
+            Width: =34
+            Y: =0.00
+            ZIndex: =5
+
+        txtPlayerName As text:
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderThickness: =2
+            Color: =RGBA(51, 51, 51, 1)
+            Default: =ThisItem.PlayerName
+            DelayOutput: =true
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            Height: =40.00
+            HoverBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(255, 255, 255, 1)
+            OnChange: =Select(icoSavePlayerChange)
+            OnSelect: =Select(Parent)
+            PaddingBottom: =5.00
+            PaddingLeft: =12.00
+            PressedBorderColor: =RGBA(0, 120, 212, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(255, 255, 255, 1)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =13.00
+            Width: =275
+            X: =242
+            Y: =0.00
+            ZIndex: =6
+
+    icoBack_1 As icon.BackArrow:
+        BorderColor: =RGBA(166, 166, 166, 1)
+        Color: =RGBA(0, 120, 212, 1)
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        DisabledColor: =RGBA(220, 220, 220, 1)
+        DisabledFill: =RGBA(0, 0, 0, 0)
+        FocusedBorderThickness: =4
+        Height: =60.00
+        HoverBorderColor: =RGBA(0, 0, 0, 0)
+        HoverColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+        HoverFill: =RGBA(0, 0, 0, 0)
+        Icon: =Icon.BackArrow
+        OnSelect: =Back()
+        PaddingBottom: =0.00
+        PaddingLeft: =0.00
+        PressedBorderColor: =RGBA(0, 0, 0, 0)
+        PressedColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+        PressedFill: =RGBA(0, 0, 0, 0)
+        Width: =60
+        X: =8
+        Y: =8.00
+        ZIndex: =2
+
