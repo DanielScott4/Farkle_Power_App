@@ -65,7 +65,7 @@ App As appinfo:
                 {ID: 6, DisplayName: "Three 4's", Pts: 400, editable: false},
                 {ID: 7, DisplayName: "Three 5's", Pts: 500, editable: false},
                 {ID: 8, DisplayName: "Three 6's", Pts: 600, editable: false},
-                {ID: 9, DisplayName: "1-2-3-4-5-6", Pts: 300, editable: false},
+                {ID: 9, DisplayName: "1-2-3-4-5-6", Pts: 1500, editable: false},
                 {ID: 10, DisplayName: "3 Pairs", Pts: 1500, editable: false},
                 {ID: 11, DisplayName: "4 of a Kind", Pts: 1000, editable: false},
                 {ID: 12, DisplayName: "5 of a Kind", Pts: 2000, editable: false},
@@ -84,7 +84,7 @@ App As appinfo:
             <th>Pts</th>
           </tr>"});
         ForAll(
-            colScoringTable,
+            Filter(colScoringTable, !editable),
             Patch(
                 myScoring,
                 First(myScoring),

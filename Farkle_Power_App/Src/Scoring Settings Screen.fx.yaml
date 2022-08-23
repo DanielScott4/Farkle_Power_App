@@ -171,31 +171,28 @@
         Y: =18
         ZIndex: =3
 
-    Button4 As button:
-        BorderColor: =RGBA(0, 0, 0, 0)
-        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+    btn_devHighScores_1 As button:
+        BorderColor: =StyleSettings.ButtonFillCancel
+        BorderThickness: =5
+        Color: =StyleSettings.ButtonColor
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
         DisabledColor: =RGBA(166, 166, 166, 1)
         DisabledFill: =RGBA(244, 244, 244, 1)
-        Fill: =RGBA(0, 120, 212, 1)
-        FocusedBorderColor: =ColorFade(Self.Fill, -75%)
-        Font: =Font.'Segoe UI'
-        FontWeight: =FontWeight.Semibold
-        Height: =92
-        HoverBorderColor: =RGBA(0, 0, 0, 0)
-        HoverColor: =RGBA(255, 255, 255, 1)
-        HoverFill: =ColorFade(RGBA(0, 120, 212, 1), -10%)
+        Fill: =StyleSettings.ButtonFillCancel
+        FocusedBorderColor: =btn_devHighScores_1.BorderColor
+        FontWeight: =Semibold
+        Height: =82
+        HoverBorderColor: =ColorFade(btn_devHighScores_1.BorderColor, 20%)
+        HoverColor: =btn_devHighScores_1.Color
+        HoverFill: =StyleSettings.ButtonFillCancel
         OnSelect: =Set(currentScreen, "Start"); Navigate('Game Screen')
-        PressedBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -50%)
-        PressedColor: =RGBA(255, 255, 255, 1)
-        PressedFill: =ColorFade(RGBA(0, 120, 212, 1), -30%)
-        RadiusBottomLeft: =0
-        RadiusBottomRight: =0
-        RadiusTopLeft: =0
-        RadiusTopRight: =0
+        PressedBorderColor: =btn_devHighScores_1.Fill
+        PressedColor: =btn_devHighScores_1.Color
+        PressedFill: =StyleSettings.ButtonFillCancel
         Size: =20
         Text: ="Reset Game"
-        Width: =258
+        Width: =211
         X: =(Parent.Width - Self.Width)/2
         Y: =426
-        ZIndex: =4
+        ZIndex: =5
 
