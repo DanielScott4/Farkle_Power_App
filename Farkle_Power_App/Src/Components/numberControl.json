@@ -221,7 +221,7 @@
         "Name": "btnDown",
         "Parent": "numberControl",
         "PersistMetaDataIDKey": false,
-        "PublishOrderIndex": 158,
+        "PublishOrderIndex": 166,
         "Rules": [
           {
             "Category": "Data",
@@ -681,7 +681,7 @@
         "Name": "tbNumber",
         "Parent": "numberControl",
         "PersistMetaDataIDKey": false,
-        "PublishOrderIndex": 159,
+        "PublishOrderIndex": 167,
         "Rules": [
           {
             "Category": "Data",
@@ -1156,7 +1156,7 @@
         "Name": "btnUp",
         "Parent": "numberControl",
         "PersistMetaDataIDKey": false,
-        "PublishOrderIndex": 160,
+        "PublishOrderIndex": 168,
         "Rules": [
           {
             "Category": "Data",
@@ -1483,7 +1483,7 @@
         "NameMapSourceSchema": "?"
       }
     ],
-    "LastModifiedTimestamp": "637968611044931826",
+    "LastModifiedTimestamp": "637968860588674397",
     "Name": "numberControl",
     "Rules": [
       {
@@ -1663,7 +1663,7 @@
   "IsPcfControl": false,
   "IsPremiumPcfControl": false,
   "IsWidgetTemplate": false,
-  "LastModifiedTimestamp": "637968611044931826",
+  "LastModifiedTimestamp": "637968860588674397",
   "Name": "2ee30dc81626408eb5290d2c037559d5",
   "OverridableProperties": {},
   "Version": "637943806826567854"
