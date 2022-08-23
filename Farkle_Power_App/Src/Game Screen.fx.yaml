@@ -22,6 +22,7 @@
     comMyRoll_2 As comMyRoll:
         Fill: =RGBA(232, 244, 217, 1)
         Height: =52
+        Visible: =false
         Width: =181
         X: =21
         Y: =271
@@ -2448,7 +2449,7 @@
             Font: =StyleSettings.PrimaryFont
             Height: =993
             HoverBorderColor: =html_HowToPlay_Bkgd.BorderColor
-            HtmlText: |
+            HtmlText: |-
                 ="<b>Objective</b>
                 <p>Be the player with the highest score over 10,000.</p>
                 <b>How To Play</b>
