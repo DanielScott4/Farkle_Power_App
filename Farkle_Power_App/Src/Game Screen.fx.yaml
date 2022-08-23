@@ -111,73 +111,6 @@
         Y: =226
         ZIndex: =36
 
-    btnNewGame As button:
-        BorderColor: =RGBA(0, 0, 0, 0)
-        BorderStyle: =BorderStyle.None
-        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-        DisabledColor: =RGBA(166, 166, 166, 1)
-        DisabledFill: =RGBA(244, 244, 244, 1)
-        Fill: =RGBA(0, 120, 212, 1)
-        FocusedBorderColor: =ColorFade(Self.Fill, -75%)
-        Font: =Font.'Segoe UI'
-        FontWeight: =FontWeight.Semibold
-        Height: =50.00
-        HoverBorderColor: =RGBA(0, 0, 0, 0)
-        HoverColor: =RGBA(255, 255, 255, 1)
-        HoverFill: =ColorFade(RGBA(0, 120, 212, 1), -10%)
-        OnSelect: |+
-            =ClearCollect(colPlayers,
-                FirstN(
-                Table(
-                    {ID: 1, PlayerName: "[P1 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
-                    {ID: 2, PlayerName: "[P2 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
-                    {ID: 3, PlayerName: "[P3 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
-                    {ID: 4, PlayerName: "[P4 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
-                    {ID: 5, PlayerName: "[P5 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
-                    {ID: 6, PlayerName: "[P6 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
-                    {ID: 7, PlayerName: "[P7 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
-                    {ID: 8, PlayerName: "[P8 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false}
-                ), numberControl_1.NumberOutput)
-            );
-            Set(varCurrentPlayer, First(colPlayers));
-            Set(varRound, 1);
-            Set(varRollCount, 0);
-            Set(varDiceAvailable, 6);
-            Set(varCurrentTurnPoints, 0);
-            Set(varCurrentPlayerScore, 0);
-            Clear(colMyRoll);
-            Clear(colMyRoll_Kept);
-            // setup scoring history
-            Clear(colScoringHistory);
-            
-            UpdateContext(
-                {
-                    locGameOver: false,
-                    showMessageForLastRound: false,
-                    locLastRound: false, 
-                    locScoreToBeat: 0,
-                    locPlayerWithHighScore: ""
-                }
-            )
-            
-            
-            
-                
-            
-            
-            
-        PaddingBottom: =5.00
-        PaddingLeft: =5.00
-        PressedBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -50%)
-        PressedColor: =RGBA(255, 255, 255, 1)
-        PressedFill: =ColorFade(RGBA(0, 120, 212, 1), -30%)
-        Size: =15.00
-        Text: ="New Game"
-        Width: =180
-        X: =19
-        Y: =200
-        ZIndex: =37
-
     grpDebug As group:
         Height: =5
         Width: =5
@@ -689,7 +622,7 @@
             PressedFill: =RGBA(0, 120, 212, 1)
             Visible: =showMessageForLastRound
             Width: =640
-            ZIndex: =40
+            ZIndex: =39
 
         btnLastRoundMessage As button:
             BorderColor: =RGBA(0, 0, 0, 0)
@@ -725,7 +658,7 @@
             Width: =640
             X: =(Parent.Width - Self.Width)/2
             Y: =221
-            ZIndex: =41
+            ZIndex: =40
 
         btnOK As button:
             BorderColor: =RGBA(0, 0, 0, 0)
@@ -757,7 +690,7 @@
             Width: =640
             X: =(Parent.Width - Self.Width)/2
             Y: =449
-            ZIndex: =42
+            ZIndex: =41
 
     Group1 As group:
         Height: =5
@@ -796,7 +729,7 @@
                     LookUp(colScoringTable, ID = 18, Pts)
             Width: =Parent.Width
             Y: =547
-            ZIndex: =43
+            ZIndex: =42
 
         btnNewGame_1 As button:
             BorderColor: =RGBA(0, 0, 0, 0)
@@ -812,7 +745,7 @@
             HoverBorderColor: =RGBA(0, 0, 0, 0)
             HoverColor: =RGBA(255, 255, 255, 1)
             HoverFill: =ColorFade(RGBA(0, 120, 212, 1), -10%)
-            OnSelect: =Select(btnNewGame)
+            OnSelect: =Select(btn_NewGame)
             PaddingBottom: =5.00
             PaddingLeft: =5.00
             PressedBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -50%)
@@ -830,7 +763,7 @@
             Width: =180
             X: =227
             Y: =967
-            ZIndex: =44
+            ZIndex: =43
 
     icon_shared_achievements_1 As star:
         BorderColor: =If(CountIf(gameAchievements, New)>0, StyleSettings.ButtonFillOK, White)
@@ -846,7 +779,7 @@
         Width: =icon_shared_achievements_1.Height
         X: =50
         Y: =28
-        ZIndex: =50
+        ZIndex: =49
 
     grp_Shared As group:
         Height: =5
@@ -881,7 +814,7 @@
             Width: =343
             X: =129
             Y: =859
-            ZIndex: =45
+            ZIndex: =44
 
         btn_Shared_StartGame As button:
             BorderColor: =RGBA(102, 200, 265, 0.75)
@@ -948,7 +881,7 @@
             Width: =343
             X: =129
             Y: =716
-            ZIndex: =46
+            ZIndex: =45
 
         icon_Shared_Settings As icon.Settings:
             BorderColor: =RGBA(0, 18, 107, 1)
@@ -970,7 +903,7 @@
             Width: =39
             X: =539
             Y: =9
-            ZIndex: =47
+            ZIndex: =46
 
         icon_Shared_HighScores As icon.Settings:
             BorderColor: =RGBA(0, 18, 107, 1)
@@ -992,7 +925,7 @@
             Width: =39
             X: =67
             Y: =8
-            ZIndex: =48
+            ZIndex: =47
 
         icon_shared_achievements As star:
             BorderColor: =If(CountIf(gameAchievements, New)>0, StyleSettings.ButtonFillOK, White)
@@ -1008,7 +941,7 @@
             Width: =icon_shared_achievements.Height
             X: =30
             Y: =8
-            ZIndex: =49
+            ZIndex: =48
 
     grp_GameOver As group:
         Height: =5
@@ -1040,7 +973,7 @@
             Visible: =currentScreen="GameOver"
             Width: =640
             Y: =103
-            ZIndex: =53
+            ZIndex: =50
 
         lbl_GameOver_Title As label:
             Align: =Center
@@ -1062,7 +995,7 @@
             Visible: =currentScreen="GameOver"
             Width: =640
             Y: =40
-            ZIndex: =54
+            ZIndex: =51
 
         galScoreHistory As gallery.galleryVertical:
             BorderColor: =RGBA(166, 166, 166, 1)
@@ -1073,7 +1006,7 @@
             TemplateSize: =32.00
             Visible: =currentScreen="GameOver"
             Y: =152
-            ZIndex: =55
+            ZIndex: =52
 
             Label10_1 As label:
                 BorderColor: =RGBA(0, 0, 0, 0)
@@ -1167,7 +1100,7 @@
             Width: =40
             X: =8
             Y: =48
-            ZIndex: =56
+            ZIndex: =53
 
         galScoreHistPlyName As gallery.galleryVertical:
             BorderColor: =RGBA(166, 166, 166, 1)
@@ -1181,7 +1114,7 @@
             WrapCount: =8
             X: =Gallery8_1.X
             Y: =100
-            ZIndex: =57
+            ZIndex: =54
 
             Label20_1 As label:
                 Align: =Right
@@ -1204,6 +1137,107 @@
                 Wrap: =false
                 Y: =0.00
                 ZIndex: =1
+
+    grp_Start As group:
+        Height: =5
+        Width: =5
+        X: =60
+        Y: =60
+        ZIndex: =61
+
+        btn_NewGame As button:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            Fill: =RGBA(0, 120, 212, 1)
+            FocusedBorderColor: =ColorFade(Self.Fill, -75%)
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Semibold
+            Height: =50.00
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =ColorFade(RGBA(0, 120, 212, 1), -10%)
+            OnSelect: |+
+                =ClearCollect(colPlayers,
+                    FirstN(
+                    Table(
+                        {ID: 1, PlayerName: "[P1 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
+                        {ID: 2, PlayerName: "[P2 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
+                        {ID: 3, PlayerName: "[P3 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
+                        {ID: 4, PlayerName: "[P4 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
+                        {ID: 5, PlayerName: "[P5 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
+                        {ID: 6, PlayerName: "[P6 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
+                        {ID: 7, PlayerName: "[P7 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
+                        {ID: 8, PlayerName: "[P8 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false}
+                    ), numberControl_1.NumberOutput)
+                );
+                Set(varCurrentPlayer, First(colPlayers));
+                Set(varRound, 1);
+                Set(varRollCount, 0);
+                Set(varDiceAvailable, 6);
+                Set(varCurrentTurnPoints, 0);
+                Set(varCurrentPlayerScore, 0);
+                Clear(colMyRoll);
+                Clear(colMyRoll_Kept);
+                // setup scoring history
+                Clear(colScoringHistory);
+                
+                UpdateContext(
+                    {
+                        locGameOver: false,
+                        showMessageForLastRound: false,
+                        locLastRound: false, 
+                        locScoreToBeat: 0,
+                        locPlayerWithHighScore: ""
+                    }
+                )
+                
+                
+                
+                    
+                
+                
+                
+            PaddingBottom: =5.00
+            PaddingLeft: =5.00
+            PressedBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -50%)
+            PressedColor: =RGBA(255, 255, 255, 1)
+            PressedFill: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+            Size: =15.00
+            Text: ="New Game"
+            Width: =180
+            X: =19
+            Y: =200
+            ZIndex: =59
+
+        btn_HowToPlay As button:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            Fill: =RGBA(0, 120, 212, 1)
+            FocusedBorderColor: =ColorFade(Self.Fill, -75%)
+            Font: =Font.'Segoe UI'
+            FontWeight: =FontWeight.Semibold
+            Height: =50.00
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverColor: =RGBA(255, 255, 255, 1)
+            HoverFill: =ColorFade(RGBA(0, 120, 212, 1), -10%)
+            OnSelect: =Set(currentScreen, "HowToPlay");
+            PaddingBottom: =5.00
+            PaddingLeft: =5.00
+            PressedBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -50%)
+            PressedColor: =RGBA(255, 255, 255, 1)
+            PressedFill: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+            Size: =15.00
+            Text: ="How To Play"
+            Width: =180
+            X: =39
+            Y: =346
+            ZIndex: =60
 
     grp_Play As group:
         Height: =5
@@ -2408,7 +2442,7 @@
             Wrap: =false
             X: =galMyRoll.X
             Y: =336
-            ZIndex: =38
+            ZIndex: =37
 
         lblOpeningPtsNeeded As label:
             Align: =Center
@@ -2432,7 +2466,7 @@
             Width: =200
             X: =429
             Y: =744
-            ZIndex: =39
+            ZIndex: =38
 
     grp_HowToPlay As group:
         Height: =5
@@ -2567,7 +2601,7 @@
             Width: =580
             X: =StyleSettings.MenuX
             Y: =StyleSettings.MenuY
-            ZIndex: =58
+            ZIndex: =55
 
         lbl_HowToPlay_Close As label:
             Align: =Center
@@ -2591,5 +2625,5 @@
             Width: =lbl_HowToPlay_Close.Height
             X: =html_HowToPlay_Bkgd.X+html_HowToPlay_Bkgd.Width-lbl_HowToPlay_Close.Height
             Y: =html_HowToPlay_Bkgd.Y
-            ZIndex: =70
+            ZIndex: =56
 

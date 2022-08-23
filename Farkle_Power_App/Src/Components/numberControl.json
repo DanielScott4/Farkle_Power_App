@@ -221,7 +221,7 @@
         "Name": "btnDown",
         "Parent": "numberControl",
         "PersistMetaDataIDKey": false,
-        "PublishOrderIndex": 156,
+        "PublishOrderIndex": 158,
         "Rules": [
           {
             "Category": "Data",
@@ -681,7 +681,7 @@
         "Name": "tbNumber",
         "Parent": "numberControl",
         "PersistMetaDataIDKey": false,
-        "PublishOrderIndex": 157,
+        "PublishOrderIndex": 159,
         "Rules": [
           {
             "Category": "Data",
@@ -1156,7 +1156,7 @@
         "Name": "btnUp",
         "Parent": "numberControl",
         "PersistMetaDataIDKey": false,
-        "PublishOrderIndex": 158,
+        "PublishOrderIndex": 160,
         "Rules": [
           {
             "Category": "Data",
