@@ -88,11 +88,11 @@
     "Id": "641e3771-a9c4-44f3-8e6e-e26136d48590",
     "InstrumentationKey": "",
     "LocalDatabaseReferences": "{}",
-    "Name": "FARKLE_phone",
+    "Name": "FARKLE_mobile",
     "OriginatingVersion": "1.324"
   },
   "PublishInfo": {
-    "AppName": "FARKLE_phone",
+    "AppName": "FARKLE_mobile",
     "BackgroundColor": "rgba(255, 255, 255, 1)",
     "IconColor": "RGBA(255,255,255,1)",
     "IconName": "",
