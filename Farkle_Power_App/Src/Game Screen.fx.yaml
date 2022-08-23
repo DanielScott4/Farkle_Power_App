@@ -1138,106 +1138,167 @@
                 Y: =0.00
                 ZIndex: =1
 
-    grp_Start As group:
-        Height: =5
-        Width: =5
-        X: =60
-        Y: =60
+    btn_NewGame As button:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        BorderStyle: =BorderStyle.None
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        Fill: =RGBA(0, 120, 212, 1)
+        FocusedBorderColor: =ColorFade(Self.Fill, -75%)
+        Font: =Font.'Segoe UI'
+        FontWeight: =FontWeight.Semibold
+        Height: =50.00
+        HoverBorderColor: =RGBA(0, 0, 0, 0)
+        HoverColor: =RGBA(255, 255, 255, 1)
+        HoverFill: =ColorFade(RGBA(0, 120, 212, 1), -10%)
+        OnSelect: |+
+            =ClearCollect(colPlayers,
+                FirstN(
+                Table(
+                    {ID: 1, PlayerName: "[P1 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
+                    {ID: 2, PlayerName: "[P2 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
+                    {ID: 3, PlayerName: "[P3 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
+                    {ID: 4, PlayerName: "[P4 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
+                    {ID: 5, PlayerName: "[P5 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
+                    {ID: 6, PlayerName: "[P6 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
+                    {ID: 7, PlayerName: "[P7 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
+                    {ID: 8, PlayerName: "[P8 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false}
+                ), numberControl_1.NumberOutput)
+            );
+            Set(varCurrentPlayer, First(colPlayers));
+            Set(varRound, 1);
+            Set(varRollCount, 0);
+            Set(varDiceAvailable, 6);
+            Set(varCurrentTurnPoints, 0);
+            Set(varCurrentPlayerScore, 0);
+            Clear(colMyRoll);
+            Clear(colMyRoll_Kept);
+            // setup scoring history
+            Clear(colScoringHistory);
+            
+            UpdateContext(
+                {
+                    locGameOver: false,
+                    showMessageForLastRound: false,
+                    locLastRound: false, 
+                    locScoreToBeat: 0,
+                    locPlayerWithHighScore: ""
+                }
+            )
+            
+            
+            
+                
+            
+            
+            
+        PaddingBottom: =5.00
+        PaddingLeft: =5.00
+        PressedBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -50%)
+        PressedColor: =RGBA(255, 255, 255, 1)
+        PressedFill: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+        Size: =15.00
+        Text: ="New Game"
+        Visible: =currentScreen="Start"
+        Width: =180
+        X: =19
+        Y: =200
+        ZIndex: =59
+
+    btn_devTitle_1 As button:
+        BorderColor: =RGBA(102, 200, 265, 0.75)
+        BorderThickness: =5
+        Color: =StyleSettings.ButtonColor
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        Fill: =StyleSettings.ButtonFillOK
+        FocusedBorderColor: =btn_devTitle_1.BorderColor
+        FontWeight: =Semibold
+        Height: =82
+        HoverBorderColor: =ColorFade(btn_devTitle_1.BorderColor, 20%)
+        HoverColor: =btn_devTitle_1.Color
+        HoverFill: =RGBA(102, 200, 265, 0.9)
+        OnSelect: |+
+            =Set(currentScreen, "Title");
+            ClearCollect(colPlayers,
+                FirstN(
+                Table(
+                    {ID: 1, PlayerName: "[P1 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
+                    {ID: 2, PlayerName: "[P2 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
+                    {ID: 3, PlayerName: "[P3 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
+                    {ID: 4, PlayerName: "[P4 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
+                    {ID: 5, PlayerName: "[P5 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
+                    {ID: 6, PlayerName: "[P6 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
+                    {ID: 7, PlayerName: "[P7 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
+                    {ID: 8, PlayerName: "[P8 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false}
+                ), numberControl_1.NumberOutput)
+            );
+            Set(varCurrentPlayer, First(colPlayers));
+            Set(varRound, 1);
+            Set(varRollCount, 0);
+            Set(varDiceAvailable, 6);
+            Set(varCurrentTurnPoints, 0);
+            Set(varCurrentPlayerScore, 0);
+            Clear(colMyRoll);
+            Clear(colMyRoll_Kept);
+            // setup scoring history
+            Clear(colScoringHistory);
+            
+            UpdateContext(
+                {
+                    locGameOver: false,
+                    showMessageForLastRound: false,
+                    locLastRound: false, 
+                    locScoreToBeat: 0,
+                    locPlayerWithHighScore: ""
+                }
+            )
+            
+            
+            
+                
+            
+            
+            
+            
+        PressedBorderColor: =btn_devTitle_1.Fill
+        PressedColor: =btn_devTitle_1.Color
+        PressedFill: =RGBA(102, 200, 265, 0.9)
+        Size: =20
+        Text: ="New Game"
+        Visible: =currentScreen="Start"
+        Width: =211
+        X: =(Parent.Width - Self.Width)/2
+        Y: =578
         ZIndex: =61
 
-        btn_NewGame As button:
-            BorderColor: =RGBA(0, 0, 0, 0)
-            BorderStyle: =BorderStyle.None
-            DisabledBorderColor: =RGBA(0, 0, 0, 0)
-            DisabledColor: =RGBA(166, 166, 166, 1)
-            DisabledFill: =RGBA(244, 244, 244, 1)
-            Fill: =RGBA(0, 120, 212, 1)
-            FocusedBorderColor: =ColorFade(Self.Fill, -75%)
-            Font: =Font.'Segoe UI'
-            FontWeight: =FontWeight.Semibold
-            Height: =50.00
-            HoverBorderColor: =RGBA(0, 0, 0, 0)
-            HoverColor: =RGBA(255, 255, 255, 1)
-            HoverFill: =ColorFade(RGBA(0, 120, 212, 1), -10%)
-            OnSelect: |+
-                =ClearCollect(colPlayers,
-                    FirstN(
-                    Table(
-                        {ID: 1, PlayerName: "[P1 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
-                        {ID: 2, PlayerName: "[P2 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
-                        {ID: 3, PlayerName: "[P3 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
-                        {ID: 4, PlayerName: "[P4 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
-                        {ID: 5, PlayerName: "[P5 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
-                        {ID: 6, PlayerName: "[P6 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
-                        {ID: 7, PlayerName: "[P7 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false},
-                        {ID: 8, PlayerName: "[P8 Name]", Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false}
-                    ), numberControl_1.NumberOutput)
-                );
-                Set(varCurrentPlayer, First(colPlayers));
-                Set(varRound, 1);
-                Set(varRollCount, 0);
-                Set(varDiceAvailable, 6);
-                Set(varCurrentTurnPoints, 0);
-                Set(varCurrentPlayerScore, 0);
-                Clear(colMyRoll);
-                Clear(colMyRoll_Kept);
-                // setup scoring history
-                Clear(colScoringHistory);
-                
-                UpdateContext(
-                    {
-                        locGameOver: false,
-                        showMessageForLastRound: false,
-                        locLastRound: false, 
-                        locScoreToBeat: 0,
-                        locPlayerWithHighScore: ""
-                    }
-                )
-                
-                
-                
-                    
-                
-                
-                
-            PaddingBottom: =5.00
-            PaddingLeft: =5.00
-            PressedBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -50%)
-            PressedColor: =RGBA(255, 255, 255, 1)
-            PressedFill: =ColorFade(RGBA(0, 120, 212, 1), -30%)
-            Size: =15.00
-            Text: ="New Game"
-            Width: =180
-            X: =19
-            Y: =200
-            ZIndex: =59
-
-        btn_HowToPlay As button:
-            BorderColor: =RGBA(0, 0, 0, 0)
-            BorderStyle: =BorderStyle.None
-            DisabledBorderColor: =RGBA(0, 0, 0, 0)
-            DisabledColor: =RGBA(166, 166, 166, 1)
-            DisabledFill: =RGBA(244, 244, 244, 1)
-            Fill: =RGBA(0, 120, 212, 1)
-            FocusedBorderColor: =ColorFade(Self.Fill, -75%)
-            Font: =Font.'Segoe UI'
-            FontWeight: =FontWeight.Semibold
-            Height: =50.00
-            HoverBorderColor: =RGBA(0, 0, 0, 0)
-            HoverColor: =RGBA(255, 255, 255, 1)
-            HoverFill: =ColorFade(RGBA(0, 120, 212, 1), -10%)
-            OnSelect: =Set(currentScreen, "HowToPlay");
-            PaddingBottom: =5.00
-            PaddingLeft: =5.00
-            PressedBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -50%)
-            PressedColor: =RGBA(255, 255, 255, 1)
-            PressedFill: =ColorFade(RGBA(0, 120, 212, 1), -30%)
-            Size: =15.00
-            Text: ="How To Play"
-            Width: =180
-            X: =39
-            Y: =346
-            ZIndex: =60
+    btn_devTitle_2 As button:
+        BorderColor: =RGBA(102, 200, 265, 0.75)
+        BorderThickness: =5
+        Color: =StyleSettings.ButtonColor
+        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        Fill: =StyleSettings.ButtonFillOK
+        FocusedBorderColor: =btn_devTitle_2.BorderColor
+        FontWeight: =Semibold
+        Height: =82
+        HoverBorderColor: =ColorFade(btn_devTitle_2.BorderColor, 20%)
+        HoverColor: =btn_devTitle_2.Color
+        HoverFill: =RGBA(102, 200, 265, 0.9)
+        OnSelect: =Set(currentScreen, "HowToPlay");
+        PressedBorderColor: =btn_devTitle_2.Fill
+        PressedColor: =btn_devTitle_2.Color
+        PressedFill: =RGBA(102, 200, 265, 0.9)
+        Size: =20
+        Text: ="How To Play"
+        Visible: =currentScreen="Start"
+        Width: =211
+        X: =(Parent.Width - Self.Width)/2
+        Y: =741
+        ZIndex: =62
 
     grp_Play As group:
         Height: =5
@@ -2507,9 +2568,14 @@
                   border-collapse: collapse;
                   width: 100%;
                 }
-                td, th, tr {
+                td, tr {
                   border: 1px solid #dddddd;
                   text-align: Right;
+                  padding: 8px;
+                }
+                th {
+                  border: 1px solid #dddddd;
+                  text-align: Left;
                   padding: 8px;
                 }
                 tr:nth-child(even) {
@@ -2523,7 +2589,7 @@
                   <tr>
                     <th>Dice Rolled</th>
                     <th>Point Value</th>
-                  </tr>
+                    </tr>
                   <tr>
                     <td>Single 5</td>
                     <td><b>50</b></td>
@@ -2615,7 +2681,7 @@
             HoverBorderColor: =lbl_HowToPlay_Close.BorderColor
             HoverColor: =lbl_HowToPlay_Close.Color
             HoverFill: =lbl_HowToPlay_Close.Fill
-            OnSelect: =Set(currentScreen, backToScreen)
+            OnSelect: =Set(currentScreen, "Start")
             PressedBorderColor: =lbl_HowToPlay_Close.BorderColor
             PressedColor: =lbl_HowToPlay_Close.Color
             PressedFill: =lbl_HowToPlay_Close.Fill

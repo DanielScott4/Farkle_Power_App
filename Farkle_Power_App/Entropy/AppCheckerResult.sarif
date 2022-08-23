@@ -2683,6 +2683,36 @@
             {
               "logicalLocations": [
                 {
+                  "fullyQualifiedName": "App.backToScreen"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "App.backToScreen",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "backToScreen",
+                "module": "App",
+                "type": "App"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "app-UnusedVariables",
+          "ruleIndex": 4
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
                   "fullyQualifiedName": "'Game Screen'"
                 }
               ],

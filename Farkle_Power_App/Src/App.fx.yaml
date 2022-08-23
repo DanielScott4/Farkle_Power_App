@@ -40,7 +40,7 @@ App As appinfo:
             MenuY: 20
         
         });
-        
+        Set(currentScreen, "Start");
         Set(varRollCount, 0);
         Set(varDiceAvailable, 6);
         Clear(colMyRoll_Kept);
