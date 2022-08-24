@@ -855,7 +855,6 @@
         com_NumberOfPlayers As numberControl:
             Height: =72.00
             Max: =6
-            Min: =2
             Visible: =currentScreen="PlayerConfig"
             Width: =197
             X: =222
@@ -914,6 +913,12 @@
                         locScoreToBeat: 0,
                         locPlayerWithHighScore: ""
                     }
+                );
+                // if replaying from the game over screen, reset all player scores
+                If(currentScreen = "Play",
+                    UpdateIf(colPlayers, true,
+                        {Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false}
+                    )
                 )
                 
                 
@@ -1058,7 +1063,9 @@
             DisabledBorderColor: =RGBA(166, 166, 166, 1)
             DisabledColor: =RGBA(166, 166, 166, 1)
             DisabledFill: =RGBA(244, 244, 244, 1)
-            DisplayMode: =If(CountRows(colPlayers) = CountRows(Filter(gal_PlayerConfig_Names.AllItems, !IsBlank(PlayerName))), DisplayMode.Edit, Disabled)
+            DisplayMode: |-
+                =If(
+                    CountRows(colPlayers) = CountRows(Filter(gal_PlayerConfig_Names.AllItems, !IsBlank(PlayerName))), DisplayMode.Edit, Disabled)
             Fill: =StyleSettings.ButtonFillOK
             FocusedBorderColor: =btn_PlayGame.BorderColor
             FontWeight: =Semibold
@@ -1132,11 +1139,7 @@
             HoverBorderColor: =RGBA(0, 0, 0, 0)
             HoverColor: =RGBA(255, 255, 255, 1)
             HoverFill: =ColorFade(RGBA(0, 120, 212, 1), -10%)
-            OnSelect: |-
-                =Select(btn_PlayerConfig_Next);
-                UpdateIf(colPlayers, true,
-                    {Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false}
-                )
+            OnSelect: =Select(btn_PlayerConfig_Next);
             PaddingBottom: =5.00
             PaddingLeft: =5.00
             PressedBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -50%)
