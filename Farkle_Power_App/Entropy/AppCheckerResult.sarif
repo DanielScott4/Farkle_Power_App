@@ -2503,19 +2503,19 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "'Game Screen'.gal_PlayersScores.Gallery3.AccessibleLabel"
+                  "fullyQualifiedName": "'Game Screen'.gal_PlayersScores.gal_FarkleCount.AccessibleLabel"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "'Game Screen'.gal_PlayersScores.Gallery3.AccessibleLabel",
+                  "fullyQualifiedName": "'Game Screen'.gal_PlayersScores.gal_FarkleCount.AccessibleLabel",
                   "relativeAddress": 0
                 }
               },
               "properties": {
                 "member": "AccessibleLabel",
                 "module": "Game Screen",
-                "type": "'Game Screen'.gal_PlayersScores.Gallery3"
+                "type": "'Game Screen'.gal_PlayersScores.gal_FarkleCount"
               }
             }
           ],
@@ -2533,19 +2533,19 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "'Game Screen'.gal_PlayersScores.Gallery3.TabIndex"
+                  "fullyQualifiedName": "'Game Screen'.gal_PlayersScores.gal_FarkleCount.TabIndex"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "'Game Screen'.gal_PlayersScores.Gallery3.TabIndex",
+                  "fullyQualifiedName": "'Game Screen'.gal_PlayersScores.gal_FarkleCount.TabIndex",
                   "relativeAddress": 0
                 }
               },
               "properties": {
                 "member": "TabIndex",
                 "module": "Game Screen",
-                "type": "'Game Screen'.gal_PlayersScores.Gallery3"
+                "type": "'Game Screen'.gal_PlayersScores.gal_FarkleCount"
               }
             }
           ],
