@@ -36,8 +36,14 @@
             );
             
             Concurrent(
-                Set(varCurrentTurnPoints, 0),
+                UpdateContext(
+                    {
+                        locCurrentPlayerScore: varCurrentPlayer.Score,
+                        locCurrentTurnPoints: 0
+                    }
+                ),
                 Set(varDiceAvailable, 6),
+                Set(varRollCount, 0),
                 Clear(colMyRoll),
                 Clear(colMyRoll_Kept)
             );
@@ -94,8 +100,6 @@
                 // if not game over
                 If(!locGameOver,
                     Select(btnNextPlayer);
-                    Set(varRollCount, 0);
-                    UpdateContext({locCurrentTurnPoints: 0})
                 )
             )
         OnTimerStart: |
@@ -544,7 +548,12 @@
                 Set(varRound, 1);
                 Set(varRollCount, 0);
                 Set(varDiceAvailable, 6);
-                Set(varCurrentTurnPoints, 0);
+                UpdateContext(
+                    {
+                        locCurrentPlayerScore: varCurrentPlayer.Score,
+                        locCurrentTurnPoints: 0
+                    }
+                );
                 Clear(colMyRoll);
                 Clear(colMyRoll_Kept);
                 // setup scoring history
@@ -1358,7 +1367,7 @@
             PaddingBottom: =5.00
             PaddingLeft: =5.00
             Size: =18.00
-            Text: =varCurrentPlayer.Score
+            Text: =locCurrentPlayerScore
             Visible: =currentScreen="Play"
             Width: =72
             X: =315
@@ -1380,7 +1389,7 @@
             PaddingBottom: =5.00
             PaddingLeft: =5.00
             Size: =18.00
-            Text: =varCurrentTurnPoints
+            Text: =locCurrentTurnPoints
             Visible: =currentScreen="Play"
             Width: =72
             X: =315
@@ -1402,7 +1411,7 @@
             PaddingBottom: =5.00
             PaddingLeft: =5.00
             Size: =18.00
-            Text: =varCurrentPlayer.Score + varCurrentTurnPoints
+            Text: =locCurrentPlayerScore + locCurrentTurnPoints
             Visible: =currentScreen="Play"
             Width: =72
             X: =315
@@ -1647,7 +1656,7 @@
                 =If(
                     FARKLE.Visible, DisplayMode.Disabled,
                     If(!varCurrentPlayer.OpeningScore, // check for Opening Score
-                        If(varCurrentTurnPoints >= LookUp(colScoringTable, DisplayName = "Opening Score", Pts),
+                        If(locCurrentTurnPoints >= LookUp(colScoringTable, DisplayName = "Opening Score", Pts),
                             DisplayMode.Edit, DisplayMode.Disabled
                         ),
                         // if Not New Game
@@ -1671,7 +1680,7 @@
                     // IF NO FARKLE, calculate the score then RESET for next roll
                     // ... Calculate Game Score
                     // Current  Player
-                    Patch(colPlayers, varCurrentPlayer, {Score: varCurrentPlayer.Score + varCurrentTurnPoints, OpeningScore: true, FarkleCount: 0});
+                    Patch(colPlayers, varCurrentPlayer, {Score: varCurrentPlayer.Score + locCurrentTurnPoints, OpeningScore: true, FarkleCount: 0});
                 
                     // If current player reached winning score, then set variable
                     If(!locLastRound && varCurrentPlayer.Score >= LookUp(colScoringTable, DisplayName = "Winning Score", Pts),
@@ -1685,7 +1694,7 @@
                         )
                     );
                     // if other player beats current high score
-                    If(locLastRound && varCurrentPlayer.Score + varCurrentTurnPoints > locScoreToBeat,
+                    If(locLastRound && varCurrentPlayer.Score + locCurrentTurnPoints > locScoreToBeat,
                         UpdateContext(
                             {
                                 locScoreToBeat: varCurrentPlayer.Score,
@@ -1698,7 +1707,7 @@
                         {
                             Round: varRound,
                             Player: varCurrentPlayer.PlayerName,
-                            Pts: Text(varCurrentTurnPoints)
+                            Pts: Text(locCurrentTurnPoints)
                         }
                     );
                     
@@ -1719,7 +1728,7 @@
             Text: |
                 ="Score" & Char(10) & 
                 If(!comMyRoll_2.IsFarkle,
-                    If(varCurrentTurnPoints = 0 || IsBlank(varCurrentTurnPoints), "", varCurrentTurnPoints)
+                    If(locCurrentTurnPoints = 0 || IsBlank(locCurrentTurnPoints), "", locCurrentTurnPoints)
                 )
             Visible: =currentScreen="Play"
             Width: =191
@@ -2247,8 +2256,10 @@
                             Set(varOneOrFivePts, If(ThisItem.Value = 1, 100, 50));
                         );
                     // calculate the current roll points
-                        Set(varCurrentTurnPoints, 
-                            varCurrentTurnPoints + varOneOrFivePts + varComboPts
+                        UpdateContext(
+                            {
+                                locCurrentTurnPoints: locCurrentTurnPoints + varOneOrFivePts + varComboPts
+                            }
                         );
                     )
                 PaddingBottom: =5.00
@@ -2384,9 +2395,9 @@
                             
                             // Default of Switch
                             Remove(colMyRoll_Kept, ThisItem);
-                            Set(varCurrentTurnPoints, varCurrentTurnPoints - If(ThisItem.Value = 1, 100, 50));
+                            UpdateContext({locCurrentTurnPoints: locCurrentTurnPoints - If(ThisItem.Value = 1, 100, 50)});
                     );
-                    Set(varCurrentTurnPoints, varCurrentTurnPoints - varComboPts);
+                    UpdateContext({locCurrentTurnPoints: locCurrentTurnPoints - varComboPts});
                     
                     
                     
