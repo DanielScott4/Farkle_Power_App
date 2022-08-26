@@ -1475,6 +1475,7 @@
 
         btnScoringBackground As button:
             BorderColor: =galMyRoll.BorderColor
+            BorderThickness: =4
             DisabledBorderColor: =Self.BorderColor
             DisabledColor: =RGBA(166, 166, 166, 1)
             DisabledFill: =RGBA(244, 244, 244, 1)
@@ -1795,6 +1796,7 @@
 
         btnScoreIt As button:
             BorderColor: =galMyRoll.BorderColor
+            BorderThickness: =4
             DisabledBorderColor: =Self.BorderColor
             DisabledColor: =RGBA(166, 166, 166, 1)
             DisabledFill: =RGBA(244, 244, 244, 1)
@@ -1927,6 +1929,7 @@
 
         btnRollDice As button:
             BorderColor: =galMyRoll.BorderColor
+            BorderThickness: =4
             DisabledBorderColor: =Self.BorderColor
             DisabledColor: =RGBA(166, 166, 166, 1)
             DisabledFill: =RGBA(244, 244, 244, 1)
@@ -2063,9 +2066,9 @@
                 )
                 
             Visible: =currentScreen="Play" && varRollCount > 0
-            Width: =472
+            Width: =607
             Wrap: =false
-            X: =157
+            X: =15
             Y: =625
             ZIndex: =32
 
@@ -2626,19 +2629,19 @@
                 ZIndex: =4
 
         lblPlayersTurn As label:
-            BorderColor: =RGBA(0, 0, 0, 0)
-            BorderStyle: =BorderStyle.None
-            BorderThickness: =2
+            BorderColor: =Self.Fill
+            BorderThickness: =4
             Color: =StyleSettings.ButtonColor
             DisabledBorderColor: =RGBA(0, 0, 0, 0)
             DisabledColor: =RGBA(166, 166, 166, 1)
+            Fill: =RGBA(27, 16, 9, .6)
             FocusedBorderThickness: =4
             Font: =Font.'Patrick Hand'
             FontWeight: =Semibold
-            Height: =32
+            Height: =50
             PaddingBottom: =5.00
             PaddingLeft: =5.00
-            Size: =16.00
+            Size: =20
             Text: |-
                 =With(
                     {
@@ -2653,7 +2656,7 @@
             Width: =galMyRoll.Width
             Wrap: =false
             X: =galMyRoll.X
-            Y: =348
+            Y: =320
             ZIndex: =36
 
         lblOpeningPtsNeeded As label:

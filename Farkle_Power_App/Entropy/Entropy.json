@@ -197,19 +197,19 @@
   },
   "FunctionParamsInvariantScripts": {},
   "FunctionParamsInvariantScriptsOnInstances": {},
-  "HeaderLastSavedDateTimeUTC": "08/26/2022 16:58:04",
+  "HeaderLastSavedDateTimeUTC": "08/26/2022 17:11:23",
   "IsLegacyComponentAllowGlobalScopeCase": false,
   "LocalConnectionIDReferences": {},
   "LocalDatabaseReferencesAsEmpty": false,
   "LocalResourceFileNames": {
     "bkgd_City": "e97dacce-5e1f-447a-b997-90fe58e4b5fb.jpg",
     "cozy_living_room-wallpaper-1920x1080": "50b8a34b-fa8d-4f30-9d1f-f386ba9872d8.jpg",
-    "Table": "08781631-0e23-451c-8c6f-496dc53f05ac.svg"
+    "Table": "b6b00fde-4b4d-4e70-903a-8070a02292d8.svg"
   },
   "LocalResourceRootPaths": {
     "bkgd_City": "https://docserverpwaprodwus.blob.core.windows.net/fbd06a44-7ea3-40c7-b769-9e42867ec088-1/resource/Assets0Images0e97dacce-5e1f-447a-b997-90fe58e4b5fb.jpg?sv=2017-04-17&sr=b&sig=QnlTt7hLxbepHq9Hie8WabaS5dGOHjyWbmms7wYJcbI%3D&spr=https&se=2022-08-27T17%3A09%3A00Z&sp=r",
     "cozy_living_room-wallpaper-1920x1080": "https://docserverpwaprodwus.blob.core.windows.net/fbd06a44-7ea3-40c7-b769-9e42867ec088-1/resource/Assets0Images050b8a34b-fa8d-4f30-9d1f-f386ba9872d8.jpg?sv=2017-04-17&sr=b&sig=k6cRkIQUHROp3HIdAI2pui1ENM3A0AUSIDuZvXBSlAM%3D&spr=https&se=2022-08-27T17%3A09%3A00Z&sp=r",
-    "Table": "https://docserverpwaprodwus.blob.core.windows.net/fbd06a44-7ea3-40c7-b769-9e42867ec088-1/resource/Assets0Images008781631-0e23-451c-8c6f-496dc53f05ac.svg?sv=2017-04-17&sr=b&sig=gaGojfFFBTt3Rn6VWkkhDP7nEE%2FbE%2B2G%2F3I%2BzLKQ%2BMc%3D&spr=https&se=2022-08-27T17%3A09%3A00Z&sp=r"
+    "Table": "https://docserverpwaprodwus.blob.core.windows.net/fbd06a44-7ea3-40c7-b769-9e42867ec088-1/resource/7b3d1dee-ed7b-4a39-8d58-fe7dcd24fbf3.svg?sv=2017-04-17&sr=b&sig=UNtpGh1NXWUEa4oESOXZWcFH4i6yOeXeJihR0M7010E%3D&spr=https&se=2022-08-27T17%3A21%3A23Z&sp=r"
   },
   "OldLogoFileName": "fimutzga.jpg",
   "OrderComponentMetadata": {
@@ -384,7 +384,7 @@
     "Button1": 153,
     "Button2": 154,
     "Circle1": 101,
-    "com_NumberOfPlayers": 56,
+    "com_NumberOfPlayers": 58,
     "comMyRoll": 0,
     "comMyRoll_2": 82,
     "Developer Screen": 0,
@@ -430,7 +430,7 @@
     "grp_GameOver": 15,
     "grp_HowToPlay": 10,
     "grp_LastRoundMessage": 2,
-    "grp_Play": 58,
+    "grp_Play": 57,
     "grp_Shared": 4,
     "grp_StartScreen": 7,
     "grpDebug": 41,
@@ -510,7 +510,7 @@
     "lbl_varRollCount": 29,
     "lbl_varRound": 33,
     "lblOpeningPtsNeeded": 90,
-    "lblPlayersTurn": 57,
+    "lblPlayersTurn": 56,
     "lblProbability": 78,
     "lblTestRoll": 52,
     "numberControl": 0,
