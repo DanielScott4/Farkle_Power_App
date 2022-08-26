@@ -2946,6 +2946,36 @@
           },
           "ruleId": "app-ScreenHasManyControls",
           "ruleIndex": 6
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "'Game Screen'.locRolling"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "'Game Screen'.locRolling",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "locRolling",
+                "module": "Game Screen",
+                "type": "'Game Screen'"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "app-UnusedVariables",
+          "ruleIndex": 4
         }
       ],
       "tool": {
@@ -3073,7 +3103,7 @@
                 ],
                 "level": "Medium",
                 "primaryCategory": "performance",
-                "whyFix": "Each control consumes resources, and an app may become slow or unresponsive if a screen has too many controls. The estimated complexity of \"Game Screen\" is 336, which exceeds the maximum threshold recommended (300)."
+                "whyFix": "Each control consumes resources, and an app may become slow or unresponsive if a screen has too many controls. The estimated complexity of \"Game Screen\" is 337, which exceeds the maximum threshold recommended (300)."
               }
             }
           ],

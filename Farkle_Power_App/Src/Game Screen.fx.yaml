@@ -2,6 +2,59 @@
     LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
     OnVisible: =currentScreen="Title"
 
+    comMyRoll_2 As comMyRoll:
+        Fill: =RGBA(232, 244, 217, 1)
+        Height: =52
+        Visible: =false
+        Width: =181
+        X: =19
+        Y: =657
+
+    tmr_Farkle As timer:
+        AutoPause: =false
+        BorderColor: =RGBA(0, 120, 212, 1)
+        BorderStyle: =BorderStyle.None
+        DisabledBorderColor: =RGBA(244, 244, 244, 1)
+        DisabledColor: =RGBA(166, 166, 166, 1)
+        DisabledFill: =RGBA(244, 244, 244, 1)
+        Duration: =3000
+        Fill: =RGBA(0, 120, 212, 1)
+        Font: =Font.'Segoe UI'
+        HoverBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -10%)
+        HoverColor: =RGBA(255, 255, 255, 1)
+        HoverFill: =ColorFade(RGBA(0, 120, 212, 1), -10%)
+        OnTimerEnd: |-
+            =If(comMyRoll_2.IsFarkle,
+                Select(btnNextPlayer);
+                Set(varRollCount, 0);
+                Set(varCurrentTurnPoints, 0)
+            )
+        OnTimerStart: |
+            =If(comMyRoll_2.IsFarkle, 
+            Collect(colScoringHistory,
+                    {
+                        Round: varRound,
+                        Player: varCurrentPlayer.PlayerName,
+                        Pts: If(varCurrentPlayer.FarkleCount = 2, "F (-1000)", "F")
+                    }
+                );
+                // If current player farkle count is two, subtract 1000 and then reset count to 0
+                If(varCurrentPlayer.FarkleCount = 2,
+                    // if they already have two, then this is their third, subtract 1000 and reset count
+                    Patch(colPlayers, varCurrentPlayer, {Score: varCurrentPlayerScore - 1000, FarkleCount: 0}),
+                    // if not two, then it's either 0 or 1
+                    Patch(colPlayers, varCurrentPlayer, {FarkleCount: varCurrentPlayer.FarkleCount + 1})
+                );
+            )
+        PressedBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+        PressedColor: =RGBA(255, 255, 255, 1)
+        PressedFill: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+        Reset: =true
+        Start: =locStartFarkleTimer
+        X: =60
+        Y: =60
+        ZIndex: =2
+
     img_bkgd_table As image:
         BorderColor: =RGBA(0, 0, 0, 0)
         BorderStyle: =BorderStyle.None
@@ -17,16 +70,7 @@
         PressedBorderColor: =RGBA(0, 0, 0, 0)
         PressedFill: =RGBA(0, 0, 0, 0)
         Width: =640
-        ZIndex: =1
-
-    comMyRoll_2 As comMyRoll:
-        Fill: =RGBA(232, 244, 217, 1)
-        Height: =52
-        Visible: =false
-        Width: =181
-        X: =19
-        Y: =657
-        ZIndex: =34
+        ZIndex: =3
 
     btnNextPlayer As button:
         BorderColor: =RGBA(0, 0, 0, 0)
@@ -109,7 +153,7 @@
             Width: =303
             X: =337
             Y: =111
-            ZIndex: =6
+            ZIndex: =7
 
         lbl_varDiceAvailable As label:
             Align: =Align.Right
@@ -132,7 +176,7 @@
             Width: =167
             X: =337
             Y: =111
-            ZIndex: =7
+            ZIndex: =8
 
         lbl_varRollCount As label:
             Align: =Align.Right
@@ -155,7 +199,7 @@
             Width: =167
             X: =337
             Y: =111
-            ZIndex: =8
+            ZIndex: =9
 
         lbl_colMyRollCount As label:
             Align: =Align.Right
@@ -178,7 +222,7 @@
             Width: =167
             X: =337
             Y: =111
-            ZIndex: =9
+            ZIndex: =10
 
         lbl_colMyRoll_KeptCount As label:
             Align: =Align.Right
@@ -201,7 +245,7 @@
             Width: =203
             X: =337
             Y: =111
-            ZIndex: =10
+            ZIndex: =11
 
         lbl_varComboPts As label:
             Align: =Align.Right
@@ -224,7 +268,7 @@
             Width: =203
             X: =337
             Y: =111
-            ZIndex: =11
+            ZIndex: =12
 
         lbl_varRound As label:
             Align: =Align.Right
@@ -247,7 +291,7 @@
             Width: =167
             X: =337
             Y: =111
-            ZIndex: =12
+            ZIndex: =13
 
         lbl_CurrPlayer As label:
             Align: =Right
@@ -270,7 +314,7 @@
             Width: =203
             X: =337
             Y: =111
-            ZIndex: =13
+            ZIndex: =14
 
         galBonusScoring As gallery.galleryVertical:
             BorderColor: =RGBA(166, 166, 166, 1)
@@ -331,7 +375,7 @@
             Width: =238
             X: =337
             Y: =111
-            ZIndex: =14
+            ZIndex: =15
 
             Label40_1 As label:
                 BorderColor: =RGBA(0, 0, 0, 0)
@@ -414,7 +458,7 @@
             Width: =161
             X: =337
             Y: =111
-            ZIndex: =15
+            ZIndex: =16
 
     grpRollTesting As group:
         Height: =5
@@ -442,7 +486,7 @@
             Visible: =false
             X: =140
             Y: =181
-            ZIndex: =16
+            ZIndex: =17
 
         txtTestRoll_1 As text:
             BorderColor: =RGBA(166, 166, 166, 1)
@@ -473,7 +517,7 @@
             Width: =123
             X: =13
             Y: =174
-            ZIndex: =17
+            ZIndex: =18
 
         lblTestRoll As label:
             BorderColor: =RGBA(0, 0, 0, 0)
@@ -493,7 +537,7 @@
             Visible: =false
             X: =13
             Y: =187
-            ZIndex: =18
+            ZIndex: =19
 
     grpSettings As group:
         Height: =5
@@ -524,7 +568,7 @@
             Width: =60
             X: =(Parent.Width - Self.Width)/2
             Y: =1048
-            ZIndex: =3
+            ZIndex: =4
 
         icoScoringHistory As icon.Journal:
             BorderColor: =RGBA(166, 166, 166, 1)
@@ -546,7 +590,7 @@
             Width: =60
             X: =526
             Y: =1048
-            ZIndex: =4
+            ZIndex: =5
 
         ico_ScoringSettings As icon.Settings:
             BorderColor: =RGBA(166, 166, 166, 1)
@@ -570,7 +614,7 @@
             Width: =60
             X: =52
             Y: =1048
-            ZIndex: =5
+            ZIndex: =6
 
     grp_LastRoundMessage As group:
         Height: =5
@@ -1452,7 +1496,7 @@
             Width: =165
             X: =238
             Y: =654
-            ZIndex: =19
+            ZIndex: =20
 
         Label5_3 As label:
             Align: =Right
@@ -1474,7 +1518,7 @@
             Width: =72
             X: =315
             Y: =657
-            ZIndex: =20
+            ZIndex: =21
 
         Label5_4 As label:
             Align: =Right
@@ -1496,7 +1540,7 @@
             Width: =72
             X: =315
             Y: =681
-            ZIndex: =21
+            ZIndex: =22
 
         Label5_5 As label:
             Align: =Right
@@ -1518,7 +1562,7 @@
             Width: =72
             X: =315
             Y: =708
-            ZIndex: =22
+            ZIndex: =23
 
         gal_PlayersScores As gallery.galleryVertical:
             BorderColor: =RGBA(166, 166, 166, 1)
@@ -1533,7 +1577,7 @@
             Width: =604
             X: =(Parent.Width - Self.Width)/2
             Y: =761
-            ZIndex: =23
+            ZIndex: =24
 
             Label11 As label:
                 BorderColor: =RGBA(0, 0, 0, 0)
@@ -1705,7 +1749,7 @@
             Width: =39
             X: =240
             Y: =681
-            ZIndex: =24
+            ZIndex: =25
 
         Label6_3 As label:
             Align: =Right
@@ -1727,7 +1771,7 @@
             Width: =39
             X: =240
             Y: =708
-            ZIndex: =25
+            ZIndex: =26
 
         Rectangle1_1 As rectangle:
             BorderColor: =RGBA(0, 0, 0, 0)
@@ -1743,7 +1787,7 @@
             Visible: =currentScreen="Play"
             X: =242
             Y: =706
-            ZIndex: =26
+            ZIndex: =27
 
         btnScoreIt As button:
             BorderColor: =galMyRoll.BorderColor
@@ -1831,7 +1875,7 @@
             Width: =191
             X: =Parent.Width - Self.Width - 15
             Y: =654
-            ZIndex: =27
+            ZIndex: =28
 
         tmr_RollTimer As timer:
             AutoPause: =false
@@ -1850,9 +1894,13 @@
             HoverBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -10%)
             HoverColor: =RGBA(255, 255, 255, 1)
             HoverFill: =ColorFade(Self.Fill, -10%)
-            OnTimerEnd: |-
+            OnTimerEnd: |
                 =ClearCollect(colMyRoll, galMyRoll.AllItems);
-                UpdateContext({locRolling: false});
+                UpdateContext({lclRolling: false});
+                // If roll is a Farkle, trigger the farkle timer
+                If(comMyRoll_2.IsFarkle,
+                    UpdateContext({locStartFarkleTimer: false});UpdateContext({locStartFarkleTimer: true})
+                )
             PaddingBottom: =5.00
             PaddingLeft: =5.00
             PressedBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
@@ -1871,7 +1919,7 @@
             Width: =124
             X: =52
             Y: =705
-            ZIndex: =28
+            ZIndex: =29
 
         btnRollDice As button:
             BorderColor: =galMyRoll.BorderColor
@@ -1904,7 +1952,7 @@
             HoverColor: =RGBA(255, 255, 255, 1)
             HoverFill: =ColorFade(Self.Fill, -10%)
             OnSelect: |-
-                =If(!FARKLE.Visible, // if no farkle
+                =If(!comMyRoll_2.IsFarkle, 
                     Clear(colMyRoll);
                     UpdateContext({locRolling: true});
                     
@@ -1933,31 +1981,13 @@
                         UpdateContext({resetRollTimer: false});UpdateContext({resetRollTimer: true});     
                     ),
                 
-                // IF FARKLE IS VISIBLE ...
-                    // Record the score to history
-                    Collect(colScoringHistory,
-                        {
-                            Round: varRound,
-                            Player: varCurrentPlayer.PlayerName,
-                            Pts: If(varCurrentPlayer.FarkleCount = 2, "F (-1000)", "F")
-                        }
-                    );
-                    // If current player farkle count is two, subtract 1000 and then reset count to 0
-                    If(varCurrentPlayer.FarkleCount = 2,
-                        // if they already have two, then this is their third, subtract 1000 and reset count
-                        Patch(colPlayers, varCurrentPlayer, {Score: varCurrentPlayerScore - 1000, FarkleCount: 0}),
-                        // if not two, then it's either 0 or 1
-                        Patch(colPlayers, varCurrentPlayer, {FarkleCount: varCurrentPlayer.FarkleCount + 1})
-                    );
-                 
-                    // go to next player
-                    Select(btnNextPlayer);
-                    Set(varRollCount, 1); // start roll count over for next player
-                
-                    UpdateContext({locRolling: true});
+                // IF FARKLE ...
+                    // farkle timer is triggered by tmr_RollTimer OnTimerEnd
+                    // Rese the farkle timer and roll again
+                    Reset(tmr_Farkle);
+                    UpdateContext({lclRolling: true});
                     // ROLL AGAIN
                     UpdateContext({resetRollTimer: false});UpdateContext({resetRollTimer: true}); 
-                    
                 )
             PaddingBottom: =5.00
             PaddingLeft: =5.00
@@ -1970,7 +2000,7 @@
             Width: =191
             X: =15
             Y: =654
-            ZIndex: =29
+            ZIndex: =30
 
         lblProbability As label:
             Align: =Right
@@ -2032,7 +2062,7 @@
             Wrap: =false
             X: =157
             Y: =625
-            ZIndex: =30
+            ZIndex: =31
 
         "galMyRoll As gallery.'BrowseLayout_Horizontal_TwoTextOneImageVariant_ver4.0'":
             BorderColor: =RGBA(27, 16, 9, .9)
@@ -2168,7 +2198,7 @@
             Width: =610
             X: =(Parent.Width - Self.Width)/2
             Y: =384
-            ZIndex: =31
+            ZIndex: =32
 
             html_BoxShadow As htmlViewer:
                 Height: =92.00
@@ -2204,9 +2234,10 @@
                 PressedFill: =RGBA(0, 0, 0, 0)
                 Tooltip: =ThisItem.Value
                 Visible: |-
-                    =// visible if it hasn't been scored
+                    =// visible if it hasn't been scored 
                     varRollCount <> 0 &&
-                    IsBlank(LookUp(colMyRoll_Kept, ID = ThisItem.ID))
+                    IsBlank(LookUp(colMyRoll_Kept, ID = ThisItem.ID)) && 
+                    tmr_Farkle.Value < tmr_Farkle.Duration - 300
                 Width: =70
                 X: =14.5
                 Y: =28
@@ -2234,31 +2265,22 @@
                 PressedBorderColor: =RGBA(0, 0, 0, 0)
                 PressedColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
                 PressedFill: =RGBA(0, 0, 0, 0)
-                Visible: |
-                    =!locRolling && 
+                Visible: |+
+                    =!lclRolling && 
                     
                     And(
                         varRollCount <> 0, // New Turn, no roll yet
-                        // Not already scored
+                        // ThisItem ID is not in collection of kept dice
                         IsBlank(
                             LookUp(colMyRoll_Kept,
                                 ID = ThisItem.ID
                             )
-                        ) ,
+                        ),
                         Or(
-                            ThisItem.Value = 1,
-                            ThisItem.Value = 5,    
-                            // all six dice
-                            comMyRoll_2.CheckCombo.IsStraight,
-                            comMyRoll_2.CheckCombo.IsThreePairs,
-                            comMyRoll_2.CheckCombo.IsSixOfAKind,
-                            comMyRoll_2.CheckCombo.IsAllOnes,
-                            comMyRoll_2.CheckCombo.IsAllFives,
-                            comMyRoll_2.CheckCombo.IsTwoTriplets,
-                            // 3 or more of same dice value
-                            CountRows(Filter(colMyRoll, Value = ThisItem.Value)) >= 3  
+                            !comMyRoll_2.IsFarkle
                         )
                     )
+                    
                 X: =(Parent.TemplateWidth - Self.Width)/2
                 Y: =1.00
                 ZIndex: =4
@@ -2386,11 +2408,13 @@
             Items: =colMyRoll_Kept
             TemplatePadding: =0
             TemplateSize: =99
-            Visible: =currentScreen="Play" && !IsEmpty(Self.AllItems)
+            Visible: |-
+                =currentScreen="Play" && !IsEmpty(Self.AllItems) && 
+                tmr_Farkle.Duration - tmr_Farkle.Value > First(FARKLE.AllItems).tmrHide
             Width: =galMyRoll.Width
             X: =(Parent.Width - Self.Width)/2
             Y: =518
-            ZIndex: =32
+            ZIndex: =33
 
             html_BoxShadow_1 As htmlViewer:
                 Height: =91
@@ -2521,38 +2545,24 @@
             DisplayMode: =DisplayMode.Disabled
             Fill: =Transparent
             Height: =237.00
-            Items: =tblFarkleLetters
+            Items: |
+                =Table(
+                        {index: 1, letter: "F", tmrShow: 500, tmrHide: 50*6},
+                        {index: 2, letter: "A", tmrShow: 650, tmrHide: 50*5},
+                        {index: 3, letter: "R", tmrShow: 800, tmrHide: 50*4},
+                        {index: 4, letter: "K", tmrShow: 950, tmrHide: 50*3},
+                        {index: 5, letter: "L", tmrShow: 1100, tmrHide: 50*2},
+                        {index: 6, letter: "E", tmrShow: 1250, tmrHide: 50}
+                    )
             TemplatePadding: =0
             TemplateSize: =99
             Visible: |+
-                =currentScreen="Play" &&
-                //VISIBLE WHEN
-                !locRolling && // not currently rolling
-                And(
-                    !IsEmpty(colMyRoll),
-                    // It's not the first Roll ...
-                    //varRollCount <> 0,
-                    // AND none of the following are true ... there's not a 1 or 5 and not bonus combo available
-                    !(CountRows(Filter(colMyRoll, Value = 1)) > 0), // no ones
-                    !(CountRows(Filter(colMyRoll, Value = 5)) > 0), // no fives
-                    !comMyRoll_2.CheckCombo.IsStraight,
-                    !comMyRoll_2.CheckCombo.IsThreePairs,
-                    !comMyRoll_2.CheckCombo.IsAllOnes,
-                    !comMyRoll_2.CheckCombo.IsTwoTriplets,
-                    // Roll contains 3 of a kind
-                    !comMyRoll_2.CheckCombo.IsThreeOfAKind,
-                    // Roll contains 4 of a kind
-                    !comMyRoll_2.CheckCombo.IsFourOfAKind,
-                    // Roll contains 5 of a kind
-                    !comMyRoll_2.CheckCombo.IsFiveOfAKind,
-                    // Roll contains 6 of a kind
-                    !comMyRoll_2.CheckCombo.IsSixOfAKind
-                )
+                =currentScreen="Play" && comMyRoll_2.IsFarkle
                 
             Width: =galMyRoll.Width
             X: =(Parent.Width - Self.Width)/2
             Y: =384
-            ZIndex: =33
+            ZIndex: =34
 
             btnFarkle_Letters As button:
                 BorderColor: =RGBA(0, 0, 0, 0)
@@ -2584,6 +2594,11 @@
                 RadiusTopRight: =14
                 Size: =48.00
                 Text: =ThisItem.letter
+                Visible: |
+                    =// Visible when the Timer value is > item's tmrShow value 
+                    // AND
+                    // Timer Duration - Timer Value > item's tmrHide value
+                    tmr_Farkle.Value > ThisItem.tmrShow && (tmr_Farkle.Duration - tmr_Farkle.Value) > ThisItem.tmrHide
                 Width: =70
                 X: =(Parent.TemplateWidth / 2) - (Self.Width / 2)
                 Y: =28

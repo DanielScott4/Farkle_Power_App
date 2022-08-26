@@ -44,17 +44,6 @@ App As appinfo:
         Set(varRollCount, 0);
         Set(varDiceAvailable, 6);
         Clear(colMyRoll_Kept);
-        Set(tblFarkleLetters,
-            Table(
-                {index: 1, letter: "F"},
-                {index: 2, letter: "A"},
-                {index: 3, letter: "R"},
-                {index: 4, letter: "K"},
-                {index: 5, letter: "L"},
-                {index: 6, letter: "E"}
-            )
-        );
-        
         ClearCollect(colScoringTable,
             Table(
                 {ID: 1, DisplayName: "1", Pts: 100, editable: false},

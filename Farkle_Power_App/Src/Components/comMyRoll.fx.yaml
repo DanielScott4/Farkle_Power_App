@@ -38,6 +38,22 @@ comMyRoll As CanvasComponent:
                     CountRows(Filter(_myRoll, Value = 4)) = 6 ||    // 6 fours   
                     CountRows(Filter(_myRoll, Value = 5)) = 6 ||    // 6 fives
                     CountRows(Filter(_myRoll, Value = 6)) = 6,      // 6 sixes
+                IsFourOfAKindAndPair:
+                    CountRows(_myRoll) = 6 &&   // there are 6 dice rolled
+                    // four of a kind
+                    (CountRows(Filter(_myRoll, Value = 1)) = 4 ||    // 4 ones
+                    CountRows(Filter(_myRoll, Value = 2)) = 4 ||    // 4 twos
+                    CountRows(Filter(_myRoll, Value = 3)) = 4 ||    // 4 threes
+                    CountRows(Filter(_myRoll, Value = 4)) = 4 ||    // 4 fours
+                    CountRows(Filter(_myRoll, Value = 5)) = 4 ||    // 4 fives
+                    CountRows(Filter(_myRoll, Value = 6)) = 4) &&
+                    // pair
+                    (CountRows(Filter(_myRoll, Value = 1)) = 2 ||   // 2 ones
+                    CountRows(Filter(_myRoll, Value = 2)) = 2 ||    // 2 twos
+                    CountRows(Filter(_myRoll, Value = 3)) = 2 ||    // 2 threes
+                    CountRows(Filter(_myRoll, Value = 4)) = 2 ||    // 2 fours
+                    CountRows(Filter(_myRoll, Value = 5)) = 2 ||    // 2 fives
+                    CountRows(Filter(_myRoll, Value = 6)) = 2),     // 2 sixes
                 IsFiveOfAKind:
                     CountRows(Filter(_myRoll, Value = 1)) = 5 ||    // 5 ones
                     CountRows(Filter(_myRoll, Value = 2)) = 5 ||    // 5 twos
@@ -63,6 +79,23 @@ comMyRoll As CanvasComponent:
         )
     Fill: =RGBA(0, 0, 0, 0)
     Height: =50
+    IsFarkle: |
+        =And( 
+            !IsEmpty(Self.Items), // there are dice rolled
+            // AND no 1s or 5s or combos
+            !(CountRows(Filter(Self.Items, Value = 1)) > 0), // no ones
+            !(CountRows(Filter(Self.Items, Value = 5)) > 0), // no fives
+            !Self.CheckCombo.IsStraight,
+            !Self.CheckCombo.IsAllOnes,
+            !Self.CheckCombo.IsAllFives,  
+            !Self.CheckCombo.IsThreePairs,
+            !Self.CheckCombo.IsTwoTriplets,
+            !Self.CheckCombo.IsSixOfAKind,
+            !Self.CheckCombo.IsFourOfAKindAndPair,
+            !Self.CheckCombo.IsFiveOfAKind,
+            !Self.CheckCombo.IsFourOfAKind,
+            !Self.CheckCombo.IsThreeOfAKind
+        )
     Items: =colMyRoll
     RollNumber: =varRollCount
     Width: =180
