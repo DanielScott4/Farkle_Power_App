@@ -2946,36 +2946,6 @@
           },
           "ruleId": "app-ScreenHasManyControls",
           "ruleIndex": 6
-        },
-        {
-          "locations": [
-            {
-              "logicalLocations": [
-                {
-                  "fullyQualifiedName": "'Game Screen'.locRolling"
-                }
-              ],
-              "physicalLocation": {
-                "address": {
-                  "fullyQualifiedName": "'Game Screen'.locRolling",
-                  "relativeAddress": 0
-                }
-              },
-              "properties": {
-                "member": "locRolling",
-                "module": "Game Screen",
-                "type": "'Game Screen'"
-              }
-            }
-          ],
-          "message": {
-            "id": "issue"
-          },
-          "properties": {
-            "level": "Medium"
-          },
-          "ruleId": "app-UnusedVariables",
-          "ruleIndex": 4
         }
       ],
       "tool": {
