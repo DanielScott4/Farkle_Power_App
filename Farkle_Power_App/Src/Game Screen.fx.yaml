@@ -1075,6 +1075,7 @@
             PressedBorderColor: =RGBA(0, 0, 0, 0)
             PressedColor: =ColorFade(Self.Color, -30%)
             Tooltip: ="Clear Roll and Scores"
+            Visible: =tgl_Settings_Debug.Value
             Width: =40
             X: =272
             Y: =285
@@ -1096,6 +1097,7 @@
             Size: =10.00
             Text: |-
                 ="Test Roll:"
+            Visible: =tgl_Settings_Debug.Value
             Width: =307
             X: =10
             Y: =285
@@ -1129,6 +1131,7 @@
             RadiusTopLeft: =0
             RadiusTopRight: =0
             Size: =12
+            Visible: =tgl_Settings_Debug.Value
             Width: =116
             X: =90
             Y: =285
@@ -1152,6 +1155,7 @@
             TrueFill: =RGBA(0, 120, 212, 1)
             TrueHoverFill: =ColorFade(RGBA(0, 120, 212, 1), -30%)
             TrueText: =""
+            Visible: =tgl_Settings_Debug.Value
             Width: =52
             X: =220
             Y: =287
@@ -1226,6 +1230,7 @@
             Layout: =Layout.Vertical
             TemplatePadding: =5.00
             TemplateSize: =24.00
+            Visible: =tgl_Settings_Debug.Value
             Width: =307
             X: =10
             Y: =12
@@ -1329,8 +1334,9 @@
             Layout: =Layout.Vertical
             TemplatePadding: =5.00
             TemplateSize: =24.00
-            Width: =312
-            X: =328
+            Visible: =tgl_Settings_Debug.Value
+            Width: =308
+            X: =324
             Y: =12
             ZIndex: =18
 
