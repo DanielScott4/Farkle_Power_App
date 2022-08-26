@@ -36,7 +36,6 @@
             );
             
             Concurrent(
-                Set(varCurrentPlayerScore, varCurrentPlayer.Score),
                 Set(varCurrentTurnPoints, 0),
                 Set(varDiceAvailable, 6),
                 Clear(colMyRoll),
@@ -94,7 +93,7 @@
                 // If current player farkle count is two, subtract 1000 and then reset count to 0
                 If(varCurrentPlayer.FarkleCount = 2,
                     // if they already have two, then this is their third, subtract 1000 and reset count
-                    Patch(colPlayers, varCurrentPlayer, {Score: varCurrentPlayerScore - 1000, FarkleCount: 0}),
+                    Patch(colPlayers, varCurrentPlayer, {Score: varCurrentPlayer.Score - 1000, FarkleCount: 0}),
                     // if not two, then it's either 0 or 1
                     Patch(colPlayers, varCurrentPlayer, {FarkleCount: varCurrentPlayer.FarkleCount + 1})
                 );
@@ -529,7 +528,6 @@
                 Set(varRollCount, 0);
                 Set(varDiceAvailable, 6);
                 Set(varCurrentTurnPoints, 0);
-                Set(varCurrentPlayerScore, 0);
                 Clear(colMyRoll);
                 Clear(colMyRoll_Kept);
                 // setup scoring history
@@ -1326,9 +1324,6 @@
                     },
                     {
                         DisplayName: "varCurrentPlayer.ID", Value: varCurrentPlayer.ID
-                    },
-                    {
-                        DisplayName: "varComboPts", Value: varComboPts
                     }
                 )
             Layout: =Layout.Vertical
@@ -1341,6 +1336,7 @@
             ZIndex: =18
 
             Label40_3 As label:
+                Align: =Right
                 BorderColor: =RGBA(0, 0, 0, 0)
                 BorderStyle: =BorderStyle.None
                 BorderThickness: =2
@@ -1356,8 +1352,8 @@
                 PaddingLeft: =5.00
                 Size: =12
                 Text: =ThisItem.Value
-                Width: =24
-                X: =272
+                Width: =59
+                X: =235
                 Y: =0.00
                 ZIndex: =1
 
@@ -1432,7 +1428,7 @@
             PaddingBottom: =5.00
             PaddingLeft: =5.00
             Size: =18.00
-            Text: =varCurrentPlayerScore
+            Text: =varCurrentPlayer.Score
             Visible: =currentScreen="Play"
             Width: =72
             X: =315
@@ -1476,7 +1472,7 @@
             PaddingBottom: =5.00
             PaddingLeft: =5.00
             Size: =18.00
-            Text: =varCurrentPlayerScore + If(FARKLE.Visible, 0, varCurrentTurnPoints)
+            Text: =varCurrentPlayer.Score + varCurrentTurnPoints
             Visible: =currentScreen="Play"
             Width: =72
             X: =315
@@ -1741,30 +1737,28 @@
             HoverColor: =RGBA(255, 255, 255, 1)
             HoverFill: =ColorFade(Self.Fill, -10%)
             OnSelect: |-
-                =If(!FARKLE.Visible,
+                =If(!comMyRoll_2.IsFarkle,
                     // IF NO FARKLE, calculate the score then RESET for next roll
                     // ... Calculate Game Score
-                    //Set(varCurrentGamePoints, varCurrentGamePoints + varCurrentTurnPoints);
                     // Current  Player
-                    Set(varCurrentPlayerScore, varCurrentPlayerScore + varCurrentTurnPoints);
-                    Patch(colPlayers, varCurrentPlayer, {Score: varCurrentPlayerScore, OpeningScore: true, FarkleCount: 0});
+                    Patch(colPlayers, varCurrentPlayer, {Score: varCurrentPlayer.Score + varCurrentTurnPoints, OpeningScore: true, FarkleCount: 0});
                 
                     // If current player reached winning score, then set variable
-                    If(!locLastRound && varCurrentPlayerScore >= LookUp(colScoringTable, DisplayName = "Winning Score", Pts),
+                    If(!locLastRound && varCurrentPlayer.Score >= LookUp(colScoringTable, DisplayName = "Winning Score", Pts),
                         UpdateContext(
                             {
                                 showMessageForLastRound: true,
                                 locLastRound: true, // set to last round
-                                locScoreToBeat: varCurrentPlayerScore,
+                                locScoreToBeat: varCurrentPlayer.Score,
                                 locPlayerWithHighScore: varCurrentPlayer.PlayerName
                             }
                         )
                     );
                     // if other player beats current high score
-                    If(locLastRound && varCurrentPlayerScore > locScoreToBeat,
+                    If(locLastRound && varCurrentPlayer.Score + varCurrentTurnPoints > locScoreToBeat,
                         UpdateContext(
                             {
-                                locScoreToBeat: varCurrentPlayerScore,
+                                locScoreToBeat: varCurrentPlayer.Score,
                                 locPlayerWithHighScore: varCurrentPlayer.PlayerName
                             }
                         )
