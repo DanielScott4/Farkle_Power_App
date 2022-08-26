@@ -1481,6 +1481,7 @@
             DisabledFill: =RGBA(244, 244, 244, 1)
             DisplayMode: =DisplayMode.Disabled
             Fill: =RGBA(0, 120, 212, 1)
+            FocusedBorderThickness: =Self.BorderThickness
             Font: =Font.'Segoe UI'
             FontWeight: =FontWeight.Semibold
             Height: =80.00
@@ -1537,7 +1538,7 @@
             PaddingBottom: =5.00
             PaddingLeft: =5.00
             Size: =18.00
-            Text: =If(FARKLE.Visible, 0, varCurrentTurnPoints)
+            Text: =varCurrentTurnPoints
             Visible: =currentScreen="Play"
             Width: =72
             X: =315
@@ -1816,7 +1817,7 @@
                     )
                 )
             Fill: =RGBA(151, 0, 0, 1)
-            FocusedBorderThickness: =2
+            FocusedBorderThickness: =Self.BorderThickness
             Font: =Font.'Segoe UI'
             FontWeight: =FontWeight.Semibold
             Height: =77.00
@@ -1876,7 +1877,10 @@
             PressedFill: =Self.Fill
             Size: =20.00
             Text: |
-                ="Score" & Char(10) & If(varCurrentTurnPoints = 0 || IsBlank(varCurrentTurnPoints), "", varCurrentTurnPoints)
+                ="Score" & Char(10) & 
+                If(!comMyRoll_2.IsFarkle,
+                    If(varCurrentTurnPoints = 0 || IsBlank(varCurrentTurnPoints), "", varCurrentTurnPoints)
+                )
             Visible: =currentScreen="Play"
             Width: =191
             X: =Parent.Width - Self.Width - 15
@@ -1951,7 +1955,7 @@
                 )
             Fill: =RGBA(54, 176, 75, 1)
             FocusedBorderColor: =ColorFade(Self.Fill, -75%)
-            FocusedBorderThickness: =2
+            FocusedBorderThickness: =Self.BorderThickness
             Font: =Font.'Segoe UI'
             FontWeight: =Semibold
             Height: =80.00
