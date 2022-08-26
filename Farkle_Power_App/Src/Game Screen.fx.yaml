@@ -104,6 +104,7 @@
         PressedFill: =ColorFade(RGBA(0, 120, 212, 1), -30%)
         Reset: =true
         Start: =locStartFarkleTimer
+        Visible: =false
         X: =60
         Y: =60
         ZIndex: =3
@@ -2360,7 +2361,11 @@
                                     Patch(_items, {ComboType: "SixOfAKind", ComboPts: varComboPts}));
                                 Collect(colMyRoll_Kept, Filter(colMyRoll, Value = ThisItem.Value));
                                 UpdateIf(colMyRoll_Kept, !IsDiceScored, {ComboType: "SixOfAKind", ComboPts: varComboPts}),
-                    
+                            // Four-of-a-kind and A Pair
+                            comMyRoll_2.CheckCombo.IsFourOfAKindAndPair,
+                                Set(varComboPts, 1500);
+                                Collect(coMyRoll_Kept, colMyRoll);
+                                UpdateIf(colMyRoll_Kept, !IsDiceScored, {ComboType: "FourOfAKindAndPair", ComboPts: varComboPts}),
                             // Five-of-a-kind ... do not use component to check
                             CountRows(Filter(colMyRoll, Value = ThisItem.Value)) = 5,
                                 // IF TRUE
@@ -2513,7 +2518,8 @@
                                 "AllOnes", 
                                 "TwoTriplets",
                                 "ThreePairs",
-                                "SixOfAKind"],
+                                "SixOfAKind",
+                                "FourOfAKindAndPair"],
                             Set(varComboPts, ThisItem.ComboPts);
                             // Remove all dice
                             RemoveIf(colMyRoll_Kept, !IsDiceScored),
