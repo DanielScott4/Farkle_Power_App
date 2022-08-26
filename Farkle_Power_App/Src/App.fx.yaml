@@ -61,9 +61,10 @@ App As appinfo:
                 {ID: 13, DisplayName: "6 of a Kind", Pts: 3000, editable: false},
                 {ID: 14, DisplayName: "1-1-1-1-1-1", Pts: 5000, editable: false},
                 {ID: 15, DisplayName: "Two Triplets", Pts: 2500, editable: false},
-                {ID: 16, DisplayName: "Opening Score", Pts: 300, editable: true, controlType: "dropdown"},
-                {ID: 17, DisplayName: "Show Scoring Hint", editable: true, controlType: "toggle", enabled: true},
-                {ID: 18, DisplayName: "Winning Score", Pts: 10000, editable: true, controlType: "text"}
+                {ID: 16, DisplayName: "4 of a Kind + Pair", Pts: 1500, editable: false},
+                {ID: 17, DisplayName: "Opening Score", Pts: 300, editable: true, controlType: "dropdown"},
+                {ID: 18, DisplayName: "Show Scoring Hint", editable: true, controlType: "toggle", enabled: true},
+                {ID: 19, DisplayName: "Winning Score", Pts: 10000, editable: true, controlType: "text"}
             )
         );
         

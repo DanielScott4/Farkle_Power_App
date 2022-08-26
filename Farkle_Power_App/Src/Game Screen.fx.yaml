@@ -141,19 +141,19 @@
             Color: =RGBA(51, 51, 51, 1)
             DisabledBorderColor: =RGBA(0, 0, 0, 0)
             DisabledColor: =RGBA(166, 166, 166, 1)
+            Fill: =galBonusScoring.Fill
             FocusedBorderThickness: =4
             Font: =Font.'Segoe UI'
             FontWeight: =Semibold
-            Height: =30.00
+            Height: =25
             PaddingBottom: =5.00
             PaddingLeft: =5.00
             Size: =12.00
             Text: |-
                 ="Mod(CountRows(colMyRoll_Kept), 6):  " & Mod(CountRows(colMyRoll_Kept), 6)
-            Visible: =false
             Width: =303
             X: =337
-            Y: =111
+            Y: =42
             ZIndex: =8
 
         lbl_varDiceAvailable As label:
@@ -164,19 +164,19 @@
             Color: =RGBA(51, 51, 51, 1)
             DisabledBorderColor: =RGBA(0, 0, 0, 0)
             DisabledColor: =RGBA(166, 166, 166, 1)
+            Fill: =galBonusScoring.Fill
             FocusedBorderThickness: =4
             Font: =Font.'Segoe UI'
             FontWeight: =Semibold
-            Height: =30.00
+            Height: =25
             PaddingBottom: =5.00
             PaddingLeft: =5.00
             Size: =12.00
             Text: |-
                 ="varDiceAvailable:  " & varDiceAvailable
-            Visible: =false
-            Width: =167
+            Width: =303
             X: =337
-            Y: =111
+            Y: =12
             ZIndex: =9
 
         lbl_varRollCount As label:
@@ -187,19 +187,19 @@
             Color: =RGBA(51, 51, 51, 1)
             DisabledBorderColor: =RGBA(0, 0, 0, 0)
             DisabledColor: =RGBA(166, 166, 166, 1)
+            Fill: =galBonusScoring.Fill
             FocusedBorderThickness: =4
             Font: =Font.'Segoe UI'
             FontWeight: =Semibold
-            Height: =30.00
+            Height: =25
             PaddingBottom: =5.00
             PaddingLeft: =5.00
             Size: =12.00
             Text: |-
                 ="varRollCount:  " & varRollCount
-            Visible: =false
-            Width: =167
+            Width: =303
             X: =337
-            Y: =111
+            Y: =72
             ZIndex: =10
 
         lbl_colMyRollCount As label:
@@ -210,19 +210,19 @@
             Color: =RGBA(51, 51, 51, 1)
             DisabledBorderColor: =RGBA(0, 0, 0, 0)
             DisabledColor: =RGBA(166, 166, 166, 1)
+            Fill: =galBonusScoring.Fill
             FocusedBorderThickness: =4
             Font: =Font.'Segoe UI'
             FontWeight: =Semibold
-            Height: =30.00
+            Height: =25
             PaddingBottom: =5.00
             PaddingLeft: =5.00
             Size: =12.00
             Text: |-
                 ="colMyRoll:  " & CountRows(colMyRoll)
-            Visible: =false
-            Width: =167
+            Width: =303
             X: =337
-            Y: =111
+            Y: =102
             ZIndex: =11
 
         lbl_colMyRoll_KeptCount As label:
@@ -233,19 +233,19 @@
             Color: =RGBA(51, 51, 51, 1)
             DisabledBorderColor: =RGBA(0, 0, 0, 0)
             DisabledColor: =RGBA(166, 166, 166, 1)
+            Fill: =galBonusScoring.Fill
             FocusedBorderThickness: =4
             Font: =Font.'Segoe UI'
             FontWeight: =Semibold
-            Height: =30.00
+            Height: =25
             PaddingBottom: =5.00
             PaddingLeft: =5.00
             Size: =12.00
             Text: |-
                 ="colMyRoll_Kept:  " & CountRows(colMyRoll_Kept)
-            Visible: =false
-            Width: =203
+            Width: =303
             X: =337
-            Y: =111
+            Y: =132
             ZIndex: =12
 
         lbl_varComboPts As label:
@@ -256,19 +256,19 @@
             Color: =RGBA(51, 51, 51, 1)
             DisabledBorderColor: =RGBA(0, 0, 0, 0)
             DisabledColor: =RGBA(166, 166, 166, 1)
+            Fill: =galBonusScoring.Fill
             FocusedBorderThickness: =4
             Font: =Font.'Segoe UI'
             FontWeight: =Semibold
-            Height: =30.00
+            Height: =25
             PaddingBottom: =5.00
             PaddingLeft: =5.00
             Size: =12.00
             Text: |-
                 ="varComboPts:  " & varComboPts
-            Visible: =false
-            Width: =203
+            Width: =303
             X: =337
-            Y: =111
+            Y: =162
             ZIndex: =13
 
         lbl_varRound As label:
@@ -279,19 +279,19 @@
             Color: =RGBA(51, 51, 51, 1)
             DisabledBorderColor: =RGBA(0, 0, 0, 0)
             DisabledColor: =RGBA(166, 166, 166, 1)
+            Fill: =galBonusScoring.Fill
             FocusedBorderThickness: =4
             Font: =Font.'Segoe UI'
             FontWeight: =Semibold
-            Height: =30.00
+            Height: =25
             PaddingBottom: =5.00
             PaddingLeft: =5.00
             Size: =12.00
             Text: |-
                 ="varRound:  " & varRound
-            Visible: =false
-            Width: =167
+            Width: =303
             X: =337
-            Y: =111
+            Y: =192
             ZIndex: =14
 
         lbl_CurrPlayer As label:
@@ -302,24 +302,25 @@
             Color: =RGBA(51, 51, 51, 1)
             DisabledBorderColor: =RGBA(0, 0, 0, 0)
             DisabledColor: =RGBA(166, 166, 166, 1)
+            Fill: =galBonusScoring.Fill
             FocusedBorderThickness: =4
             Font: =Font.'Segoe UI'
             FontWeight: =Semibold
-            Height: =30.00
+            Height: =25
             PaddingBottom: =5.00
             PaddingLeft: =5.00
             Size: =12.00
             Text: |-
                 ="varCurrentPlayer: " & varCurrentPlayer.ID
-            Visible: =false
-            Width: =203
+            Width: =303
             X: =337
-            Y: =111
+            Y: =222
             ZIndex: =15
 
         galBonusScoring As gallery.galleryVertical:
             BorderColor: =RGBA(166, 166, 166, 1)
-            Height: =237.00
+            Fill: =RGBA(255,255,255,.9)
+            Height: =268
             Items: |
                 =Table(
                     {
@@ -337,26 +338,32 @@
                     {
                         Type: "1-2-3-4-5-6", 
                         Check: comMyRoll_2.CheckCombo.IsStraight, 
-                        Pts: 3000
+                        Pts: LookUp(colScoringTable, ID = 9, Pts)
                     },
                     {
                         Type: "3 Pairs", 
                         Check: comMyRoll_2.CheckCombo.IsThreePairs, 
-                        Pts: 1500},
+                        Pts: LookUp(colScoringTable, ID = 10, Pts)
+                    },
                     {
                         Type: "4 of a kind", 
                         Check: comMyRoll_2.CheckCombo.IsFourOfAKind, 
-                        Pts: 1000
+                        Pts: LookUp(colScoringTable, ID = 11, Pts)
                     },
                     {
                         Type: "5 of a kind", 
                         Check: comMyRoll_2.CheckCombo.IsFiveOfAKind, 
-                        Pts: 2000
+                        Pts: LookUp(colScoringTable, ID = 12, Pts)
                     },
                     {
                         Type: "6 of a kind", 
                         Check: comMyRoll_2.CheckCombo.IsSixOfAKind, 
-                        Pts: 3000
+                        Pts: LookUp(colScoringTable, ID = 13, Pts)
+                    },
+                    {
+                        Type: "4 of a kind + Pair", 
+                        Check: comMyRoll_2.CheckCombo.IsFourOfAKindAndPair, 
+                        Pts: LookUp(colScoringTable, ID = 16, Pts)
                     },
                     {
                         Type: "1-1-1-1-1-1", 
@@ -372,10 +379,9 @@
             Layout: =Layout.Vertical
             TemplatePadding: =5.00
             TemplateSize: =24.00
-            Visible: =false
-            Width: =238
-            X: =337
-            Y: =111
+            Width: =307
+            X: =10
+            Y: =12
             ZIndex: =16
 
             Label40_1 As label:
@@ -394,7 +400,7 @@
                 Size: =13.00
                 Text: =ThisItem.Check
                 Width: =45
-                X: =127
+                X: =167
                 Y: =0.00
                 ZIndex: =1
 
@@ -408,13 +414,13 @@
                 FocusedBorderThickness: =4
                 Font: =Font.'Segoe UI'
                 FontWeight: =Semibold
-                Height: =22.00
+                Height: =22
                 OnSelect: =Select(Parent)
                 PaddingBottom: =5.00
                 PaddingLeft: =5.00
                 Size: =13.00
                 Text: =ThisItem.Type
-                Width: =139
+                Width: =167
                 Y: =0.00
                 ZIndex: =2
 
@@ -435,30 +441,31 @@
                 Size: =13.00
                 Text: =ThisItem.Pts
                 Width: =58
-                X: =172
+                X: =232
                 Y: =0.00
                 ZIndex: =3
 
         "'Bonus Scores' As label":
+            Align: =Right
             BorderColor: =RGBA(0, 0, 0, 0)
             BorderStyle: =BorderStyle.None
             BorderThickness: =2
             Color: =RGBA(51, 51, 51, 1)
             DisabledBorderColor: =RGBA(0, 0, 0, 0)
             DisabledColor: =RGBA(166, 166, 166, 1)
+            Fill: =galBonusScoring.Fill
             FocusedBorderThickness: =4
             Font: =Font.'Segoe UI'
             FontWeight: =Semibold
-            Height: =34.00
+            Height: =25
             PaddingBottom: =5.00
             PaddingLeft: =5.00
-            Size: =13.00
+            Size: =12
             Text: |-
                 ="Combo Scores:"
-            Visible: =false
-            Width: =161
+            Width: =303
             X: =337
-            Y: =111
+            Y: =254
             ZIndex: =17
 
     grpRollTesting As group:
@@ -468,58 +475,6 @@
         Y: =40
         ZIndex: =40
 
-        tglTestRoll_1 As toggleSwitch:
-            BorderColor: =RGBA(0, 0, 0, 0)
-            BorderStyle: =BorderStyle.None
-            Color: =RGBA(51, 51, 51, 1)
-            DisabledBorderColor: =RGBA(0, 0, 0, 0)
-            FalseFill: =RGBA(102, 102, 102, 1)
-            FalseHoverFill: =RGBA(33, 33, 33, 1)
-            FocusedBorderThickness: =4
-            Font: =Font.'Segoe UI'
-            HandleFill: =RGBA(255, 255, 255, 1)
-            Height: =28.00
-            HoverBorderColor: =RGBA(0, 0, 0, 0)
-            PressedBorderColor: =RGBA(0, 0, 0, 0)
-            Size: =13.00
-            TrueFill: =RGBA(0, 120, 212, 1)
-            TrueHoverFill: =ColorFade(RGBA(0, 120, 212, 1), -30%)
-            Visible: =false
-            X: =140
-            Y: =181
-            ZIndex: =18
-
-        txtTestRoll_1 As text:
-            BorderColor: =RGBA(166, 166, 166, 1)
-            BorderThickness: =2
-            Color: =RGBA(51, 51, 51, 1)
-            Default: ="2-2-2-3-3-3"
-            DisabledBorderColor: =RGBA(0, 0, 0, 0)
-            DisabledColor: =RGBA(166, 166, 166, 1)
-            DisabledFill: =RGBA(244, 244, 244, 1)
-            FocusedBorderThickness: =4
-            Font: =Font.'Segoe UI'
-            Height: =35.00
-            HintText: ="Test Roll Numbers"
-            HoverBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
-            HoverColor: =RGBA(51, 51, 51, 1)
-            HoverFill: =RGBA(255, 255, 255, 1)
-            PaddingBottom: =5.00
-            PaddingLeft: =12.00
-            PressedBorderColor: =RGBA(0, 120, 212, 1)
-            PressedColor: =RGBA(51, 51, 51, 1)
-            PressedFill: =RGBA(255, 255, 255, 1)
-            RadiusBottomLeft: =0
-            RadiusBottomRight: =0
-            RadiusTopLeft: =0
-            RadiusTopRight: =0
-            Size: =13.00
-            Visible: =false
-            Width: =123
-            X: =13
-            Y: =174
-            ZIndex: =19
-
         lblTestRoll As label:
             BorderColor: =RGBA(0, 0, 0, 0)
             BorderStyle: =BorderStyle.None
@@ -527,17 +482,74 @@
             Color: =RGBA(51, 51, 51, 1)
             DisabledBorderColor: =RGBA(0, 0, 0, 0)
             DisabledColor: =RGBA(166, 166, 166, 1)
+            Fill: =RGBA(255,255,255,.9)
             FocusedBorderThickness: =4
             Font: =Font.'Segoe UI'
-            Height: =22.00
+            Height: =25
             PaddingBottom: =5.00
             PaddingLeft: =5.00
             Size: =10.00
             Text: |-
                 ="Test Roll:"
-            Visible: =false
-            X: =13
-            Y: =187
+            Width: =307
+            X: =10
+            Y: =285
+            ZIndex: =18
+
+        txtTestRoll_1 As text:
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(51, 51, 51, 1)
+            Default: ="2-2-2-3-3-3"
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            Fill: =Transparent
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            Height: =25
+            HintText: ="Test Roll Numbers"
+            HoverBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(255, 255, 255, 1)
+            PaddingBottom: =5.00
+            PaddingLeft: =12.00
+            PaddingTop: =2
+            PressedBorderColor: =RGBA(0, 120, 212, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(255, 255, 255, 1)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =12
+            Width: =116
+            X: =90
+            Y: =285
+            ZIndex: =19
+
+        tglTestRoll_1 As toggleSwitch:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(51, 51, 51, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FalseFill: =RGBA(102, 102, 102, 1)
+            FalseHoverFill: =RGBA(33, 33, 33, 1)
+            FalseText: =""
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            HandleFill: =RGBA(255, 255, 255, 1)
+            Height: =21
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            PressedBorderColor: =RGBA(0, 0, 0, 0)
+            Size: =13.00
+            TrueFill: =RGBA(0, 120, 212, 1)
+            TrueHoverFill: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+            TrueText: =""
+            Width: =52
+            X: =220
+            Y: =287
             ZIndex: =20
 
     grpSettings As group:
@@ -812,6 +824,27 @@
             X: =30
             Y: =8
             ZIndex: =46
+
+    Icon1 As icon.Cancel:
+        BorderColor: =RGBA(166, 166, 166, 1)
+        Color: =Red
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        DisabledColor: =RGBA(220, 220, 220, 1)
+        DisabledFill: =RGBA(0, 0, 0, 0)
+        Fill: =Transparent
+        FocusedBorderThickness: =4
+        Height: =25
+        HoverBorderColor: =RGBA(0, 0, 0, 0)
+        HoverColor: =ColorFade(Self.Color, -30%)
+        Icon: =Icon.Cancel
+        OnSelect: =Select(btn_PlayerConfig_Next)
+        PressedBorderColor: =RGBA(0, 0, 0, 0)
+        PressedColor: =ColorFade(Self.Color, -30%)
+        Tooltip: ="Clear Roll and Scores"
+        Width: =40
+        X: =272
+        Y: =285
+        ZIndex: =64
 
     grp_StartScreen As group:
         Height: =5
@@ -2368,11 +2401,13 @@
                                     Patch(_items, {ComboType: "SixOfAKind", ComboPts: varComboPts}));
                                 Collect(colMyRoll_Kept, Filter(colMyRoll, Value = ThisItem.Value));
                                 UpdateIf(colMyRoll_Kept, !IsDiceScored, {ComboType: "SixOfAKind", ComboPts: varComboPts}),
+                            
                             // Four-of-a-kind and A Pair
                             comMyRoll_2.CheckCombo.IsFourOfAKindAndPair,
                                 Set(varComboPts, 1500);
-                                Collect(coMyRoll_Kept, colMyRoll);
+                                Collect(colMyRoll_Kept, colMyRoll);
                                 UpdateIf(colMyRoll_Kept, !IsDiceScored, {ComboType: "FourOfAKindAndPair", ComboPts: varComboPts}),
+                            
                             // Five-of-a-kind ... do not use component to check
                             CountRows(Filter(colMyRoll, Value = ThisItem.Value)) = 5,
                                 // IF TRUE
