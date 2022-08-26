@@ -3162,6 +3162,36 @@
             {
               "logicalLocations": [
                 {
+                  "fullyQualifiedName": "'Game Screen'.locCurrentTurnPoints"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "'Game Screen'.locCurrentTurnPoints",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "locCurrentTurnPoints",
+                "module": "Game Screen",
+                "type": "'Game Screen'"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "app-UnusedVariables",
+          "ruleIndex": 5
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
                   "fullyQualifiedName": "'Game Screen'.galBonusScoring.Visible"
                 }
               ],

@@ -76,10 +76,27 @@
         HoverColor: =RGBA(255, 255, 255, 1)
         HoverFill: =ColorFade(RGBA(0, 120, 212, 1), -10%)
         OnTimerEnd: |-
-            =If(comMyRoll_2.IsFarkle,
-                Select(btnNextPlayer);
-                Set(varRollCount, 0);
-                Set(varCurrentTurnPoints, 0)
+            =// check if next player has already gone out
+            If(
+               Index(
+                    colPlayers,
+                    If(
+                        Mod(
+                            varCurrentPlayer.ID,
+                            CountRows(colPlayers)
+                        ) = 0,
+                        1,
+                        varCurrentPlayer.ID + 1
+                    )
+                ).Score >= LookUp(colScoringTable, DisplayName = "Winning Score", Pts),
+                // update game over variable
+                UpdateContext({locGameOver: true}),
+                // if not game over
+                If(!locGameOver,
+                    Select(btnNextPlayer);
+                    Set(varRollCount, 0);
+                    UpdateContext({locCurrentTurnPoints: 0})
+                )
             )
         OnTimerStart: |
             =If(comMyRoll_2.IsFarkle, 
