@@ -544,6 +544,13 @@
                     // if currentScreen is PlayerConfig, go to next "screen"
                     Set(currentScreen, "PlayerConfigNames");
                 );
+                
+                // if replaying from the game over screen, reset all player scores
+                If(currentScreen = "Play",
+                    UpdateIf(colPlayers, true,
+                        {Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false}
+                    )
+                );
                 Set(varCurrentPlayer, First(colPlayers));
                 Set(varRound, 1);
                 Set(varRollCount, 0);
@@ -568,12 +575,7 @@
                         locPlayerWithHighScore: ""
                     }
                 );
-                // if replaying from the game over screen, reset all player scores
-                If(currentScreen = "Play",
-                    UpdateIf(colPlayers, true,
-                        {Score: 0, FarkleCount: 0, OpeningScore: false, LastRoll: false}
-                    )
-                )
+                
                 
                 
                 
@@ -1788,7 +1790,7 @@
             DisabledFill: =RGBA(244, 244, 244, 1)
             DisplayMode: |-
                 =If(
-                    !IsEmpty(colPlayers) && (varRollCount = 0 || FARKLE.Visible),
+                    !IsEmpty(colPlayers) && varRollCount = 0,
                     DisplayMode.Edit,
                     If(
                         // there are dice kept and not scored yet
