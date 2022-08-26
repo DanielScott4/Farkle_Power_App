@@ -2893,6 +2893,36 @@
             {
               "logicalLocations": [
                 {
+                  "fullyQualifiedName": "App.cozy_living_room-wallpaper-1920x1080"
+                }
+              ],
+              "physicalLocation": {
+                "address": {
+                  "fullyQualifiedName": "App.cozy_living_room-wallpaper-1920x1080",
+                  "relativeAddress": 0
+                }
+              },
+              "properties": {
+                "member": "cozy_living_room-wallpaper-1920x1080",
+                "module": "App",
+                "type": "App"
+              }
+            }
+          ],
+          "message": {
+            "id": "issue"
+          },
+          "properties": {
+            "level": "Medium"
+          },
+          "ruleId": "app-UnusedMediaResources",
+          "ruleIndex": 5
+        },
+        {
+          "locations": [
+            {
+              "logicalLocations": [
+                {
                   "fullyQualifiedName": "'Game Screen'"
                 }
               ],
