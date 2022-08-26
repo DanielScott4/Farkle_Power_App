@@ -741,13 +741,7 @@
                 "Winner: " & Char(13) & locPlayerWithHighScore & Char(13) & " with " &
                 Text(locScoreToBeat,"##,###") & " pts!"
             VerticalAlign: =VerticalAlign.Top
-            Visible: |-
-                =// Visible when locGameOver is true
-                locGameOver ||
-                //Farkle is visible and next player already reached winning points
-                FARKLE.Visible && 
-                    Index(colPlayers, If(Mod(varCurrentPlayer.ID, CountRows(colPlayers)) = 0, 1, varCurrentPlayer.ID + 1)).Score >= 
-                    LookUp(colScoringTable, DisplayName = "Winning Score", Pts)
+            Visible: =locGameOver
             Width: =Parent.Width - 100
             X: =(Parent.Width - Self.Width)/2
             Y: =547
@@ -775,13 +769,7 @@
             PressedFill: =ColorFade(RGBA(0, 120, 212, 1), -30%)
             Size: =15.00
             Text: ="Play Again"
-            Visible: |-
-                =// Visible when locGameOver is true
-                locGameOver ||
-                //Farkle is visible and next player already reached winning points
-                FARKLE.Visible && 
-                    Index(colPlayers, If(Mod(varCurrentPlayer.ID, CountRows(colPlayers)) = 0, 1, varCurrentPlayer.ID + 1)).Score >= 
-                    LookUp(colScoringTable, DisplayName = "Winning Score", Pts)
+            Visible: =locGameOver
             Width: =180
             X: =227
             Y: =967
@@ -807,22 +795,7 @@
                 ="Game Over" & Char(13) & Char(13) & 
                 "Winner: " & Char(13) & locPlayerWithHighScore & Char(13) & " with " &
                 Text(locScoreToBeat,"##,###") & " pts!"
-            Visible: |-
-                =locGameOver || FARKLE.Visible && Index(
-                    colPlayers,
-                    If(
-                        Mod(
-                            varCurrentPlayer.ID,
-                            CountRows(colPlayers)
-                        ) = 0,
-                        1,
-                        varCurrentPlayer.ID + 1
-                    )
-                ).Score >= LookUp(
-                    colScoringTable,
-                    DisplayName = "Winning Score",
-                    Pts
-                )
+            Visible: =locGameOver
             Width: =640
             Y: =103
             ZIndex: =50
@@ -844,22 +817,7 @@
             PressedFill: =lbl_GameOver_Title.Fill
             Size: =24
             Text: ="Total Points"
-            Visible: |-
-                =locGameOver || FARKLE.Visible && Index(
-                    colPlayers,
-                    If(
-                        Mod(
-                            varCurrentPlayer.ID,
-                            CountRows(colPlayers)
-                        ) = 0,
-                        1,
-                        varCurrentPlayer.ID + 1
-                    )
-                ).Score >= LookUp(
-                    colScoringTable,
-                    DisplayName = "Winning Score",
-                    Pts
-                )
+            Visible: =locGameOver
             Width: =640
             Y: =40
             ZIndex: =51
@@ -871,22 +829,7 @@
             Layout: =Layout.Vertical
             TemplatePadding: =0.00
             TemplateSize: =32.00
-            Visible: |-
-                =locGameOver || FARKLE.Visible && Index(
-                    colPlayers,
-                    If(
-                        Mod(
-                            varCurrentPlayer.ID,
-                            CountRows(colPlayers)
-                        ) = 0,
-                        1,
-                        varCurrentPlayer.ID + 1
-                    )
-                ).Score >= LookUp(
-                    colScoringTable,
-                    DisplayName = "Winning Score",
-                    Pts
-                )
+            Visible: =locGameOver
             Y: =152
             ZIndex: =52
 
@@ -978,22 +921,7 @@
             PressedBorderColor: =RGBA(0, 0, 0, 0)
             PressedColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
             PressedFill: =RGBA(0, 0, 0, 0)
-            Visible: |-
-                =locGameOver || FARKLE.Visible && Index(
-                    colPlayers,
-                    If(
-                        Mod(
-                            varCurrentPlayer.ID,
-                            CountRows(colPlayers)
-                        ) = 0,
-                        1,
-                        varCurrentPlayer.ID + 1
-                    )
-                ).Score >= LookUp(
-                    colScoringTable,
-                    DisplayName = "Winning Score",
-                    Pts
-                )
+            Visible: =locGameOver
             Width: =40
             X: =8
             Y: =48
@@ -1006,22 +934,7 @@
             Layout: =Layout.Vertical
             TemplatePadding: =5.00
             TemplateSize: =32
-            Visible: |-
-                =locGameOver || FARKLE.Visible && Index(
-                    colPlayers,
-                    If(
-                        Mod(
-                            varCurrentPlayer.ID,
-                            CountRows(colPlayers)
-                        ) = 0,
-                        1,
-                        varCurrentPlayer.ID + 1
-                    )
-                ).Score >= LookUp(
-                    colScoringTable,
-                    DisplayName = "Winning Score",
-                    Pts
-                )
+            Visible: =locGameOver
             Width: =529
             WrapCount: =8
             X: =Gallery8_1.X
