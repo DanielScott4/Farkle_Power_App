@@ -2803,19 +2803,19 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "'Game Screen'.Icon1.AccessibleLabel"
+                  "fullyQualifiedName": "'Game Screen'.ico_Debug_ClearTestRolls.AccessibleLabel"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "'Game Screen'.Icon1.AccessibleLabel",
+                  "fullyQualifiedName": "'Game Screen'.ico_Debug_ClearTestRolls.AccessibleLabel",
                   "relativeAddress": 0
                 }
               },
               "properties": {
                 "member": "AccessibleLabel",
                 "module": "Game Screen",
-                "type": "'Game Screen'.Icon1"
+                "type": "'Game Screen'.ico_Debug_ClearTestRolls"
               }
             }
           ],
@@ -2833,19 +2833,19 @@
             {
               "logicalLocations": [
                 {
-                  "fullyQualifiedName": "'Game Screen'.Icon1.TabIndex"
+                  "fullyQualifiedName": "'Game Screen'.ico_Debug_ClearTestRolls.TabIndex"
                 }
               ],
               "physicalLocation": {
                 "address": {
-                  "fullyQualifiedName": "'Game Screen'.Icon1.TabIndex",
+                  "fullyQualifiedName": "'Game Screen'.ico_Debug_ClearTestRolls.TabIndex",
                   "relativeAddress": 0
                 }
               },
               "properties": {
                 "member": "TabIndex",
                 "module": "Game Screen",
-                "type": "'Game Screen'.Icon1"
+                "type": "'Game Screen'.ico_Debug_ClearTestRolls"
               }
             }
           ],

@@ -154,7 +154,7 @@
             Width: =303
             X: =337
             Y: =42
-            ZIndex: =8
+            ZIndex: =7
 
         lbl_varDiceAvailable As label:
             Align: =Align.Right
@@ -177,7 +177,7 @@
             Width: =303
             X: =337
             Y: =12
-            ZIndex: =9
+            ZIndex: =8
 
         lbl_varRollCount As label:
             Align: =Align.Right
@@ -200,7 +200,7 @@
             Width: =303
             X: =337
             Y: =72
-            ZIndex: =10
+            ZIndex: =9
 
         lbl_colMyRollCount As label:
             Align: =Align.Right
@@ -223,7 +223,7 @@
             Width: =303
             X: =337
             Y: =102
-            ZIndex: =11
+            ZIndex: =10
 
         lbl_colMyRoll_KeptCount As label:
             Align: =Align.Right
@@ -246,7 +246,7 @@
             Width: =303
             X: =337
             Y: =132
-            ZIndex: =12
+            ZIndex: =11
 
         lbl_varComboPts As label:
             Align: =Align.Right
@@ -269,7 +269,7 @@
             Width: =303
             X: =337
             Y: =162
-            ZIndex: =13
+            ZIndex: =12
 
         lbl_varRound As label:
             Align: =Align.Right
@@ -292,7 +292,7 @@
             Width: =303
             X: =337
             Y: =192
-            ZIndex: =14
+            ZIndex: =13
 
         lbl_CurrPlayer As label:
             Align: =Right
@@ -315,7 +315,7 @@
             Width: =303
             X: =337
             Y: =222
-            ZIndex: =15
+            ZIndex: =14
 
         galBonusScoring As gallery.galleryVertical:
             BorderColor: =RGBA(166, 166, 166, 1)
@@ -382,7 +382,7 @@
             Width: =307
             X: =10
             Y: =12
-            ZIndex: =16
+            ZIndex: =15
 
             Label40_1 As label:
                 BorderColor: =RGBA(0, 0, 0, 0)
@@ -468,90 +468,6 @@
             Y: =254
             ZIndex: =17
 
-    grpRollTesting As group:
-        Height: =5
-        Width: =5
-        X: =40
-        Y: =40
-        ZIndex: =40
-
-        lblTestRoll As label:
-            BorderColor: =RGBA(0, 0, 0, 0)
-            BorderStyle: =BorderStyle.None
-            BorderThickness: =2
-            Color: =RGBA(51, 51, 51, 1)
-            DisabledBorderColor: =RGBA(0, 0, 0, 0)
-            DisabledColor: =RGBA(166, 166, 166, 1)
-            Fill: =RGBA(255,255,255,.9)
-            FocusedBorderThickness: =4
-            Font: =Font.'Segoe UI'
-            Height: =25
-            PaddingBottom: =5.00
-            PaddingLeft: =5.00
-            Size: =10.00
-            Text: |-
-                ="Test Roll:"
-            Width: =307
-            X: =10
-            Y: =285
-            ZIndex: =18
-
-        txtTestRoll_1 As text:
-            BorderColor: =RGBA(166, 166, 166, 1)
-            BorderStyle: =BorderStyle.None
-            BorderThickness: =2
-            Color: =RGBA(51, 51, 51, 1)
-            Default: ="2-2-2-3-3-3"
-            DisabledBorderColor: =RGBA(0, 0, 0, 0)
-            DisabledColor: =RGBA(166, 166, 166, 1)
-            DisabledFill: =RGBA(244, 244, 244, 1)
-            Fill: =Transparent
-            FocusedBorderThickness: =4
-            Font: =Font.'Segoe UI'
-            Height: =25
-            HintText: ="Test Roll Numbers"
-            HoverBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
-            HoverColor: =RGBA(51, 51, 51, 1)
-            HoverFill: =RGBA(255, 255, 255, 1)
-            PaddingBottom: =5.00
-            PaddingLeft: =12.00
-            PaddingTop: =2
-            PressedBorderColor: =RGBA(0, 120, 212, 1)
-            PressedColor: =RGBA(51, 51, 51, 1)
-            PressedFill: =RGBA(255, 255, 255, 1)
-            RadiusBottomLeft: =0
-            RadiusBottomRight: =0
-            RadiusTopLeft: =0
-            RadiusTopRight: =0
-            Size: =12
-            Width: =116
-            X: =90
-            Y: =285
-            ZIndex: =19
-
-        tglTestRoll_1 As toggleSwitch:
-            BorderColor: =RGBA(0, 0, 0, 0)
-            BorderStyle: =BorderStyle.None
-            Color: =RGBA(51, 51, 51, 1)
-            DisabledBorderColor: =RGBA(0, 0, 0, 0)
-            FalseFill: =RGBA(102, 102, 102, 1)
-            FalseHoverFill: =RGBA(33, 33, 33, 1)
-            FalseText: =""
-            FocusedBorderThickness: =4
-            Font: =Font.'Segoe UI'
-            HandleFill: =RGBA(255, 255, 255, 1)
-            Height: =21
-            HoverBorderColor: =RGBA(0, 0, 0, 0)
-            PressedBorderColor: =RGBA(0, 0, 0, 0)
-            Size: =13.00
-            TrueFill: =RGBA(0, 120, 212, 1)
-            TrueHoverFill: =ColorFade(RGBA(0, 120, 212, 1), -30%)
-            TrueText: =""
-            Width: =52
-            X: =220
-            Y: =287
-            ZIndex: =20
-
     grpSettings As group:
         Height: =5
         Width: =5
@@ -627,7 +543,7 @@
             Width: =60
             X: =52
             Y: =1048
-            ZIndex: =7
+            ZIndex: =16
 
     grp_LastRoundMessage As group:
         Height: =5
@@ -648,7 +564,7 @@
             PressedFill: =RGBA(0, 120, 212, 1)
             Visible: =showMessageForLastRound
             Width: =640
-            ZIndex: =38
+            ZIndex: =39
 
         btnLastRoundMessage As button:
             BorderColor: =RGBA(0, 0, 0, 0)
@@ -684,7 +600,7 @@
             Width: =Parent.Width - 100
             X: =(Parent.Width - Self.Width)/2
             Y: =221
-            ZIndex: =39
+            ZIndex: =40
 
         btnOK As button:
             BorderColor: =RGBA(0, 0, 0, 0)
@@ -712,7 +628,7 @@
             Width: =300 
             X: =(Parent.Width - Self.Width)/2
             Y: =579
-            ZIndex: =40
+            ZIndex: =41
 
     icon_shared_achievements_1 As star:
         BorderColor: =If(CountIf(gameAchievements, New)>0, StyleSettings.ButtonFillOK, White)
@@ -728,7 +644,7 @@
         Width: =icon_shared_achievements_1.Height
         X: =50
         Y: =28
-        ZIndex: =47
+        ZIndex: =48
 
     grp_Shared As group:
         Height: =5
@@ -763,7 +679,7 @@
             Width: =343
             X: =129
             Y: =859
-            ZIndex: =43
+            ZIndex: =44
 
         icon_Shared_Settings As icon.Settings:
             BorderColor: =RGBA(0, 18, 107, 1)
@@ -785,7 +701,7 @@
             Width: =39
             X: =539
             Y: =9
-            ZIndex: =44
+            ZIndex: =45
 
         icon_Shared_HighScores As icon.Settings:
             BorderColor: =RGBA(0, 18, 107, 1)
@@ -807,7 +723,7 @@
             Width: =39
             X: =67
             Y: =8
-            ZIndex: =45
+            ZIndex: =46
 
         icon_shared_achievements As star:
             BorderColor: =If(CountIf(gameAchievements, New)>0, StyleSettings.ButtonFillOK, White)
@@ -823,28 +739,7 @@
             Width: =icon_shared_achievements.Height
             X: =30
             Y: =8
-            ZIndex: =46
-
-    Icon1 As icon.Cancel:
-        BorderColor: =RGBA(166, 166, 166, 1)
-        Color: =Red
-        DisabledBorderColor: =RGBA(0, 0, 0, 0)
-        DisabledColor: =RGBA(220, 220, 220, 1)
-        DisabledFill: =RGBA(0, 0, 0, 0)
-        Fill: =Transparent
-        FocusedBorderThickness: =4
-        Height: =25
-        HoverBorderColor: =RGBA(0, 0, 0, 0)
-        HoverColor: =ColorFade(Self.Color, -30%)
-        Icon: =Icon.Cancel
-        OnSelect: =Select(btn_PlayerConfig_Next)
-        PressedBorderColor: =RGBA(0, 0, 0, 0)
-        PressedColor: =ColorFade(Self.Color, -30%)
-        Tooltip: ="Clear Roll and Scores"
-        Width: =40
-        X: =272
-        Y: =285
-        ZIndex: =64
+            ZIndex: =47
 
     grp_StartScreen As group:
         Height: =5
@@ -867,7 +762,7 @@
             Width: =604
             X: =18
             Y: =20
-            ZIndex: =55
+            ZIndex: =56
 
         btn_Start_NewGame As button:
             BorderColor: =RGBA(102, 200, 265, 0.75)
@@ -901,7 +796,7 @@
             Width: =211
             X: =(Parent.Width - Self.Width)/2
             Y: =578
-            ZIndex: =56
+            ZIndex: =57
 
         btn_Start_HowToPlay As button:
             BorderColor: =RGBA(102, 200, 265, 0.75)
@@ -927,7 +822,7 @@
             Width: =211
             X: =(Parent.Width - Self.Width)/2
             Y: =741
-            ZIndex: =57
+            ZIndex: =58
 
         com_NumberOfPlayers As numberControl:
             Height: =72.00
@@ -936,7 +831,7 @@
             Width: =197
             X: =222
             Y: =333
-            ZIndex: =58
+            ZIndex: =59
 
         btn_PlayerConfig_Next As button:
             BorderColor: =RGBA(102, 200, 265, 0.75)
@@ -1014,7 +909,7 @@
             Width: =211
             X: =(Parent.Width - Self.Width)/2
             Y: =578
-            ZIndex: =59
+            ZIndex: =60
 
         gal_PlayerConfig_Names As gallery.galleryVertical:
             BorderColor: =RGBA(166, 166, 166, 1)
@@ -1024,7 +919,7 @@
             TemplateSize: =132
             Visible: =currentScreen = "PlayerConfigNames"
             Y: =100
-            ZIndex: =60
+            ZIndex: =61
 
             lbl_PlayerConfigNames_PlayerName As label:
                 BorderColor: =RGBA(0, 0, 0, 0)
@@ -1107,7 +1002,7 @@
             Visible: =currentScreen = "PlayerConfig"
             Width: =640
             Y: =254
-            ZIndex: =61
+            ZIndex: =62
 
         ico_PlayerConfig_Back As icon.ChevronLeft:
             BorderColor: =RGBA(166, 166, 166, 1)
@@ -1131,7 +1026,7 @@
             Visible: =currentScreen in ["PlayerConfig", "PlayerConfigNames"]
             X: =20
             Y: =30
-            ZIndex: =62
+            ZIndex: =63
 
         btn_PlayGame As button:
             BorderColor: =RGBA(102, 200, 265, 0.75)
@@ -1160,7 +1055,7 @@
             Width: =211
             X: =(Parent.Width - Self.Width)/2
             Y: =938
-            ZIndex: =63
+            ZIndex: =64
 
     grp_GameOver As group:
         Height: =5
@@ -1200,7 +1095,7 @@
             Width: =Parent.Width - 100
             X: =(Parent.Width - Self.Width)/2
             Y: =547
-            ZIndex: =41
+            ZIndex: =42
 
         btn_GameOver_PlayAgain As button:
             BorderColor: =RGBA(0, 0, 0, 0)
@@ -1234,7 +1129,7 @@
             Width: =180
             X: =227
             Y: =967
-            ZIndex: =42
+            ZIndex: =43
 
         lbl_GameOver_Points As label:
             Align: =Center
@@ -1274,7 +1169,7 @@
                 )
             Width: =640
             Y: =103
-            ZIndex: =48
+            ZIndex: =49
 
         lbl_GameOver_Title As label:
             Align: =Center
@@ -1311,7 +1206,7 @@
                 )
             Width: =640
             Y: =40
-            ZIndex: =49
+            ZIndex: =50
 
         galScoreHistory As gallery.galleryVertical:
             BorderColor: =RGBA(166, 166, 166, 1)
@@ -1337,7 +1232,7 @@
                     Pts
                 )
             Y: =152
-            ZIndex: =50
+            ZIndex: =51
 
             Label10_1 As label:
                 BorderColor: =RGBA(0, 0, 0, 0)
@@ -1446,7 +1341,7 @@
             Width: =40
             X: =8
             Y: =48
-            ZIndex: =51
+            ZIndex: =52
 
         galScoreHistPlyName As gallery.galleryVertical:
             BorderColor: =RGBA(166, 166, 166, 1)
@@ -1475,7 +1370,7 @@
             WrapCount: =8
             X: =Gallery8_1.X
             Y: =100
-            ZIndex: =52
+            ZIndex: =53
 
             Label20_1 As label:
                 Align: =Right
@@ -1498,6 +1393,111 @@
                 Wrap: =false
                 Y: =0.00
                 ZIndex: =1
+
+    grpRollTesting As group:
+        Height: =5
+        Width: =5
+        X: =80
+        Y: =80
+        ZIndex: =65
+
+        ico_Debug_ClearTestRolls As icon.Cancel:
+            BorderColor: =RGBA(166, 166, 166, 1)
+            Color: =Red
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(220, 220, 220, 1)
+            DisabledFill: =RGBA(0, 0, 0, 0)
+            Fill: =Transparent
+            FocusedBorderThickness: =4
+            Height: =25
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            HoverColor: =ColorFade(Self.Color, -30%)
+            Icon: =Icon.Cancel
+            OnSelect: =Select(btn_PlayerConfig_Next)
+            PressedBorderColor: =RGBA(0, 0, 0, 0)
+            PressedColor: =ColorFade(Self.Color, -30%)
+            Tooltip: ="Clear Roll and Scores"
+            Width: =40
+            X: =272
+            Y: =285
+            ZIndex: =18
+
+        lblTestRoll As label:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(51, 51, 51, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            Fill: =RGBA(255,255,255,.9)
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            Height: =25
+            PaddingBottom: =5.00
+            PaddingLeft: =5.00
+            Size: =10.00
+            Text: |-
+                ="Test Roll:"
+            Width: =307
+            X: =10
+            Y: =285
+            ZIndex: =19
+
+        txtTestRoll_1 As text:
+            BorderColor: =RGBA(166, 166, 166, 1)
+            BorderStyle: =BorderStyle.None
+            BorderThickness: =2
+            Color: =RGBA(51, 51, 51, 1)
+            Default: ="2-2-2-3-3-3"
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            DisabledColor: =RGBA(166, 166, 166, 1)
+            DisabledFill: =RGBA(244, 244, 244, 1)
+            Fill: =Transparent
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            Height: =25
+            HintText: ="Test Roll Numbers"
+            HoverBorderColor: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+            HoverColor: =RGBA(51, 51, 51, 1)
+            HoverFill: =RGBA(255, 255, 255, 1)
+            PaddingBottom: =5.00
+            PaddingLeft: =12.00
+            PaddingTop: =2
+            PressedBorderColor: =RGBA(0, 120, 212, 1)
+            PressedColor: =RGBA(51, 51, 51, 1)
+            PressedFill: =RGBA(255, 255, 255, 1)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =12
+            Width: =116
+            X: =90
+            Y: =285
+            ZIndex: =20
+
+        tglTestRoll_1 As toggleSwitch:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            BorderStyle: =BorderStyle.None
+            Color: =RGBA(51, 51, 51, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            FalseFill: =RGBA(102, 102, 102, 1)
+            FalseHoverFill: =RGBA(33, 33, 33, 1)
+            FalseText: =""
+            FocusedBorderThickness: =4
+            Font: =Font.'Segoe UI'
+            HandleFill: =RGBA(255, 255, 255, 1)
+            Height: =21
+            HoverBorderColor: =RGBA(0, 0, 0, 0)
+            PressedBorderColor: =RGBA(0, 0, 0, 0)
+            Size: =13.00
+            TrueFill: =RGBA(0, 120, 212, 1)
+            TrueHoverFill: =ColorFade(RGBA(0, 120, 212, 1), -30%)
+            TrueText: =""
+            Width: =52
+            X: =220
+            Y: =287
+            ZIndex: =21
 
     grp_Play As group:
         Height: =5
@@ -1532,7 +1532,7 @@
             Width: =165
             X: =238
             Y: =654
-            ZIndex: =21
+            ZIndex: =22
 
         Label5_3 As label:
             Align: =Right
@@ -1554,7 +1554,7 @@
             Width: =72
             X: =315
             Y: =657
-            ZIndex: =22
+            ZIndex: =23
 
         Label5_4 As label:
             Align: =Right
@@ -1576,7 +1576,7 @@
             Width: =72
             X: =315
             Y: =681
-            ZIndex: =23
+            ZIndex: =24
 
         Label5_5 As label:
             Align: =Right
@@ -1598,7 +1598,7 @@
             Width: =72
             X: =315
             Y: =708
-            ZIndex: =24
+            ZIndex: =25
 
         gal_PlayersScores As gallery.galleryVertical:
             BorderColor: =RGBA(166, 166, 166, 1)
@@ -1615,7 +1615,7 @@
             Width: =604
             X: =(Parent.Width - Self.Width)/2
             Y: =761
-            ZIndex: =25
+            ZIndex: =26
 
             Label11 As label:
                 BorderColor: =RGBA(0, 0, 0, 0)
@@ -1788,7 +1788,7 @@
             Width: =39
             X: =240
             Y: =681
-            ZIndex: =26
+            ZIndex: =27
 
         Label6_3 As label:
             Align: =Right
@@ -1810,7 +1810,7 @@
             Width: =39
             X: =240
             Y: =708
-            ZIndex: =27
+            ZIndex: =28
 
         Rectangle1_1 As rectangle:
             BorderColor: =RGBA(0, 0, 0, 0)
@@ -1826,7 +1826,7 @@
             Visible: =currentScreen="Play"
             X: =242
             Y: =706
-            ZIndex: =28
+            ZIndex: =29
 
         btnScoreIt As button:
             BorderColor: =galMyRoll.BorderColor
@@ -1918,7 +1918,7 @@
             Width: =191
             X: =Parent.Width - Self.Width - 15
             Y: =654
-            ZIndex: =29
+            ZIndex: =30
 
         tmr_RollTimer As timer:
             AutoPause: =false
@@ -1962,7 +1962,7 @@
             Width: =124
             X: =52
             Y: =705
-            ZIndex: =30
+            ZIndex: =31
 
         btnRollDice As button:
             BorderColor: =galMyRoll.BorderColor
@@ -2045,7 +2045,7 @@
             Width: =191
             X: =15
             Y: =654
-            ZIndex: =31
+            ZIndex: =32
 
         lblProbability As label:
             Align: =Right
@@ -2107,7 +2107,7 @@
             Wrap: =false
             X: =15
             Y: =625
-            ZIndex: =32
+            ZIndex: =33
 
         "galMyRoll As gallery.'BrowseLayout_Horizontal_TwoTextOneImageVariant_ver4.0'":
             BorderColor: =RGBA(27, 16, 9, .8)
@@ -2243,7 +2243,7 @@
             Width: =610
             X: =(Parent.Width - Self.Width)/2
             Y: =384
-            ZIndex: =33
+            ZIndex: =34
 
             html_BoxShadow As htmlViewer:
                 Height: =92.00
@@ -2476,7 +2476,7 @@
             Width: =galMyRoll.Width
             X: =(Parent.Width - Self.Width)/2
             Y: =518
-            ZIndex: =34
+            ZIndex: =35
 
             html_BoxShadow_1 As htmlViewer:
                 Height: =91
@@ -2625,7 +2625,7 @@
             Width: =galMyRoll.Width
             X: =(Parent.Width - Self.Width)/2
             Y: =384
-            ZIndex: =35
+            ZIndex: =36
 
             btnFarkle_Letters As button:
                 BorderColor: =RGBA(0, 0, 0, 0)
@@ -2696,7 +2696,7 @@
             Wrap: =false
             X: =galMyRoll.X
             Y: =320
-            ZIndex: =36
+            ZIndex: =37
 
         lblOpeningPtsNeeded As label:
             Align: =Center
@@ -2720,7 +2720,7 @@
             Width: =200
             X: =429
             Y: =734
-            ZIndex: =37
+            ZIndex: =38
 
     grp_HowToPlay As group:
         Height: =5
@@ -2735,7 +2735,7 @@
             Color: =StyleSettings.MenuColor
             Fill: =StyleSettings.MenuFill
             Font: =StyleSettings.PrimaryFont
-            Height: =1071
+            Height: =1028
             HoverBorderColor: =html_HowToPlay_Bkgd.BorderColor
             HtmlText: |-
                 ="<b>Objective</b>
@@ -2823,14 +2823,12 @@
                    <tr>
                    <td>Three Pairs</td>
                    <td><b>" & LookUp(colScoringTable, ID = 10, Text(Pts,"0,000")) & "</b></td>
-                  </tr>" &
-                /* this combo has not been coded yet
-                    <tr>
-                   <td>Four of any number with pair</td>
-                   <td><b>1,500</b></td>
                   </tr>
-                */
-                   "<tr>
+                    <tr>
+                   <td>Four of any number + Pair</td>
+                   <td><b>"& LookUp(colScoringTable, ID = 16, Text(Pts,"0,000")) &"</b></td>
+                  </tr>
+                   <tr>
                    <td>Two Sets of Triplets</td>
                    <td><b>" & LookUp(colScoringTable, ID = 15, Text(Pts,"0,000")) & "</b></td>
                   </tr>
@@ -2849,7 +2847,7 @@
             Width: =580
             X: =StyleSettings.MenuX
             Y: =StyleSettings.MenuY
-            ZIndex: =53
+            ZIndex: =54
 
         lbl_HowToPlay_Close As label:
             Align: =Center
@@ -2873,5 +2871,5 @@
             Width: =60
             X: =550
             Y: =html_HowToPlay_Bkgd.Y
-            ZIndex: =54
+            ZIndex: =55
 
