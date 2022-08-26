@@ -26,7 +26,7 @@
         HoverFill: =ColorFade(RGBA(0, 120, 212, 1), -10%)
         OnSelect: |-
             =// If current player is the last, then increment the round number
-            If(Last(colPlayers).ID = varCurrentPlayer.ID,
+            If(varCurrentPlayer.ID = Last(colPlayers).ID,
                 Set(varRound, varRound + 1)
             );
             
@@ -95,12 +95,12 @@
                         varCurrentPlayer.ID + 1
                     )
                 ).Score >= LookUp(colScoringTable, DisplayName = "Winning Score", Pts),
-                // update game over variable
-                UpdateContext({locGameOver: true}),
-                // if not game over
-                If(!locGameOver,
-                    Select(btnNextPlayer);
-                )
+                    // update game over variable
+                    UpdateContext({locGameOver: true})
+            );
+            // if not game over
+            If(!locGameOver,
+                Select(btnNextPlayer);
             )
         OnTimerStart: |
             =If(comMyRoll_2.IsFarkle, 
@@ -620,7 +620,7 @@
                 Size: =24
                 Text: |-
                     ="Player " & ThisItem.ID & " Name: "
-                Width: =202
+                Width: =366
                 X: =42
                 ZIndex: =1
 
@@ -1158,12 +1158,12 @@
                     {
                         Type: "1-1-1-1-1-1", 
                         Check: comMyRoll_2.CheckCombo.IsAllOnes, 
-                        Pts: 5000
+                        Pts: LookUp(colScoringTable, ID = 14, Pts)
                     },
                     {
                         Type: "Two Triplets", 
                         Check: comMyRoll_2.CheckCombo.IsTwoTriplets, 
-                        Pts: 2500
+                        Pts: LookUp(colScoringTable, ID = 15, Pts)
                     }
                 )
             Layout: =Layout.Vertical
@@ -1184,14 +1184,14 @@
                 DisabledColor: =RGBA(166, 166, 166, 1)
                 FocusedBorderThickness: =4
                 Font: =Font.'Segoe UI'
-                Height: =22.00
+                Height: =22
                 OnSelect: =Select(Parent)
                 PaddingBottom: =5.00
                 PaddingLeft: =5.00
                 Size: =13.00
                 Text: =ThisItem.Check
-                Width: =45
-                X: =167
+                Width: =79
+                X: =153
                 Y: =0.00
                 ZIndex: =1
 
@@ -1239,9 +1239,12 @@
         gal_Debug_Variables As gallery.galleryVertical:
             BorderColor: =RGBA(166, 166, 166, 1)
             Fill: =RGBA(255,255,255,.9)
-            Height: =268
+            Height: =308
             Items: |
                 =Table(
+                    {
+                        DisplayName: "varRound", Value: varRound
+                    },
                     {
                         DisplayName: "varDiceAvailable", Value: varDiceAvailable
                     },
@@ -1261,10 +1264,16 @@
                         DisplayName: "varComboPts", Value: varComboPts
                     },
                     {
-                        DisplayName: "varRound", Value: varRound
+                        DisplayName: "varCurrentPlayer.ID", Value: varCurrentPlayer.ID
                     },
                     {
-                        DisplayName: "varCurrentPlayer.ID", Value: varCurrentPlayer.ID
+                        DisplayName: "varCurrentPlayer.Score", Value: varCurrentPlayer.Score
+                    },
+                    {
+                        DisplayName: "locCurrentPlayerScore", Value: locCurrentPlayerScore
+                    },
+                    {
+                        DisplayName: "locCurrentTurnPoints", Value: locCurrentTurnPoints
                     }
                 )
             Layout: =Layout.Vertical
@@ -1293,8 +1302,8 @@
                 PaddingLeft: =5.00
                 Size: =12
                 Text: =ThisItem.Value
-                Width: =59
-                X: =235
+                Width: =66
+                X: =207
                 Y: =0.00
                 ZIndex: =1
 
@@ -1685,7 +1694,7 @@
                     Patch(colPlayers, varCurrentPlayer, {Score: varCurrentPlayer.Score + locCurrentTurnPoints, OpeningScore: true, FarkleCount: 0});
                 
                     // If current player reached winning score, then set variable
-                    If(!locLastRound && varCurrentPlayer.Score >= LookUp(colScoringTable, DisplayName = "Winning Score", Pts),
+                    If(!locLastRound && locCurrentPlayerScore + locCurrentTurnPoints >= LookUp(colScoringTable, DisplayName = "Winning Score", Pts),
                         UpdateContext(
                             {
                                 showMessageForLastRound: true,
@@ -1696,7 +1705,7 @@
                         )
                     );
                     // if other player beats current high score
-                    If(locLastRound && varCurrentPlayer.Score + locCurrentTurnPoints > locScoreToBeat,
+                    If(locLastRound && locCurrentPlayerScore + locCurrentTurnPoints > locScoreToBeat,
                         UpdateContext(
                             {
                                 locScoreToBeat: varCurrentPlayer.Score,
@@ -1714,11 +1723,7 @@
                     );
                     
                     // RESET FOR NEXT ROLL / PLAYER
-                    Select(btnNextPlayer);
-                    Set(varRollCount, 0);
-                    Clear(colMyRoll);
-                    Clear(colMyRoll_Kept)
-                 
+                    Select(btnNextPlayer); 
                 )
                     
             PaddingBottom: =5.00
