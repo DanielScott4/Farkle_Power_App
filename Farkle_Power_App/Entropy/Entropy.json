@@ -195,7 +195,7 @@
   },
   "FunctionParamsInvariantScripts": {},
   "FunctionParamsInvariantScriptsOnInstances": {},
-  "HeaderLastSavedDateTimeUTC": "08/26/2022 22:48:52",
+  "HeaderLastSavedDateTimeUTC": "08/29/2022 13:40:41",
   "IsLegacyComponentAllowGlobalScopeCase": false,
   "LocalConnectionIDReferences": {},
   "LocalDatabaseReferencesAsEmpty": false,
@@ -205,9 +205,9 @@
     "Table": "b6b00fde-4b4d-4e70-903a-8070a02292d8.svg"
   },
   "LocalResourceRootPaths": {
-    "bkgd_City": "https://docserverpwaprodwus.blob.core.windows.net/fe90d914-1e35-4c0c-b6d4-ccecb4584a89-1/resource/Assets0Images0e97dacce-5e1f-447a-b997-90fe58e4b5fb.jpg?sv=2017-04-17&sr=b&sig=p6u1UYLlByh167Fjm91unGlueRfMjZlzZ1AwtMiBpjY%3D&spr=https&se=2022-08-27T21%3A37%3A15Z&sp=r",
-    "cozy_living_room-wallpaper-1920x1080": "https://docserverpwaprodwus.blob.core.windows.net/fe90d914-1e35-4c0c-b6d4-ccecb4584a89-1/resource/Assets0Images050b8a34b-fa8d-4f30-9d1f-f386ba9872d8.jpg?sv=2017-04-17&sr=b&sig=lOf1vs9m9uf4NLPzBcy1SsfKp%2BBSHaHVRYNnV%2Buk0zY%3D&spr=https&se=2022-08-27T21%3A37%3A15Z&sp=r",
-    "Table": "https://docserverpwaprodwus.blob.core.windows.net/fe90d914-1e35-4c0c-b6d4-ccecb4584a89-1/resource/Assets0Images0b6b00fde-4b4d-4e70-903a-8070a02292d8.svg?sv=2017-04-17&sr=b&sig=N3LXHge1ZkQNjjECzZLjGcCgzpi88cgBjYQI8PKEmbU%3D&spr=https&se=2022-08-27T21%3A37%3A15Z&sp=r"
+    "bkgd_City": "https://docserverpwaprodwus.blob.core.windows.net/21b12f52-7879-4599-896a-7c2ec64ed329-1/resource/Assets0Images0e97dacce-5e1f-447a-b997-90fe58e4b5fb.jpg?sv=2017-04-17&sr=b&sig=EgdLeYnhQGKgk6tkW6OgZIuBvTcIYbmtxv4bYdy6Skk%3D&spr=https&se=2022-08-30T13%3A28%3A45Z&sp=r",
+    "cozy_living_room-wallpaper-1920x1080": "https://docserverpwaprodwus.blob.core.windows.net/21b12f52-7879-4599-896a-7c2ec64ed329-1/resource/Assets0Images050b8a34b-fa8d-4f30-9d1f-f386ba9872d8.jpg?sv=2017-04-17&sr=b&sig=kZ%2Blg14coa%2FpHExw7HHkSbDMq95VeLn33hY6Td8axUs%3D&spr=https&se=2022-08-30T13%3A28%3A45Z&sp=r",
+    "Table": "https://docserverpwaprodwus.blob.core.windows.net/21b12f52-7879-4599-896a-7c2ec64ed329-1/resource/Assets0Images0b6b00fde-4b4d-4e70-903a-8070a02292d8.svg?sv=2017-04-17&sr=b&sig=JUqSVU50MpfMGBbC38qeSjRWtv838ifIQpuyVjEeNs8%3D&spr=https&se=2022-08-30T13%3A28%3A45Z&sp=r"
   },
   "OldLogoFileName": "fimutzga.jpg",
   "OrderComponentMetadata": {
@@ -539,7 +539,7 @@
   "RuleScreenIdWithoutScreen": {},
   "TemplateVersions": {},
   "VolatileProperties": {
-    "AnalysisLoadTime": 1.6258274,
+    "AnalysisLoadTime": 1.6851862,
     "ControlCount": {
       "2ee30dc81626408eb5290d2c037559d5": 2,
       "346ab8d173664f849d62fb9f8ca81e51": 1,
@@ -561,7 +561,7 @@
       "timer": 3,
       "toggleSwitch": 4
     },
-    "DeserializationLoadTime": 3.4783465,
+    "DeserializationLoadTime": 4.2226481,
     "ErrorCount": 0
   },
   "WasLocalDatabaseReferencesEmpty": true

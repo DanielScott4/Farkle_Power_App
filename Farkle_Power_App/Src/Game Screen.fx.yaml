@@ -1699,7 +1699,7 @@
                             {
                                 showMessageForLastRound: true,
                                 locLastRound: true, // set to last round
-                                locScoreToBeat: varCurrentPlayer.Score,
+                                locScoreToBeat: locCurrentPlayerScore + locCurrentTurnPoints,
                                 locPlayerWithHighScore: varCurrentPlayer.PlayerName
                             }
                         )
@@ -1708,7 +1708,7 @@
                     If(locLastRound && locCurrentPlayerScore + locCurrentTurnPoints > locScoreToBeat,
                         UpdateContext(
                             {
-                                locScoreToBeat: varCurrentPlayer.Score,
+                                locScoreToBeat: locCurrentPlayerScore + locCurrentTurnPoints,
                                 locPlayerWithHighScore: varCurrentPlayer.PlayerName
                             }
                         )
