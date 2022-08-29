@@ -108,7 +108,7 @@
                     {
                         Round: varRound,
                         Player: varCurrentPlayer.PlayerName,
-                        Pts: If(varCurrentPlayer.FarkleCount = 2, "F (-1000)", "F")
+                        Pts: If(varCurrentPlayer.FarkleCount = 2, -1000, 0)
                     }
                 );
                 // If current player farkle count is two, subtract 1000 and then reset count to 0
